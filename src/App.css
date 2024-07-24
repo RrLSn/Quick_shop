@@ -7,6 +7,10 @@
 #root {
   ---white: #ffffff;
   ---black: #000000;
+  ---neutral: #b2b2b2;
+  ---neutral-500: #575757;
+  ---neutral-300: #bebebe;
+  ---neutral-50: #eeeeee;
 }
 
 .wholeWrapper {

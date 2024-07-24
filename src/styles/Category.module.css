@@ -1,7 +1,7 @@
 .wrapper {
-  @apply w-[100vw] h-[1556px];
+  @apply w-[100%] h-[max-content];
   display: flex;
-  padding: 56px 0px;
+  /* padding: 56px 0px; */
   flex-direction: column;
   align-items: flex-start;
   gap: 56px;
@@ -10,5 +10,90 @@
 
 .femaleCate,
 .maleCate {
-  @apply w-[100%] h-[750px] flex self-stretch;
+  @apply w-[100%] h-[750px] flex justify-between items-center px-[130px];
+}
+
+.f_image {
+  @apply w-[503px] h-[750px] flex;
+  flex-shrink: 0;
+}
+
+.f_image img:nth-child(1) {
+  @apply w-[100%] h-[100%];
+  border-radius: 251.5px;
+  background-color: #d9d9d9;
+}
+
+.f_image img:nth-child(2) {
+  @apply w-[160px] h-[158.599px];
+  position: absolute;
+  margin-left: 416px;
+  margin-top: 146px;
+  flex-shrink: 0;
+}
+
+.f_desc,
+.m_desc {
+  @apply w-[380px] h-[207px] inline-flex flex-col gap-[24px] items-start;
+}
+
+.f_desc span,
+.m_desc span {
+  width: 100%;
+  font-family: "Urbanist";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  gap: 10px;
+  color: var(---neutral);
+}
+
+.f_desc span h1,
+.m_desc span h1 {
+  color: var(---black);
+}
+
+.f_desc p,
+.m_desc p {
+  font-family: "Urbanist";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.f_desc button,
+.m_desc button {
+  @apply w-[209px] h-[42px] flex justify-center items-center text-center gap-[10px];
+  padding: 10px 30px;
+  background-color: var(---neutral-500);
+  color: var(---white);
+  font-family: "Urbanist";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+.m_image {
+  @apply w-[503px] h-[750px] flex;
+  flex-shrink: 0;
+}
+
+.m_image img:nth-child(2) {
+  @apply w-[100%] h-[100%];
+  flex-shrink: 0;
+  background-color: #d9d9d9;
+  border-radius: 251.5px 0px 0px 251.5px;
+}
+
+.m_image img:nth-child(1) {
+  @apply w-[158.173px] h-[158.599px];
+  position: absolute;
+  margin-left: -88px;
+  margin-top: 146px;
+  flex-shrink: 0;
 }

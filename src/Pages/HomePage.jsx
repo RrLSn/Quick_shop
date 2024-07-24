@@ -3,6 +3,8 @@
 import Category from "../component/Category";
 import Hero from "../component/Hero";
 import NavBar from "../component/NavBar";
+import Offers from "../component/Offers";
+import Products from "../component/Products";
 import styles from "../styles/HomePage.module.css";
 
 const HomePage = () => {
@@ -11,6 +13,8 @@ const HomePage = () => {
       <NavBar />
       <Hero />
       <Category />
+      <Products />
+      <Offers />
     </div>
   );
 };

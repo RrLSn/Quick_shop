@@ -1,0 +1,54 @@
+.wrapper {
+  @apply w-[100%] h-[max-content] flex flex-col items-start gap-[40px];
+  padding: 56px 88px;
+}
+
+.header {
+  @apply flex w-[100%] h-[38px] justify-between items-center;
+}
+
+.header span {
+  @apply w-[232px] flex gap-[10px];
+  font-family: "Urbanist";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: var(---neutral);
+}
+
+.header span h1 {
+  color: var(---black);
+}
+
+.navigate {
+  @apply w-[80px] h-[24px] flex gap-[10px] items-center;
+}
+
+.navigate img {
+  @apply w-[24px] h-[24px] hover:opacity-[0.2];
+  color: var(---black);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.products {
+  @apply w-[100%] h-[487px] flex gap-[40px];
+}
+
+.product_card {
+  @apply w-[395px] h-[100%] flex flex-col justify-center gap-[16px] items-start;
+}
+
+.product_card img {
+  @apply w-[100%] h-[420px];
+  background-color: var(---neutral);
+}
+
+.product_card p {
+  font-family: "Urbanist";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
