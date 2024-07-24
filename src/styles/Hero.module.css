@@ -1,0 +1,57 @@
+.wrapper {
+  @apply w-[100vw] h-[676px] flex flex-col self-stretch items-center pb-[56px];
+  margin: 112px 0;
+  background-color: var(---white);
+}
+
+.wrapper h1 {
+  @apply w-[810px];
+  text-align: center;
+  font-family: "Urbanist";
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: var(---black);
+}
+
+main {
+  @apply w-[100vw] h-[522px] gap-[20px] flex flex-col items-center self-stretch;
+  background: var(---white);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.navigate {
+  @apply w-[100vw] h-[72px];
+  display: flex;
+  padding: 0px 88px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.heroSlider {
+  @apply w-[1410px] h-[430px] flex justify-between;
+}
+
+.heroSlider span:nth-child(1) {
+  margin-top: 6rem;
+}
+
+.heroSlider span:nth-child(2) {
+  margin-top: 3rem;
+}
+
+.heroSlider span:nth-child(4) {
+  margin-top: 3rem;
+}
+
+.heroSlider span:nth-child(5) {
+  margin-top: 6rem;
+}
+
+.sliderCard {
+  @apply w-[250px] h-[350px] inline-flex flex-col;
+  border: 15px solid #eeeeee;
+  background-color: #d9d9d9;
+}

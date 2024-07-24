@@ -1,0 +1,14 @@
+.wrapper {
+  @apply w-[100vw] h-[1556px];
+  display: flex;
+  padding: 56px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 56px;
+  align-self: stretch;
+}
+
+.femaleCate,
+.maleCate {
+  @apply w-[100%] h-[750px] flex self-stretch;
+}

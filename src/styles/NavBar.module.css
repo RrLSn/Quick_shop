@@ -1,0 +1,39 @@
+nav {
+  @apply w-[100vw] h-[80px] flex justify-between items-center px-[60px];
+  background-color: var(---white);
+  overflow-x: hidden;
+}
+
+.logo {
+  @apply h-[30px] w-[133.448px];
+  flex-shrink: 0;
+}
+
+.barText {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  font-family: "Urbanist";
+  font-style: normal;
+  @apply w-[407px] h-[100%] flex justify-between items-center px-[30px];
+}
+
+.cartUser {
+  @apply w-[118px] h-[30px] inline-flex justify-center items-center gap-[30px];
+}
+
+.cart {
+  @apply flex;
+}
+
+.cart p {
+  @apply w-[1.5rem] h-[1.4rem] rounded-[50%] flex text-center justify-center items-center;
+  background-color: var(---black);
+  color: var(---white);
+  font-family: "Urbanist";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: -7px;
+}
