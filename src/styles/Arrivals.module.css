@@ -1,0 +1,60 @@
+.wrapper {
+  @apply w-[100vw] h-[max-content] flex flex-col items-start gap-[40px];
+  padding: 56px 88px;
+  margin-top: 112px;
+  background-color: var(---white);
+}
+
+.header {
+  @apply flex w-[100%] h-[38px] justify-between items-center;
+}
+
+.header span {
+  @apply w-[232px] flex gap-[10px];
+  font-family: "Urbanist";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: var(---neutral);
+}
+
+.header span h1 {
+  color: var(---black);
+}
+
+.navigate {
+  @apply w-[80px] h-[24px] flex gap-[10px] items-center;
+}
+
+.navigate img {
+  @apply w-[24px] h-[24px] hover:opacity-[0.2];
+  color: var(---black);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.products {
+  @apply w-[100%] h-[487px] flex gap-[40px] items-start;
+}
+
+.products_card {
+  @apply w-[395px] h-[487px] flex flex-col gap-[16px] items-start;
+}
+
+.products_card img {
+  @apply w-[100%] h-[420px] shrink-0;
+  background-color: var(---neutral);
+}
+
+.products_card span {
+  @apply w-[111px] h-[51px] flex flex-col items-start gap-[8];
+}
+
+.products_card p {
+  font-family: "Urbanist";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

@@ -1,0 +1,80 @@
+.wrapper {
+  @apply w-[100vw] h-[max-content] flex flex-col items-center gap-[24px];
+  padding: 112px 0;
+  margin: 112px 0;
+}
+
+.subscribe {
+  @apply w-[513px] h-[107px] flex flex-col items-center gap-[12px];
+}
+
+.subscribe span {
+  /* @apply flex; */
+  color: var(---neutral);
+  font-family: "Urbanist";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.subscribe span strong {
+  color: var(---black);
+  font-family: "Urbanist";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.subscribe p {
+  font-family: "Urbanist";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.sub_mail {
+  @apply w-[656px] h-[50px] flex gap-[16px] items-start;
+}
+
+.sub_mail span {
+  background-color: var(---neutral-50);
+  @apply w-[500px] h-[100%] gap-[4px]
+    items-center rounded-md flex px-[16px];
+}
+
+.sub_mail span img {
+  @apply w-[14px] h-[14px];
+}
+
+.sub_mail span input {
+  background-color: var(---neutral-50);
+  @apply w-[450px];
+}
+
+.sub_mail span input,
+.sub_mail span input::placeholder {
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 1rem;
+  outline: none;
+  color: var(---black);
+}
+
+.sub_mail button {
+  @apply w-[140px] h-[100%] flex items-center justify-center gap-[10px] rounded-md;
+  padding: 10px 30px;
+  background-color: var(---neutral-500);
+  color: var(---white);
+  font-family: "Urbanist";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: capitalize;
+}

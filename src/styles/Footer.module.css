@@ -1,0 +1,66 @@
+.wrapper {
+  padding: 88px;
+  @apply w-[100vw] h-[361px] gap-[88px] flex flex-col items-center;
+}
+
+.footer_contents {
+  @apply w-[100%] h-[166px] flex gap-[40px] items-start;
+}
+
+.content_a {
+  @apply w-[286px] h-[125px] gap-[24px] flex flex-col items-start;
+}
+
+.logo {
+  @apply w-[223px] h-[61px] flex flex-col gap-[12px] items-start;
+}
+
+.logo img {
+  @apply w-[133.448px] h-[30px];
+}
+
+.logo p {
+  font-family: "Urbanist";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: var(---black);
+}
+
+.socials {
+  @apply w-[100%] h-[40px] gap-[20px] flex items-center;
+}
+
+.content_b {
+  @apply w-[177px] h-[137px] flex flex-col items-start gap-[32px];
+}
+
+.content_b h1,
+.content_c h1 {
+  font-family: "Urbanist";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: var(---black);
+}
+
+.filters {
+  @apply w-[108px] h-[81px] flex flex-col gap-[12px] items-start;
+}
+
+.content_c {
+  @apply w-[178px] h-[168px] flex flex-col items-start gap-[32px];
+}
+
+.company_navi {
+  @apply w-[136px] h-[112px] flex flex-col gap-[12px] items-start;
+}
+
+.content_d {
+  @apply w-[177px] h-[137px] flex flex-col items-start gap-[32px];
+}
+
+.content_e {
+}
