@@ -30,6 +30,10 @@ main {
   align-self: stretch;
 }
 
+.navigate img {
+  @apply w-[72px] h-[72px] cursor-pointer hover:opacity-[0.2];
+}
+
 .heroSlider {
   @apply w-[1410px] h-[430px] flex justify-between;
 }

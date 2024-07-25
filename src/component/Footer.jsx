@@ -36,10 +36,22 @@ const Footer = () => {
         </div>
         <div className={styles.content_d}>
           <h1>Information</h1>
-          <div className={styles.information}></div>
+          <div className={styles.information}>
+            <p>Privary Policy</p>
+            <p>Terms and Condition</p>
+            <p>Sitemap</p>
+          </div>
         </div>
-        <div className={styles.content_e}></div>
+        <div className={styles.content_e}>
+          <h1>Payment Methods</h1>
+          <span className={styles.payment}>
+            <img src="/svg/mastercard.svg" alt="" />
+            <img src="/svg/visa.svg" alt="" />
+            <img src="/svg/paypal.svg" alt="" />
+          </span>
+        </div>
       </div>
+      <p>Copyrights. All rights reserved</p>
     </footer>
   );
 };

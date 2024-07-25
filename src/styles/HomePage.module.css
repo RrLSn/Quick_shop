@@ -1,5 +1,5 @@
 .container {
   width: 100vw;
-  height: 6310px;
+  height: max-content;
   overflow: hidden;
 }

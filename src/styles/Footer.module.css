@@ -37,13 +37,25 @@
 }
 
 .content_b h1,
-.content_c h1 {
+.content_c h1,
+.content_d h1,
+.content_e h1 {
   font-family: "Urbanist";
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   color: var(---black);
+}
+
+.filters p,
+.company_navi p,
+.information p {
+  font-family: "Urbanist";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .filters {
@@ -62,5 +74,26 @@
   @apply w-[177px] h-[137px] flex flex-col items-start gap-[32px];
 }
 
+.information {
+  @apply w-[153px] h-[81px] flex flex-col items-start gap-[12px];
+}
+
 .content_e {
+  @apply w-[286px] h-[104px] flex flex-col gap-[32px] items-start;
+}
+
+.payment {
+  @apply w-[222px] h-[48px] flex gap-[24px] items-center;
+}
+
+.payment img {
+  @apply w-[40px] h-[24px];
+}
+
+.copyright {
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
