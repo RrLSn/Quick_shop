@@ -144,6 +144,28 @@
   text-transform: capitalize;
 }
 
+footer {
+  @apply w-[236px] h-[25px] flex items-center gap-[5px];
+}
+
+footer h1 {
+  font-family: "Urbanist";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral-900);
+}
+
+footer p {
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral-500);
+}
+
 .carve {
   @apply w-[1847px] h-[1683px];
   background-color: var(---neutral-50);

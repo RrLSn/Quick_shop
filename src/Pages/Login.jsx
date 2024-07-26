@@ -46,13 +46,17 @@ const Login = () => {
                   <input type="checkbox" name="" id="" />
                   <p>Remember me</p>
                 </div>
-                <p>Forget Password?</p>
+                <p>
+                  <Link to="/forgetPassword">Forgot Password?</Link>
+                </p>
               </span>
             </div>
             <button>Login</button>
             <footer>
               <h1>Don&rsquo;t have account?</h1>
-              <Link>Sign Up</Link>
+              <p>
+                <Link>Sign Up</Link>
+              </p>
             </footer>
           </form>
         </div>
