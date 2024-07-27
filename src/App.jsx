@@ -4,6 +4,7 @@ import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
 import Forget_pass from "./Pages/Forget_pass";
 import Reset_pass from "./Pages/Reset_pass";
+import Sign_up from "./Pages/Sign_up";
 
 function App() {
   const routes = createBrowserRouter([
@@ -22,6 +23,10 @@ function App() {
     {
       path: "/forgetPassword/reset_password",
       element: <Reset_pass />,
+    },
+    {
+      path: "/sign_up",
+      element: <Sign_up />,
     },
   ]);
   return (

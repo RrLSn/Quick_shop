@@ -18,7 +18,8 @@
 
 .wholeWrapper {
   max-width: 1440px;
-  min-height: 1024px;
+  min-height: 100vh;
   height: max-content;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
+  overflow: hidden;
 }
