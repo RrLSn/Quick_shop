@@ -1,4 +1,5 @@
 // import React from 'react'
+import { Link } from "react-router-dom";
 import styles from "../styles/Footer.module.css";
 
 const Footer = () => {
@@ -30,7 +31,9 @@ const Footer = () => {
           <div className={styles.company_navi}>
             <p>About Quick Shop</p>
             <p>Carrers</p>
-            <p>Contact Us</p>
+            <p>
+              <Link to="/contact_us">Contact Us</Link>
+            </p>
             <p>Become an affiliate</p>
           </div>
         </div>

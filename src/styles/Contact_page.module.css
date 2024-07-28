@@ -1,0 +1,142 @@
+.wrapper {
+  @apply w-[100vw] h-[max-content] inline-flex flex-col items-start gap-[56px];
+  background: var(---white);
+}
+
+.page_title {
+  @apply w-[100%] h-[63px] flex flex-col items-start gap-[8px];
+  padding: 0 88px;
+}
+
+.page_title h1 {
+  font-family: "Urbanist";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---black);
+}
+
+.page_title span {
+  @apply w-[109px] h-[17px] flex items-start gap-[8px];
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral);
+}
+
+.contact {
+  @apply w-[100%] h-[594px] flex items-start gap-[40px];
+  padding: 0 88px;
+  background: var(---white);
+}
+
+.contact_info {
+  @apply w-[50%] h-[100%] flex flex-col items-start gap-[40px];
+}
+
+.contact_details {
+  @apply w-[100%] h-[114px] flex flex-col gap-[24px];
+}
+
+.contact_details span {
+  @apply w-[100%] h-[22px] flex justify-between self-stretch;
+}
+
+.contact_details span h1 {
+  font-family: "Urbanist";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: var(---neutral-500);
+}
+
+.contact_details span p {
+  font-family: "Urbanist";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: var(---neutral-500);
+}
+
+.map {
+  @apply w-[100%] h-[440px] self-stretch;
+  background: var(---neutral);
+}
+
+.input_info {
+  @apply w-[50%] h-[586px] flex flex-col items-start shrink-0 gap-[40px];
+}
+
+.input_info h1 {
+  font-family: "Urbanist";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  align-self: stretch;
+  color: var(---neutral-500);
+}
+
+form {
+  @apply w-[100%] h-[520px] flex items-start flex-col gap-[32px] self-stretch;
+}
+
+form .input1 {
+  @apply w-[100%] h-[50px] rounded-md px-[16px];
+  background: var(---neutral-50);
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral-500);
+  outline: none;
+}
+
+form span {
+  @apply w-[100%] h-[50px] flex items-center gap-[32px] self-stretch;
+}
+
+form span .input2 {
+  @apply w-[50%] h-[100%] px-[16px] rounded-md;
+  background: var(---neutral-50);
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral-500);
+  outline: none;
+}
+
+form textarea {
+  @apply w-[100%] h-[200px] rounded-md flex  self-stretch;
+  background: var(---neutral-50);
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral-500);
+  padding: 16px;
+  outline: none;
+  resize: none;
+}
+
+form button {
+  @apply w-[63px] h-[27px] flex justify-center items-center rounded-sm;
+  padding: 10px 30px;
+  background: var(---neutral-500);
+  color: var(---white);
+  font-family: "Urbanist";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: capitalize;
+}
