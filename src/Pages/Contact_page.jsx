@@ -1,4 +1,5 @@
 // import React from "react";
+import { Link } from "react-router-dom";
 import Footer from "../component/Footer";
 import NavBar from "../component/NavBar";
 import styles from "../styles/Contact_page.module.css";
@@ -8,9 +9,15 @@ const Contact_page = () => {
     <div className={styles.wrapper}>
       <NavBar />
       <span className={styles.page_title}>
-        <h1></h1>
+        <h1>Contact</h1>
         <span>
-          <p>Home</p>/<p>Contact</p>
+          <p>
+            <Link to="/">Home</Link>
+          </p>
+          /
+          <p>
+            <Link to="/contact_us">Contact</Link>
+          </p>
         </span>
       </span>
       <section className={styles.contact}>

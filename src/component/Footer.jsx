@@ -29,7 +29,9 @@ const Footer = () => {
         <div className={styles.content_c}>
           <h1>Company</h1>
           <div className={styles.company_navi}>
-            <p>About Quick Shop</p>
+            <p>
+              <Link to="/about_us">About Quick Shop</Link>
+            </p>
             <p>Carrers</p>
             <p>
               <Link to="/contact_us">Contact Us</Link>
@@ -40,8 +42,12 @@ const Footer = () => {
         <div className={styles.content_d}>
           <h1>Information</h1>
           <div className={styles.information}>
-            <p>Privary Policy</p>
-            <p>Terms and Condition</p>
+            <p>
+              <Link to="/privacy">Privary Policy</Link>
+            </p>
+            <p>
+              <Link to="/terms">Terms and Condition</Link>
+            </p>
             <p>Sitemap</p>
           </div>
         </div>

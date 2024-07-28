@@ -1,0 +1,73 @@
+.wrapper {
+  @apply w-[100vw] h-[max-content] inline-flex flex-col items-start gap-[56px];
+}
+
+.hero {
+  @apply w-[100%] h-[500px] flex justify-center items-center;
+}
+
+.hero img {
+  @apply w-[100%] h-[100%];
+  background: var(---neutral-50);
+}
+
+.page_header {
+  @apply w-[100%] h-[63px] flex flex-col items-start gap-[8px] shrink-0 absolute;
+  padding: 0 88px;
+}
+
+.page_header h1 {
+  font-family: "Urbanist";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---black);
+}
+
+.page_header span {
+  @apply w-[114px] h-[17px] flex items-start gap-[8px];
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral);
+}
+
+.page_header span p:hover {
+  color: var(---neutral-500);
+}
+
+.about_text {
+  @apply w-[100%] h-[221px] flex flex-col justify-center items-center gap-[10px];
+  padding: 0 88px;
+}
+
+.mission,
+.vision {
+  @apply w-[100%] h-[450px] flex items-center gap-[40px];
+  padding: 0 88px;
+}
+
+.mission img,
+.vision img {
+  @apply w-[50%] h-[100%] shrink-0;
+  background: var(---neutral-50);
+}
+
+.mission_text,
+.vision_text {
+  @apply w-[50%] h-[298px] flex flex-col justify-center items-start shrink-0 gap-[20px];
+}
+
+.mission_text h1,
+.vision_text h1 {
+  font-family: "Urbanist";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  align-self: stretch;
+  color: var(---neutral-500);
+}

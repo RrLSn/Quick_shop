@@ -27,6 +27,10 @@
   color: var(---neutral);
 }
 
+.page_title span p:hover {
+  color: var(---neutral-500);
+}
+
 .contact {
   @apply w-[100%] h-[594px] flex items-start gap-[40px];
   padding: 0 88px;

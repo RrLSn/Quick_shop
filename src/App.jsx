@@ -7,6 +7,9 @@ import Reset_pass from "./Pages/Reset_pass";
 import Sign_up from "./Pages/Sign_up";
 import Product_details from "./Pages/Product_details";
 import Contact_page from "./Pages/Contact_page";
+import Term_condition from "./Pages/Term_condition";
+import Privacy from "./Pages/Privacy";
+import About_us from "./Pages/About_us";
 
 function App() {
   const routes = createBrowserRouter([
@@ -37,6 +40,18 @@ function App() {
     {
       path: "/contact_us",
       element: <Contact_page />,
+    },
+    {
+      path: "/terms",
+      element: <Term_condition />,
+    },
+    {
+      path: "/privacy",
+      element: <Privacy />,
+    },
+    {
+      path: "/about_us",
+      element: <About_us />,
     },
   ]);
   return (

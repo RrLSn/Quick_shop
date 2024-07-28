@@ -1,0 +1,46 @@
+.wrapper {
+  @apply w-[100vw] h-[max-content] inline-flex flex-col gap-[56px];
+}
+
+.terms_header {
+  @apply w-[100%] h-[63px] flex flex-col items-start gap-[8px];
+  padding: 0 88px;
+}
+
+.terms_header h1 {
+  font-family: "Urbanist";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---black);
+}
+
+.terms_header span {
+  @apply w-[109px] h-[17px] flex items-start gap-[8px];
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral);
+}
+
+.terms_header span p:hover {
+  color: var(---neutral-500);
+}
+
+.terms_text {
+  @apply w-[100%] h-[max-content] flex flex-col justify-center items-center gap-[10px];
+  padding: 0 88px;
+}
+
+.terms_text p {
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral-500);
+  flex-shrink: 0;
+}
