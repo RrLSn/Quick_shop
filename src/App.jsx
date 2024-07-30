@@ -10,6 +10,7 @@ import Contact_page from "./Pages/Contact_page";
 import Term_condition from "./Pages/Term_condition";
 import Privacy from "./Pages/Privacy";
 import About_us from "./Pages/About_us";
+import Checkout_success from "./Pages/Checkout_success";
 
 function App() {
   const routes = createBrowserRouter([
@@ -52,6 +53,10 @@ function App() {
     {
       path: "/about_us",
       element: <About_us />,
+    },
+    {
+      path: "/checkout_sucess",
+      element: <Checkout_success />,
     },
   ]);
   return (
