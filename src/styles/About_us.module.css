@@ -3,7 +3,7 @@
 }
 
 .hero {
-  @apply w-[100%] h-[500px] flex justify-center items-center;
+  @apply w-[100%] h-[500px] flex items-center;
 }
 
 .hero img {
@@ -12,7 +12,7 @@
 }
 
 .page_header {
-  @apply w-[100%] h-[63px] flex flex-col items-start gap-[8px] shrink-0 absolute;
+  @apply w-[1000px] h-[63px] flex flex-col items-start gap-[8px] shrink-0 absolute;
   padding: 0 88px;
 }
 

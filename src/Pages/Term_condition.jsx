@@ -1,13 +1,9 @@
-// import React from "react";
-import Footer from "../component/Footer";
-import NavBar from "../component/NavBar";
 import styles from "../styles/Term_condition.module.css";
 import { Link } from "react-router-dom";
 
 const Term_condition = () => {
   return (
     <div className={styles.wrapper}>
-      <NavBar />
       <div className={styles.terms_header}>
         <h1>Terms</h1>
         <span>
@@ -95,7 +91,6 @@ const Term_condition = () => {
           delectus fugit.
         </p>
       </div>
-      <Footer />
     </div>
   );
 };

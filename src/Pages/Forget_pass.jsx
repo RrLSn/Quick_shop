@@ -13,7 +13,7 @@ const Forget_pass = () => {
           <span>
             <p>Remeber your password?</p>
             <p>
-              <Link to="/login">Login here</Link>
+              <Link to="/auth/login">Login here</Link>
             </p>
           </span>
         </div>
@@ -26,7 +26,7 @@ const Forget_pass = () => {
             <p>Password reset link will be sent to your email.</p>
           </div>
           <button>
-            <Link to="/forgetPassword/reset_password">Submit</Link>
+            <Link to="/auth/reset_password">Submit</Link>
           </button>
         </div>
       </form>

@@ -49,7 +49,7 @@ const Sign_up = () => {
             <footer>
               <h1>Already have an account?</h1>
               <p>
-                <Link to="/login">Login</Link>
+                <Link to="/auth/login">Login</Link>
               </p>
             </footer>
           </form>

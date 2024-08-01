@@ -1,13 +1,10 @@
 // import React from 'react'
 import { Link } from "react-router-dom";
-import Footer from "../component/Footer";
-import NavBar from "../component/NavBar";
 import styles from "../styles/Privacy.module.css";
 
 const Privacy = () => {
   return (
     <div className={styles.wrapper}>
-      <NavBar />
       <div className={styles.privacy_header}>
         <h1>Privacy Policy</h1>
         <span>
@@ -95,7 +92,6 @@ const Privacy = () => {
           delectus fugit.
         </p>
       </div>
-      <Footer />
     </div>
   );
 };

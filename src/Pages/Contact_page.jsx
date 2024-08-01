@@ -1,13 +1,10 @@
 // import React from "react";
 import { Link } from "react-router-dom";
-import Footer from "../component/Footer";
-import NavBar from "../component/NavBar";
 import styles from "../styles/Contact_page.module.css";
 
 const Contact_page = () => {
   return (
     <div className={styles.wrapper}>
-      <NavBar />
       <span className={styles.page_title}>
         <h1>Contact</h1>
         <span>
@@ -68,7 +65,6 @@ const Contact_page = () => {
           </form>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

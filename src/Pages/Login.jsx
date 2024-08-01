@@ -47,7 +47,7 @@ const Login = () => {
                   <p>Remember me</p>
                 </div>
                 <p>
-                  <Link to="/forgetPassword">Forgot Password?</Link>
+                  <Link to="/auth/forgetPassword">Forgot Password?</Link>
                 </p>
               </span>
             </div>
@@ -55,7 +55,7 @@ const Login = () => {
             <footer>
               <h1>Don&rsquo;t have an account?</h1>
               <p>
-                <Link to="/sign_up">Sign Up</Link>
+                <Link to="/auth/sign_up">Sign Up</Link>
               </p>
             </footer>
           </form>

@@ -1,12 +1,8 @@
-// import React from "react";
-import Footer from "../component/Footer";
-import NavBar from "../component/NavBar";
 import styles from "../styles/Checkout_success.module.css";
 
 const Checkout_success = () => {
   return (
     <div className={styles.wrapper}>
-      <NavBar />
       <section className={styles.checkout_status}>
         <span className={styles.success}>
           <img src="/svg/checkIcon.svg" alt="" />
@@ -56,7 +52,6 @@ const Checkout_success = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

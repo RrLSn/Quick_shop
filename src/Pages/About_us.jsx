@@ -1,13 +1,10 @@
 // import React from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../component/NavBar";
 import styles from "../styles/About_us.module.css";
-import Footer from "../component/Footer";
 
 const About_us = () => {
   return (
     <div className={styles.wrapper}>
-      <NavBar />
       <div className={styles.hero}>
         <img src="" alt="" />
         <div className={styles.page_header}>
@@ -101,7 +98,6 @@ const About_us = () => {
         </div>
         <img src="" alt="" />
       </section>
-      <Footer />
     </div>
   );
 };
