@@ -1622,8 +1622,46 @@ app.get("/api/products", (req, res) => {
   if (!isNaN(limit) && limit > 0) {
     res.json(products.slice(0, limit));
   } else {
-    res.json(products);
+    res.json({ data: products });
   }
+});
+
+//Get a single products
+app.get("/api/products/:id", (req, res) => {
+  const id = req.params.id;
+  const product = products.find((product) => product.product_id === id);
+
+  res.status(200).json({ data: product });
+});
+
+// Get product by category
+
+// Search product
+app.get("/api/search", (req, res) => {
+  const { title } = req.query;
+
+  if (!title || title.trim() === "") {
+    res.status(400).json({ message: "Product name required for search" });
+  } else {
+    // try {
+    const searchedProduct = products.filter((product) => {
+      const result = product.product_title.toLowerCase();
+      return result.includes(title.toLowerCase());
+    });
+    return res.status(200).json({ message: "Ok", data: searchedProduct });
+    // } catch (error) {
+    //   console.log(error);
+    //   res.status(500).json({ error: "Internal server error" });
+    // }
+  }
+});
+
+//Get Featured Products
+app.get("/api/products/Featured", (req, res) => {
+  const featuredProducts = products.filter(
+    (product) => product.product_attributes.Features
+  );
+  res.status(200).json({ message: "Ok", data: featuredProducts });
 });
 
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
