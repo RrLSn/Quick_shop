@@ -7,7 +7,7 @@ dotenv.config();
 const PORT = process.env.PORT || 8000;
 const app = express();
 
-let products = [
+let Products = [
   {
     product_id: "1895888000104236047",
     product_title: "Nike PS Dunk Low - White / Black 11.5C",
@@ -1620,21 +1620,41 @@ let products = [
 app.get("/api/products", (req, res) => {
   const limit = parseInt(req.query.limit);
   if (!isNaN(limit) && limit > 0) {
-    res.json(products.slice(0, limit));
+    res.json(Products.slice(0, limit));
   } else {
-    res.json({ data: products });
+    res.json({ data: Products });
   }
 });
 
 //Get a single products
+let searchedProduct;
 app.get("/api/products/:id", (req, res) => {
   const id = req.params.id;
-  const product = products.find((product) => product.product_id === id);
+  searchedProduct = Products.find((product) => product.product_id === id);
 
-  res.status(200).json({ data: product });
+  res.status(200).json(searchedProduct);
+
+  //Get Feature Product
+  // const searchedFeaturedProduct = products.find((product) => {
+  //   product.product_attributes.Features ===
+  //     searchedProduct.product_attributes.Features;
+  // });
+  Products.forEach((product) => {
+    console.log(product.offer.store_name);
+  });
+
+  // const searchResult = searchedFeaturedProduct;
+  // console.log(feature);
+  // const featuredProducts = searchResult.filter((result) => {
+  //   return (
+  //     result.product_attributes.Features ===
+  //       searchResult.product_attributes.Features &&
+  //     result.id !== searchResult.id
+  //   );
+  // });
+  // console.log(feature);
+  // res.status(200).json({ message: "OK", data: featuredProducts });
 });
-
-// Get product by category
 
 // Search product
 app.get("/api/search", (req, res) => {
@@ -1644,7 +1664,7 @@ app.get("/api/search", (req, res) => {
     res.status(400).json({ message: "Product name required for search" });
   } else {
     // try {
-    const searchedProduct = products.filter((product) => {
+    const searchedProduct = Products.filter((product) => {
       const result = product.product_title.toLowerCase();
       return result.includes(title.toLowerCase());
     });
@@ -1656,12 +1676,30 @@ app.get("/api/search", (req, res) => {
   }
 });
 
-//Get Featured Products
-app.get("/api/products/Featured", (req, res) => {
-  const featuredProducts = products.filter(
-    (product) => product.product_attributes.Features
-  );
-  res.status(200).json({ message: "Ok", data: featuredProducts });
-});
+// //Get Featured Products
+// app.get("/api/search", (req, res) => {
+//   const { title } = req.query;
+//   // const featuredProducts = products.filter(
+//   //   (product) => product.product_attributes.Features
+//   // );
+//   if (!featured || featured.trim()) {
+//     res.status(404).json({ message: "Title query parameter is required" });
+//   }
+//   const searchedProduct = products.find((product) => {
+//     product.product_attributes.Features.toLowerCase().includes(
+//       featured.toLowerCase()
+//     );
+
+//     const { feature, categories } = searchedProduct;
+//     if (!searchedProduct) {
+//       res.status(404).json({ message: "Product not found" });
+//     }
+
+//     const relatedFeaturedProduct = products.filter((r_product) => {
+//       r_product.offer.store_name === categories;
+//     });
+//   });
+//   res.status(200).json({ message: "Ok", data: featuredProducts });
+// });
 
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
