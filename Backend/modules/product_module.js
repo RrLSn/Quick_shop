@@ -36,12 +36,8 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
-    review: {
-      type: Number,
-      required: false,
-    },
     pricerange: {
-      type: String,
+      type: [String],
       required: true,
     },
     storename: {
@@ -49,15 +45,15 @@ const ProductSchema = new mongoose.Schema(
       required: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
     },
     shipping: {
-      type: String,
+      type: Number,
       required: true,
     },
     tax: {
-      type: String,
+      type: Number,
       required: true,
     },
     condition: {
