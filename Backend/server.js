@@ -11,6 +11,17 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 8000;
 
+// Get all products
+app.get("/api/products", async (req, res) => {
+  try {
+    const products = await Product.find({});
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+//Post product
 app.post("/api/products", async (req, res) => {
   try {
     const product = await Product.create(req.body);
@@ -20,24 +31,45 @@ app.post("/api/products", async (req, res) => {
   }
 });
 
-// // Get all products
+//Get a product
+app.get("/api/product/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const searchedProduct = await Product.findById(id);
+    res.status(200).json(searchedProduct);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
-// app.get("/api/products", (req, res) => {
-//   const limit = parseInt(req.query.limit);
-//   if (!isNaN(limit) && limit > 0) {
-//     res.json(Products.slice(0, limit));
-//   } else {
-//     res.json({ data: Products });
-//   }
-// });
+//Update product
+app.put("/api/product/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByIdAndUpdate(id, req.body);
+    if (!product) {
+      res.status(404).json({ message: "Product not Found" });
+      const updatesProduct = await Product.findById(id);
+      res.status(200).json(updatesProduct);
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
-// //Get a single products
-// let searchedProduct;
-// app.get("/api/products/:id", (req, res) => {
-//   const id = req.params.id;
-//   searchedProduct = Products.find((product) => product.product_id === id);
-
-//   res.status(200).json(searchedProduct);
+//Delete product
+app.delete("/api/product/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByIdAndDelete(id);
+    if (!product) {
+      res.status(404).json({ message: "Product not Found" });
+    }
+    res.status(200).json({ message: "Product deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 //   //Get Feature Product
 //   // const searchedFeaturedProduct = products.find((product) => {
