@@ -24,6 +24,7 @@
     "domutils": "^3.1.0",
     "dotenv": "^16.4.5",
     "entities": "^4.5.0",
+    "express": "^4.19.2",
     "fill-range": "^7.1.1",
     "glob-parent": "^5.1.2",
     "has-flag": "^3.0.0",
@@ -35,6 +36,8 @@
     "is-number": "^7.0.0",
     "lodash": "^4.17.21",
     "minimatch": "^3.1.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.3",
     "ms": "^2.1.2",
     "nodemon": "^3.1.4",
     "normalize-path": "^3.0.0",
@@ -53,7 +56,6 @@
     "touch": "^3.1.1",
     "undefsafe": "^2.0.5"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "node server.js",
     "start": "nodemon server.js"
