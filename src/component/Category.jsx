@@ -6,7 +6,7 @@ const Category = () => {
     <div className={styles.wrapper}>
       <div className={styles.femaleCate}>
         <div className={styles.f_image}>
-          <img src="" alt="" />
+          <img src="/images/lv.webp" alt="" />
           <img src="/svg/f_Category.svg" alt="" />
         </div>
         <div className={styles.f_desc}>
@@ -37,7 +37,7 @@ const Category = () => {
         </div>
         <div className={styles.m_image}>
           <img src="/svg/m_Category.svg" alt="" />
-          <img src="" alt="" />
+          <img src="/images/leather.webp" alt="" />
         </div>
       </div>
     </div>

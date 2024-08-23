@@ -21,7 +21,8 @@
 .f_image img:nth-child(1) {
   @apply w-[100%] h-[100%];
   border-radius: 251.5px;
-  background-color: #d9d9d9;
+  background-color: var(---white);
+  object-fit: contain 100%;
 }
 
 .f_image img:nth-child(2) {
@@ -88,6 +89,7 @@
   flex-shrink: 0;
   background-color: #d9d9d9;
   border-radius: 251.5px 0px 0px 251.5px;
+  object-fit: contain 100%;
 }
 
 .m_image img:nth-child(1) {

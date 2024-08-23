@@ -3,7 +3,9 @@ import styles from "../styles/Offers.module.css";
 const Offers = () => {
   return (
     <div className={styles.wrapper}>
-      <div></div>
+      <div>
+        <img src="" alt="" />
+      </div>
       <div className={styles.offer_desc}>
         <span>
           <p>Limited Offer</p>

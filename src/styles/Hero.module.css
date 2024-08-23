@@ -31,31 +31,41 @@ main {
 }
 
 .navigate img {
-  @apply w-[72px] h-[72px] cursor-pointer hover:opacity-[0.2];
+  @apply min-w-[72px] min-h-[72px] cursor-pointer hover:opacity-[0.2];
+}
+
+.heroSlider {
+  @apply flex w-[100vw] h-[522px] gap-[20px] overflow-x-hidden;
 }
 
 .heroSlider {
   @apply w-[1410px] h-[430px] flex justify-between;
 }
 
-.heroSlider span:nth-child(1) {
-  margin-top: 6rem;
-}
-
-.heroSlider span:nth-child(2) {
-  margin-top: 3rem;
-}
-
-.heroSlider span:nth-child(4) {
-  margin-top: 3rem;
-}
-
-.heroSlider span:nth-child(5) {
-  margin-top: 6rem;
-}
-
 .sliderCard {
-  @apply w-[250px] h-[350px] inline-flex flex-col;
+  @apply min-w-[250px] h-[350px] rounded-md overflow-hidden;
   border: 15px solid #eeeeee;
-  background-color: #d9d9d9;
+  background-color: var(---white);
+}
+
+.sliderCard:nth-child(1) {
+  margin-top: 6rem;
+}
+
+.sliderCard:nth-child(2) {
+  margin-top: 3rem;
+}
+
+.sliderCard:nth-child(4) {
+  margin-top: 3rem;
+}
+
+.sliderCard:nth-child(5) {
+  margin-top: 6rem;
+}
+
+.sliderCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain 100%;
 }

@@ -14,13 +14,17 @@ const ProductSchema = new mongoose.Schema(
       type: [String],
       required: false,
     },
+    categories: {
+      type: String,
+      required: false,
+    },
     attributes: {
       department: {
         type: String,
         required: true,
       },
       size: {
-        type: String,
+        type: [String],
         required: true,
       },
       material: {
