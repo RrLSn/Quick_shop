@@ -1,5 +1,4 @@
 import express from "express";
-const router = express.Router();
 import {
   getProducts,
   getProduct,
@@ -8,11 +7,7 @@ import {
   deleteProduct,
 } from "../controllers/productsController.js";
 
-// router.get("/", getProducts);
-// router.get("/:id", getProduct);
-// router.post("/", createProduct);
-// router.delete("/:id", deleteProduct);
-// router.put("/:id", updateProduct);
+const router = express.Router();
 
 router.route("/").get(getProducts).post(createProduct);
 router.route("/:id").get(getProduct).delete(deleteProduct).put(updateProduct);

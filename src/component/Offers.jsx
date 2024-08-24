@@ -1,10 +1,22 @@
 import styles from "../styles/Offers.module.css";
+import { offerImages } from "../data";
+import { useEffect, useState } from "react";
 
 const Offers = () => {
+  const [image, setImage] = useState(offerImages[0]);
+
+  useEffect(() => {
+    const internalId = setInterval(() => {
+      const rndIndex = Math.floor(Math.random() * offerImages.length);
+      setImage(offerImages[rndIndex]);
+    }, 10000);
+    return () => clearInterval(internalId);
+  }, [offerImages]);
+
   return (
     <div className={styles.wrapper}>
       <div>
-        <img src="" alt="" />
+        <img src={image} alt="" />
       </div>
       <div className={styles.offer_desc}>
         <span>

@@ -50,13 +50,21 @@
 }
 
 .products_card span {
-  @apply w-[100%] h-[51px] flex flex-col items-start gap-[8];
+  @apply w-[100%] h-[51px] px-[5px] flex flex-col items-start gap-[8];
 }
 
-.products_card p {
+.products_card p:nth-child(1) {
   font-family: "Urbanist";
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
-  line-height: normal;
+  line-height: 24px;
+}
+
+.products_card p:nth-child(2) {
+  font-family: "Urbanist";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.2px;
 }

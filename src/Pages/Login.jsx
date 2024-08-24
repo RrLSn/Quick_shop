@@ -61,7 +61,9 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <div className={styles.carve}></div>
+      <div className={styles.carve}>
+        <img src="/svg/loginImg.svg" alt="" />
+      </div>
     </div>
   );
 };

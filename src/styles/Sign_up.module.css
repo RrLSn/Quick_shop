@@ -163,9 +163,11 @@ footer p {
 }
 
 .carve {
-  @apply w-[1847px] h-[1683px];
-  background-color: var(---neutral-50);
-  margin-right: -100rem;
-  margin-top: -6rem;
-  border-radius: 50%;
+  @apply w-[50%] h-[100%];
+}
+
+.carve img {
+  width: auto;
+  height: 100%;
+  object-fit: cover 100%;
 }

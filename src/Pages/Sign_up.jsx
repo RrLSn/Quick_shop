@@ -55,7 +55,9 @@ const Sign_up = () => {
           </form>
         </div>
       </div>
-      <div className={styles.carve}></div>
+      <div className={styles.carve}>
+        <img src="/svg/reg.svg" alt="" />
+      </div>
     </div>
   );
 };

@@ -12,11 +12,11 @@ const ProductSchema = new mongoose.Schema(
     },
     image: {
       type: [String],
-      required: false,
+      required: true,
     },
     categories: {
       type: String,
-      required: false,
+      required: true,
     },
     attributes: {
       department: {
@@ -38,7 +38,7 @@ const ProductSchema = new mongoose.Schema(
     },
     rating: {
       type: Number,
-      required: false,
+      required: true,
     },
     pricerange: {
       type: [String],

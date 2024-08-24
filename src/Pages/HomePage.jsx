@@ -31,15 +31,27 @@ const HomePage = () => {
       console.log({ message: error.message });
     }
   };
+
+  const fetchUser = async () => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/auths/register");
+      const data = res.data;
+      console.log(data);
+    } catch (error) {
+      console.log({ message: error.message });
+    }
+  };
+
   useEffect(() => {
     fetchData();
+    fetchUser();
   }, []);
 
   return (
     <div className={styles.container}>
       <Hero herodata={herodata} />
       <Category />
-      <Products />
+      <Products products={products} />
       <Offers />
       <Arrivals newArrivals={newArrivals} />
       <Newsletter />

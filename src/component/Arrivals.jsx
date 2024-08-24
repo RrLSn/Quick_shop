@@ -1,7 +1,10 @@
 // import React from "react";
+import { useState } from "react";
 import styles from "../styles/Arrivals.module.css";
+import { truncateString } from "../utils";
 
 const Arrivals = ({ newArrivals }) => {
+  const [fullname, setFullname] = useState(false);
   const getRnd = (max) => {
     return Math.floor(Math.random() * max);
   };
@@ -27,8 +30,12 @@ const Arrivals = ({ newArrivals }) => {
             <div className={styles.products_card} key={product._id}>
               <img src={rndImage} alt="products" />
               <span>
-                <p>{product.title}</p>
-                <p>title</p>
+                <p>
+                  {fullname === false
+                    ? truncateString(product.title)
+                    : product.title}
+                </p>
+                <p>${product.price}</p>
               </span>
             </div>
           );
