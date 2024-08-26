@@ -1,38 +1,39 @@
 import Users from "../modules/users_modules.js";
-import Joi from "joi";
-
-//Validation
-
-const Schema = Joi.object({
-  fullname: Joi.string().min(6).required(),
-  email: Joi.string()
-    .max(255)
-    .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
-    .required(),
-  phone: Joi.string()
-    .pattern(new RegExp("^\\+?[0-9]{3,30}$"))
-    .min(8)
-    .required(),
-  password: Joi.string()
-    .pattern(
-      new RegExp("^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};'\":,.<>?\\/|`~]{3,30}$")
-    )
-    .min(5)
-    .required(),
-});
+import { registerValidation } from "../Validation.js";
+import bcrypt from "bcryptjs";
 
 //Create a user
 export const registerUser = async (req, res) => {
   // validate user before creating
-  const { error, value } = Schema.validate(req.body, { abortEarly: false });
+  const { error, value } = registerValidation(req.body, { abortEarly: false });
   if (error) {
     return res.status(400).json({
       message: "Validation failed",
       details: error.details.map((err) => err.message),
     });
   }
+
+  //Checking if user is already on database
+  const emailExist = await Users.findOne({ email: req.body.email });
+  if (emailExist) {
+    return res.status(400).json({ message: "Email already exist" });
+  }
+
+  //Hash password
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+  //Create a new User
+  const User = new Users({
+    fullname: req.body.fullname,
+    email: req.body.email,
+    phone: req.body.phone,
+    password: hashedPassword,
+  });
+
   try {
-    const user = await Users.create(value);
+    const user = await User.save(value);
     res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ message: error });
