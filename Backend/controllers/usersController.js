@@ -2,6 +2,7 @@ import Users from "../modules/users_modules.js";
 import Joi from "joi";
 
 //Validation
+
 const Schema = Joi.object({
   fullname: Joi.string().min(6).required(),
   email: Joi.string()
@@ -20,19 +21,25 @@ const Schema = Joi.object({
     .required(),
 });
 
+//Create a user
 export const registerUser = async (req, res) => {
   // validate user before creating
-  const body = req.body;
-  const validaion = Schema.validate({ body });
-  res.send(validaion);
-  //   try {
-  //     const user = await Users.create(req.body);
-  //     res.status(200).json(user);
-  //   } catch (error) {
-  //     res.status(400).json({ message: error });
-  //   }
+  const { error, value } = Schema.validate(req.body, { abortEarly: false });
+  if (error) {
+    return res.status(400).json({
+      message: "Validation failed",
+      details: error.details.map((err) => err.message),
+    });
+  }
+  try {
+    const user = await Users.create(value);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
 };
 
+// GET a User
 export const getUsers = async (req, res) => {
   try {
     const user = await Users.find({});
@@ -42,6 +49,7 @@ export const getUsers = async (req, res) => {
   }
 };
 
+//Login a use
 export const loginUser = async (req, res) => {
   res.send("Logged In");
 };

@@ -14,7 +14,6 @@ app.use(express.json());
 //Access PORT and DB
 const PORT = process.env.PORT || 8000;
 const mongoUri = process.env.MONGO_URI;
-// const usersUri = process.env.USERS_URI;
 
 // Enable CORS for all routes and origins
 app.use(cors());
@@ -33,13 +32,6 @@ mongoose
   .catch((error) => {
     console.error("Connection Error:", error.message);
   });
-
-// mongoose
-//   .createConnection(usersUri)
-//   .on("error", console.error.bind(console, "Connection error to UserDB:"))
-//   .once("open", () => {
-//     console.log("Connected to User DB successfully");
-//   });
 
 //Router
 app.use("/api/products", productRoutes);

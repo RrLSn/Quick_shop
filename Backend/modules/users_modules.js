@@ -13,7 +13,7 @@ const UsersSchema = new mongoose.Schema(
       max: 255,
     },
     phone: {
-      type: Number,
+      type: String,
       require: true,
       min: 8,
     },
