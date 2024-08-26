@@ -1,5 +1,5 @@
 import Users from "../modules/users_modules.js";
-import { registerValidation } from "../Validation.js";
+import { registerValidation, loginValidation } from "../Validation.js";
 import bcrypt from "bcryptjs";
 
 //Create a user
@@ -9,7 +9,7 @@ export const registerUser = async (req, res) => {
   if (error) {
     return res.status(400).json({
       message: "Validation failed",
-      details: error.details.map((err) => err.message),
+      details: error.details[0].message,
     });
   }
 
@@ -40,17 +40,26 @@ export const registerUser = async (req, res) => {
   }
 };
 
-// GET a User
-export const getUsers = async (req, res) => {
-  try {
-    const user = await Users.find({});
-    res.status(200).json(user);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-//Login a use
+//Login a user
 export const loginUser = async (req, res) => {
-  res.send("Logged In");
+  const { error } = loginValidation(req.body, { abortEarly: false });
+  if (error)
+    return res.status(400).json({
+      message: "Validation failed",
+      details: error.details[0].message,
+    });
+
+  //checking if email exist
+  const user = await Users.findOne({ email: req.body.email });
+  if (!user)
+    return res.status(400).json({ message: "Invalid email or password" });
+
+  //checking if password is correct
+  const isValidPassword = await bcrypt.compare(
+    req.body.password,
+    user.password
+  );
+  if (!isValidPassword)
+    return res.status(400).json({ message: "Invalid email or password" });
+  res.status(200).json({ message: "Logged in Sucessfully!" });
 };
