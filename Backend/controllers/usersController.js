@@ -1,6 +1,7 @@
 import Users from "../modules/users_modules.js";
 import { registerValidation, loginValidation } from "../Validation.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 //Create a user
 export const registerUser = async (req, res) => {
@@ -61,5 +62,11 @@ export const loginUser = async (req, res) => {
   );
   if (!isValidPassword)
     return res.status(400).json({ message: "Invalid email or password" });
+
+  //create and assign a token
+  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+
+  res.header("auth_token", token).send(token);
+
   res.status(200).json({ message: "Logged in Sucessfully!" });
 };
