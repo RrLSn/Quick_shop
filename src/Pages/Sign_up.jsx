@@ -1,8 +1,14 @@
 // import React from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/Sign_up.module.css";
 import { Link } from "react-router-dom";
 
 const Sign_up = () => {
+  const [registeredUser, setRegisterUser] = useState({});
+
+  const registerAuthUrl = "http://localhost:8080/api/auths/register";
+  const handleRegister = async () => {};
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.signup_info}>
