@@ -66,7 +66,13 @@ export const loginUser = async (req, res) => {
   //create and assign a token
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
 
-  res.header("auth_token", token).send(token);
+  res.header("auth_token", token);
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "Strict",
+    maxAge: 24 * 60 * 60 * 1000,
+  });
 
   res.status(200).json({ message: "Logged in Sucessfully!" });
 };

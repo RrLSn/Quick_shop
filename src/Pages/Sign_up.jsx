@@ -1,15 +1,54 @@
 // import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "../styles/Sign_up.module.css";
 import { Link } from "react-router-dom";
+import { phone_Regex, pwd_Regex } from "../validation.js";
 
 const Sign_up = () => {
-  const [registeredUser, setRegisterUser] = useState({});
+  const [name, setName] = useState("");
+  const [validName, setValidName] = useState(false);
+  const [nameFocus, setNameFocus] = useState(false);
 
-  const registerAuthUrl = "http://localhost:8080/api/auths/register";
+  const [email, setEmail] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
+  const [EmailFocus, setEmailFocus] = useState(false);
+
+  const [num, setNum] = useState("");
+  const [validNum, setValidNum] = useState(false);
+  const [numFocus, setNumFocus] = useState(false);
+
+  const [password, setPassword] = useState("");
+  const [validPassword, setValidPassword] = useState(false);
+  const [passwordFocus, setPasswordFocus] = useState(false);
+
+  const [errMsg, setErrMsg] = useState("");
+  const [sucess, setSucess] = useState(false);
+
+  const userRef = useRef(null);
+  const errRef = useRef();
+
+  useEffect(() => {
+    if (userRef.current) {
+      userRef.current.focus();
+    }
+  }, []);
+
+  useEffect(() => {
+    const pwd_Res = pwd_Regex.test(password);
+    const phone_Res = phone_Regex.test(num);
+    console.log(password);
+    console.log(phone_Res);
+    console.log(pwd_Res);
+    console.log(num);
+    setValidPassword(pwd_Res);
+    setValidNum(phone_Res);
+    setErrMsg("");
+  }, [password, num]);
+
   const handleRegister = async () => {};
 
   return (
+    // <div></div>
     <div className={styles.wrapper}>
       <div className={styles.signup_info}>
         <img src="/svg/Logo.svg" alt="" />
@@ -33,7 +72,7 @@ const Sign_up = () => {
             <p>Or continue with email</p>
             <span className={styles.line}></span>
           </div>
-          <form action="" className={styles.signup_details}>
+          <form action="" id="" name="" className={styles.signup_details}>
             <div className={styles.form_input}>
               <img src="/svg/contactIcon.svg" alt="" />
               <input type="text" placeholder="Full name" />
