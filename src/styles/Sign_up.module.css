@@ -130,7 +130,6 @@
 .signup_details button {
   @apply w-[100%] h-[42px] flex items-center justify-center gap-[10px] rounded-md;
   padding: 10px 30px;
-  background-color: var(---neutral-500);
   color: var(---white);
   font-family: "Urbanist";
   font-size: 18px;
@@ -138,6 +137,10 @@
   font-weight: 500;
   line-height: normal;
   text-transform: capitalize;
+}
+
+.button {
+  background-color: var(---neutral-500);
 }
 
 footer {

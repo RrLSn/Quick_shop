@@ -2,7 +2,12 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "../styles/Sign_up.module.css";
 import { Link } from "react-router-dom";
-import { phone_Regex, pwd_Regex } from "../validation.js";
+import {
+  phone_Regex,
+  pwd_Regex,
+  name_Regex,
+  email_Regex,
+} from "../validation.js";
 
 const Sign_up = () => {
   const [name, setName] = useState("");
@@ -36,16 +41,25 @@ const Sign_up = () => {
   useEffect(() => {
     const pwd_Res = pwd_Regex.test(password);
     const phone_Res = phone_Regex.test(num);
-    console.log(password);
-    console.log(phone_Res);
-    console.log(pwd_Res);
-    console.log(num);
+    const email_Res = email_Regex.test(email);
+    const name_Res = name_Regex.test(name);
     setValidPassword(pwd_Res);
     setValidNum(phone_Res);
+    setValidEmail(email_Res);
+    setValidName(name_Res);
     setErrMsg("");
-  }, [password, num]);
+  }, [password, num, name, email]);
 
-  const handleRegister = async () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const v1 = name_Regex.test(name);
+    const v2 = pwd_Regex.test(password);
+    if (!v1 || !v2) {
+      setErrMsg("Invalid Entry");
+      return;
+    }
+    setSucess(true);
+  };
 
   return (
     // <div></div>
@@ -72,25 +86,99 @@ const Sign_up = () => {
             <p>Or continue with email</p>
             <span className={styles.line}></span>
           </div>
-          <form action="" id="" name="" className={styles.signup_details}>
+          <p
+            ref={errRef}
+            className={errMsg ? styles.errMsg : "hidden"}
+            aria-live="assertive"
+          >
+            {errMsg} P
+          </p>
+          <form
+            action=""
+            id=""
+            name=""
+            className={styles.signup_details}
+            onSubmit={handleSubmit}
+          >
             <div className={styles.form_input}>
               <img src="/svg/contactIcon.svg" alt="" />
-              <input type="text" placeholder="Full name" />
+              <input
+                type="text"
+                placeholder="Full name"
+                id="name"
+                ref={userRef}
+                autoComplete="off"
+                required
+                onFocus={() => setNameFocus(true)}
+                onBlur={() => setNameFocus(false)}
+                onChange={(e) => setName(e.target.value)}
+                // aria-describedby="uidnote"
+                aria-invalid={validName ? "false" : "true"}
+              />
             </div>
             <div className={styles.form_input}>
               <img src="/svg/mailIcon.svg" alt="" />
-              <input type="text" placeholder="Email Address" />
+              <input
+                type="text"
+                placeholder="Email Address"
+                id="email"
+                ref={userRef}
+                autoComplete="off"
+                required
+                onFocus={() => setEmailFocus(true)}
+                onBlur={() => setEmailFocus(false)}
+                onChange={(e) => setEmail(e.target.value)}
+                // aria-describedby="uidnote"
+                aria-invalid={validEmail ? "false" : "true"}
+              />
             </div>
             <div className={styles.form_input}>
               <img src="/svg/phoneIcon.svg" alt="" />
-              <input type="text" placeholder="Phone Number" />
+              <input
+                type="text"
+                placeholder="Phone Number"
+                id="phone"
+                ref={userRef}
+                autoComplete="off"
+                required
+                onFocus={() => setNumFocus(true)}
+                onBlur={() => setNumFocus(false)}
+                onChange={(e) => setNum(e.target.value)}
+                // aria-describedby="uidnote"
+                aria-invalid={validNum ? "false" : "true"}
+              />
             </div>
             <div className={styles.form_input}>
               <img src="/svg/lock.svg" alt="" />
-              <input type="password" placeholder="Password" />
+              <input
+                type="password"
+                placeholder="Password"
+                id="password"
+                ref={userRef}
+                autoComplete="off"
+                required
+                onFocus={() => setPasswordFocus(true)}
+                onBlur={() => setPasswordFocus(false)}
+                onChange={(e) => setPassword(e.target.value)}
+                // aria-describedby="uidnote"
+                aria-invalid={validPassword ? "false" : "true"}
+              />
               <img src="/svg/pass_hide.svg" alt="" />
             </div>
-            <button>Sign Up</button>
+            <button
+              disabled={
+                !validEmail || !validName || !validNum || !validPassword
+                  ? true
+                  : false
+              }
+              className={
+                validEmail || validName || validNum || validPassword
+                  ? "button"
+                  : "bg-[#c6c1c1]"
+              }
+            >
+              Sign Up
+            </button>
             <footer>
               <h1>Already have an account?</h1>
               <p>
