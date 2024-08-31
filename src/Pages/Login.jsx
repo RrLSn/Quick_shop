@@ -4,6 +4,7 @@ import styles from "../styles/Login.module.css";
 import AuthContext from "../context/AuthProvider";
 import axios from "../Api/axios";
 import { loginUrl } from "../Api/axios";
+import { pwd_Regex, email_Regex } from "../validation.jsx";
 
 const Login = () => {
   const userRef = useRef();
@@ -12,15 +13,28 @@ const Login = () => {
   const { setAuth } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
+
   const [password, setPassword] = useState("");
+  const [validPassword, setValidPassword] = useState(false);
+
   const [errMsg, setErrMsg] = useState(null);
   const [success, setSuccess] = useState(false);
 
+  const [pwdVisible, setPwdVisible] = useState(false);
+  const [pwdValue, setPwdValue] = useState("password");
+
   useEffect(() => {
-    userRef.current.focus();
+    if (useRef.current) {
+      userRef.current.focus();
+    }
   }, []);
 
   useEffect(() => {
+    const pwd_Res = pwd_Regex.test(password);
+    const email_Res = email_Regex.test(email);
+    setValidPassword(pwd_Res);
+    setValidEmail(email_Res);
     setErrMsg("");
   }, [email, password]);
 
@@ -35,17 +49,22 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      const accessToken = res?.data?.token;
-      setAuth({ email, password, accessToken });
+      // const token = res?.data.token;
+      console.log(res);
+      console.log({ email, password });
+      setAuth({ email, password });
       setEmail("");
       setPassword("");
       setSuccess(true);
-      navigate("/auth/login");
+      navigate("/dashboard");
     } catch (error) {
-      // if()
       setErrMsg(error.response?.data.message || "An error occurred");
       errRef.current.focus();
     }
+  };
+
+  const handlepwdValueClick = () => {
+    setPwdVisible(!pwdVisible);
   };
 
   return (
@@ -84,8 +103,8 @@ const Login = () => {
           </p>
           <form
             action=""
-            id=""
-            name=""
+            id="login"
+            name="login"
             className={styles.login_details}
             onSubmit={handleSubmit}
           >
@@ -97,7 +116,7 @@ const Login = () => {
                   placeholder="Email Address"
                   id="email"
                   ref={userRef}
-                  autoComplete="off"
+                  autoComplete="on"
                   value={email}
                   required
                   onChange={(e) => setEmail(e.target.value)}
@@ -106,7 +125,7 @@ const Login = () => {
               <div className={styles.form_input}>
                 <img src="/svg/lock.svg" alt="" />
                 <input
-                  type="password"
+                  type={pwdVisible ? "text" : "password"}
                   placeholder="Password"
                   id="password"
                   ref={userRef}
@@ -115,7 +134,16 @@ const Login = () => {
                   required
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <img src="/svg/pass_hide.svg" alt="" />
+                <div
+                  className={styles.pwdVisible}
+                  onClick={handlepwdValueClick}
+                >
+                  {!pwdVisible ? (
+                    <img src="/svg/pass_hide.svg" alt="" />
+                  ) : (
+                    <img src="/svg/pass_show.svg" alt="" />
+                  )}
+                </div>
               </div>
               <span className={styles.rem_pass}>
                 <div>
@@ -127,7 +155,12 @@ const Login = () => {
                 </p>
               </span>
             </div>
-            <button>Login</button>
+            <button
+              disabled={!validEmail || !validPassword ? true : false}
+              className={validEmail || validPassword ? "" : "bg-[#c6c1c1]"}
+            >
+              Login
+            </button>
             <footer>
               <h1>Don&rsquo;t have an account?</h1>
               <p>

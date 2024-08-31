@@ -7,7 +7,7 @@ import {
   pwd_Regex,
   name_Regex,
   email_Regex,
-} from "../validation.js";
+} from "../validation.jsx";
 import axios from "../Api/axios.js";
 import { regUrl } from "../Api/axios.js";
 
@@ -30,6 +30,7 @@ const Sign_up = () => {
 
   const [errMsg, setErrMsg] = useState(null);
   const [sucess, setSucess] = useState(false);
+
   const [pwdVisible, setPwdVisible] = useState(false);
   const [pwdValue, setPwdValue] = useState("password");
 
@@ -77,12 +78,7 @@ const Sign_up = () => {
           withCredentials: true,
         }
       );
-      console.log(res.data);
-      console.log(res.accessToken);
-      console.log(JSON.stringify(res));
       setSucess(true);
-
-      //clear input fields
 
       //Navigate
       navigate("/auth/sucess");
@@ -130,8 +126,8 @@ const Sign_up = () => {
           </p>
           <form
             action=""
-            id=""
-            name=""
+            id="register"
+            name="register"
             className={styles.signup_details}
             onSubmit={handleSubmit}
           >

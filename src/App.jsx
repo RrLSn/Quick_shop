@@ -14,6 +14,7 @@ import Checkout_success from "./Pages/Checkout_success";
 import NavBar from "./component/NavBar";
 import Footer from "./component/Footer";
 import Sucess from "./Pages/Sucess";
+import Dashboard_page from "./Pages/Dashboard_page";
 
 function App() {
   const routes = createBrowserRouter([
@@ -54,6 +55,10 @@ function App() {
         {
           path: "checkout_sucess",
           element: <Checkout_success />,
+        },
+        {
+          path: "dashboard",
+          element: <Dashboard_page />,
         },
       ],
     },

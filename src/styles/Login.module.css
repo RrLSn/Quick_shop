@@ -98,6 +98,10 @@
   @apply w-[14px] h-[14px];
 }
 
+.pwdVisible {
+  @apply w-[14px] h-[14px] cursor-pointer;
+}
+
 .form_input input {
   @apply w-[450px] h-[100%] outline-none;
   background-color: var(---neutral-50);
@@ -143,7 +147,7 @@
 .login_details button {
   @apply w-[100%] h-[42px] flex items-center justify-center gap-[10px] rounded-md;
   padding: 10px 30px;
-  background-color: var(---neutral-500);
+  /* background-color: var(---neutral-500); */
   color: var(---white);
   font-family: "Urbanist";
   font-size: 18px;
