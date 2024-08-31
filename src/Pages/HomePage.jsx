@@ -1,3 +1,4 @@
+import { productApiUrl } from "../Api/axios";
 import Arrivals from "../component/Arrivals";
 import Category from "../component/Category";
 import Hero from "../component/Hero";
@@ -18,10 +19,6 @@ const HomePage = () => {
     return shuffled.slice(0, num);
   };
 
-  console.log(products, herodata, newArrivals);
-
-  const productApiUrl = "http://localhost:8080/api/products";
-
   const fetchData = async () => {
     try {
       const res = await axios.get(productApiUrl);
@@ -36,19 +33,8 @@ const HomePage = () => {
     }
   };
 
-  // const fetchUser = async () => {
-  //   try {
-  //     const res = await axios.get("http://localhost:8080/api/auths/register");
-  //     const data = res.data;
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log({ message: error.message });
-  //   }
-  // };
-
   useEffect(() => {
     fetchData();
-    // fetchUser();
   }, []);
 
   return (

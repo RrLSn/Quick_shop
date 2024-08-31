@@ -1,7 +1,6 @@
 import styles from "../styles/Products.module.css";
 
 const Products = ({ products }) => {
-  console.log(products);
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>

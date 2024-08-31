@@ -1,13 +1,15 @@
 // import React from "react";
 import { useEffect, useState, useRef } from "react";
 import styles from "../styles/Sign_up.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   phone_Regex,
   pwd_Regex,
   name_Regex,
   email_Regex,
 } from "../validation.js";
+import axios from "../Api/axios.js";
+import { regUrl } from "../Api/axios.js";
 
 const Sign_up = () => {
   const [name, setName] = useState("");
@@ -26,11 +28,14 @@ const Sign_up = () => {
   const [validPassword, setValidPassword] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
 
-  const [errMsg, setErrMsg] = useState("");
+  const [errMsg, setErrMsg] = useState(null);
   const [sucess, setSucess] = useState(false);
+  const [pwdVisible, setPwdVisible] = useState(false);
+  const [pwdValue, setPwdValue] = useState("password");
 
   const userRef = useRef(null);
   const errRef = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (userRef.current) {
@@ -58,7 +63,37 @@ const Sign_up = () => {
       setErrMsg("Invalid Entry");
       return;
     }
-    setSucess(true);
+    try {
+      const res = await axios.post(
+        regUrl,
+        JSON.stringify({
+          fullname: name,
+          email: email,
+          phone: num,
+          password: password,
+        }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(res.data);
+      console.log(res.accessToken);
+      console.log(JSON.stringify(res));
+      setSucess(true);
+
+      //clear input fields
+
+      //Navigate
+      navigate("/auth/sucess");
+    } catch (error) {
+      setErrMsg(error.response?.data.message || "An error occurred");
+      errRef.current.focus();
+    }
+  };
+
+  const handlepwdValueClick = () => {
+    setPwdVisible(!pwdVisible);
   };
 
   return (
@@ -91,7 +126,7 @@ const Sign_up = () => {
             className={errMsg ? styles.errMsg : "hidden"}
             aria-live="assertive"
           >
-            {errMsg} P
+            {errMsg}
           </p>
           <form
             action=""
@@ -151,7 +186,7 @@ const Sign_up = () => {
             <div className={styles.form_input}>
               <img src="/svg/lock.svg" alt="" />
               <input
-                type="password"
+                type={pwdVisible ? "text" : "password"}
                 placeholder="Password"
                 id="password"
                 ref={userRef}
@@ -163,7 +198,13 @@ const Sign_up = () => {
                 // aria-describedby="uidnote"
                 aria-invalid={validPassword ? "false" : "true"}
               />
-              <img src="/svg/pass_hide.svg" alt="" />
+              <div className={styles.pwdVisible} onClick={handlepwdValueClick}>
+                {!pwdVisible ? (
+                  <img src="/svg/pass_hide.svg" alt="" />
+                ) : (
+                  <img src="/svg/pass_show.svg" alt="" />
+                )}
+              </div>
             </div>
             <button
               disabled={

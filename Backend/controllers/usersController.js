@@ -14,10 +14,13 @@ export const registerUser = async (req, res) => {
     });
   }
 
-  //Checking if user is already on database
+  //Checking if user email or phone is already on database
   const emailExist = await Users.findOne({ email: req.body.email });
+  const phoneExist = await Users.findOne({ phone: req.body.phone });
   if (emailExist) {
     return res.status(400).json({ message: "Email already exist" });
+  } else if (phoneExist) {
+    return res.status(400).json({ message: "phone already exist" });
   }
 
   //Hash password
@@ -52,8 +55,13 @@ export const loginUser = async (req, res) => {
 
   //checking if email exist
   const user = await Users.findOne({ email: req.body.email });
-  if (!user)
+  const pwd = await Users.findOne({ password: req.body.password });
+  if (!user || !pwd)
     return res.status(400).json({ message: "Invalid email or password" });
+
+  const foundUser = await Users.findOne({ email: email }).exec();
+
+  if (!foundUser) return res.status(401);
 
   //checking if password is correct
   const isValidPassword = await bcrypt.compare(
@@ -67,12 +75,11 @@ export const loginUser = async (req, res) => {
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
 
   res.header("auth_token", token);
-  res.cookie("token", token, {
+  res.cookie("auth_token", token, {
     httpOnly: true,
     secure: true,
     sameSite: "Strict",
     maxAge: 24 * 60 * 60 * 1000,
   });
-
   res.status(200).json({ message: "Logged in Sucessfully!" });
 };

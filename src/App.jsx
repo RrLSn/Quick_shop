@@ -13,6 +13,7 @@ import About_us from "./Pages/About_us";
 import Checkout_success from "./Pages/Checkout_success";
 import NavBar from "./component/NavBar";
 import Footer from "./component/Footer";
+import Sucess from "./Pages/Sucess";
 
 function App() {
   const routes = createBrowserRouter([
@@ -75,6 +76,10 @@ function App() {
         {
           path: "sign_up",
           element: <Sign_up />,
+        },
+        {
+          path: "sucess",
+          element: <Sucess />,
         },
       ],
     },

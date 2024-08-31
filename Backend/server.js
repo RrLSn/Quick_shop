@@ -16,7 +16,17 @@ const PORT = process.env.PORT || 8000;
 const mongoUri = process.env.MONGO_URI;
 
 // Enable CORS for all routes and origins
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 
 //Routes
 app.get("/", (req, res) => {
@@ -35,4 +45,4 @@ mongoose
 
 //Router
 app.use("/api/products", productRoutes);
-app.use("/api/auths", userRoutes);
+app.use("/api/auth", userRoutes);

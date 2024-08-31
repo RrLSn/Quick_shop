@@ -72,6 +72,15 @@
   color: var(---neutral-700);
 }
 
+.errMsg {
+  color: red;
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
 .login_details {
   @apply w-[100%] h-[307px] flex flex-col items-center gap-[32px];
 }

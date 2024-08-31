@@ -1,5 +1,5 @@
 import styles from "../styles/Offers.module.css";
-import { offerImages } from "../data";
+import { offerImages } from "../data.js";
 import { useEffect, useState } from "react";
 
 const Offers = () => {
@@ -11,7 +11,7 @@ const Offers = () => {
       setImage(offerImages[rndIndex]);
     }, 10000);
     return () => clearInterval(internalId);
-  }, [offerImages]);
+  }, []);
 
   return (
     <div className={styles.wrapper}>

@@ -54,6 +54,15 @@
   @apply w-[100%] h-[356px] flex flex-col items-start gap-[32px];
 }
 
+.errMsg {
+  color: red;
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
 .form_header {
   @apply w-[100%] h-[17px] flex items-center gap-[3px];
 }
@@ -89,6 +98,10 @@
   @apply w-[450px] h-[100%] outline-none;
   background-color: var(---neutral-50);
   padding: 16px 5px;
+}
+
+.pwdVisible img {
+  @apply w-[14px] h-[14px] cursor-pointer;
 }
 
 .form_input input::placeholder {
