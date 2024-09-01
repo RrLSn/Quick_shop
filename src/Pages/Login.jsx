@@ -49,9 +49,8 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      // const token = res?.data.token;
-      console.log(res);
-      console.log({ email, password });
+      const token = res?.data.token;
+      localStorage.setItem("authToken", token);
       setAuth({ email, password });
       setEmail("");
       setPassword("");

@@ -80,3 +80,17 @@ export const loginUser = async (req, res) => {
   });
   res.status(200).json({ message: "Logged in Sucessfully!", token });
 };
+
+//Get login User
+export const loggedInUser = async (req, res, next) => {
+  const token =
+    req.cookies.auth_token || req.header("Authorization").split(" ")[1];
+  if (!token) return res.status(401).json({ message: "Access Denied" });
+  try {
+    const verified = jwt.verify(token, process.env.TOKEN_SECRET);
+    req.user = verified;
+    next();
+  } catch (error) {
+    res.status(400).json({ message: "Invalid Token" });
+  }
+};

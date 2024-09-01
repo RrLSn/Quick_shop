@@ -1,6 +1,20 @@
 import styles from "../styles/Dashboard_page.module.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Dashboard_page = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem("authToken");
+        const res = await axios.get("/http://localhost:8080/api/auth/user");
+      } catch (error) {}
+    };
+  }, []);
   return (
     <section className={styles.container}>
       <div className={styles.welcome}>
