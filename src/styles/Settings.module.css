@@ -1,0 +1,60 @@
+.wrapper {
+  @apply w-[100vw] h-[max-content] flex flex-col gap-[56px] py-[56px];
+}
+
+.header {
+  @apply w-[100%] h-[63px] flex flex-col items-center gap-[8px] px-[88px];
+}
+
+.header h1 {
+  font-family: "Urbanist";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---black);
+}
+
+.header span {
+  @apply w-[188px] h-[17px] flex items-start gap-[8px];
+  color: #b2b2b2;
+}
+
+.header span p {
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.header span p:hover {
+  color: var(---black);
+}
+
+.updates {
+  @apply w-[100%] h-[857px] flex flex-col items-center gap-[40px] px-[88px];
+}
+
+.update_pass {
+  @apply w-[725px] h-[272px] flex flex-col items-start self-stretch gap-[40px];
+}
+
+.update_pass h1,
+.update_locatn h1 {
+  font-family: "Urbanist";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: var(---black);
+}
+
+.update_pass button,
+.update_locatn button {
+}
+
+.update_locatn {
+  @apply w-[100%] h-[354px] flex flex-col items-start gap-[40px];
+}

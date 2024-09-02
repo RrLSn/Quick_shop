@@ -63,7 +63,9 @@ const Dashboard_page = () => {
         <div className={styles.settings_edit}>
           <div>
             <img src="/svg/settingsIcon.svg" alt="" />
-            <p>Manage</p>
+            <p>
+              <Link to="/dashboard/settings">Manage</Link>
+            </p>
           </div>
           <div className={styles.settings_intro}>
             <h1>Settings</h1>

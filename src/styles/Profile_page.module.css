@@ -34,8 +34,8 @@
   color: var(---black);
 }
 
-main {
-  @apply w-[100%] h-[354px] flex justify-between items-start;
+.main {
+  @apply w-[100%] h-[354px] flex justify-between;
   padding: 0 88px;
 }
 
@@ -80,4 +80,32 @@ main {
 
 .update_profile form {
   @apply w-[100%] h-[288px] flex flex-col items-start self-stretch gap-[32px];
+}
+
+.input {
+  @apply w-[100%] h-[50px] flex items-center gap-[4px] self-stretch bg-[#eee] rounded-md px-[15px];
+}
+
+.input img {
+  @apply w-[14px] h-[14px];
+}
+
+.input input {
+  @apply w-[90%] h-[90%] bg-[#eee];
+  outline: none;
+}
+
+.input input::placeholder {
+  font-family: "Urbanist";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral-500);
+}
+
+.update_profile form button {
+  @apply w-[180px] h-[44px] flex justify-center items-center gap-[10px] rounded-md px-[20px];
+  background: var(---neutral-500);
+  color: var(---white);
 }
