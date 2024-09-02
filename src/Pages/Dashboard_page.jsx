@@ -1,25 +1,18 @@
 import styles from "../styles/Dashboard_page.module.css";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import AuthContext from "../context/AuthProvider";
+import { useContext } from "react";
 
 const Dashboard_page = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const { auth } = useContext(AuthContext);
+  if (auth) {
+    console.log(auth);
+  }
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = localStorage.getItem("authToken");
-        const res = await axios.get("/http://localhost:8080/api/auth/user");
-      } catch (error) {}
-    };
-  }, []);
   return (
-    <section className={styles.container}>
+    <main className={styles.container}>
       <div className={styles.welcome}>
         <span className={styles.welc_note}>
-          <h1>Welcome To Your Dashboard John Doe!</h1>
+          <h1>Welcome To Your Dashboard {auth?.fullname}!</h1>
           <p>Manage your profile, order history and account setting.</p>
         </span>
         <span className={styles.order_placed}>
@@ -31,12 +24,54 @@ const Dashboard_page = () => {
         </span>
       </div>
 
-      <div className={styles.order}>
-        <span className={styles.prev_order}></span>
-        <span className={styles.recnt_order}></span>
-      </div>
-      <div className={styles.profile}></div>
-    </section>
+      <section className={styles.order}>
+        <span className={styles.prev_order}>
+          <div>
+            <img src="/svg/order_block2.svg" alt="" />
+            <p>View all</p>
+          </div>
+          <div className={styles.order_details}>
+            <div>
+              <h1>Orders</h1>
+              <p>Manage and view all your orders</p>
+            </div>
+            <div className={styles.order_info}>
+              <span>02 Delivered</span>
+              <span>01 Pending</span>
+            </div>
+          </div>
+        </span>
+        <span className={styles.recnt_order}>
+          <div>
+            <h1>Recent Order (s)</h1>
+            <p>Order tracking timeline</p>
+          </div>
+          <div></div>
+        </span>
+      </section>
+      <section className={styles.profile}>
+        <div className={styles.profile_edit}>
+          <div>
+            <img src="/svg/UserIcon.svg" alt="" />
+            <p>Edit</p>
+          </div>
+          <div className={styles.profile_intro}>
+            <h1>Orders</h1>
+            <p>Manage and view all your orders</p>
+          </div>
+        </div>
+        <div className={styles.settings_edit}>
+          <div>
+            <img src="/svg/settingsIcon.svg" alt="" />
+            <p>Manage</p>
+          </div>
+          <div className={styles.settings_intro}>
+            <h1>Settings</h1>
+            <p>Update your password and set up your delivery locations</p>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 };
 

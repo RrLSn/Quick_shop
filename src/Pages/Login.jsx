@@ -5,12 +5,15 @@ import AuthContext from "../context/AuthProvider";
 import axios from "../Api/axios";
 import { loginUrl } from "../Api/axios";
 import { pwd_Regex, email_Regex } from "../validation.jsx";
+// import useLocalStorage from "../hooks/useLocalStorage.jsx";
 
 const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
   const { setAuth } = useContext(AuthContext);
+
+  // const [fullname, setFullname] = useState("");
 
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
@@ -22,7 +25,6 @@ const Login = () => {
   const [success, setSuccess] = useState(false);
 
   const [pwdVisible, setPwdVisible] = useState(false);
-  const [pwdValue, setPwdValue] = useState("password");
 
   useEffect(() => {
     if (useRef.current) {
@@ -50,12 +52,15 @@ const Login = () => {
         }
       );
       const token = res?.data.token;
+      const fullname = res?.data.fullname;
       localStorage.setItem("authToken", token);
-      setAuth({ email, password });
+      setAuth({ email, fullname, token });
       setEmail("");
       setPassword("");
       setSuccess(true);
       navigate("/dashboard");
+      localStorage.setItem("fullname", fullname);
+      localStorage.setItem("authToken", token);
     } catch (error) {
       setErrMsg(error.response?.data.message || "An error occurred");
       errRef.current.focus();
