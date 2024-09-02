@@ -1,5 +1,5 @@
 .wrapper {
-  @apply w-[100vw] h-[max-content] flex flex-col gap-[56px] py-[56px];
+  @apply w-[100vw] h-[max-content] flex flex-col items-center gap-[56px] py-[56px];
 }
 
 .header {
@@ -34,11 +34,11 @@
 }
 
 .updates {
-  @apply w-[100%] h-[857px] flex flex-col items-center gap-[40px] px-[88px];
+  @apply w-[100%] h-[857px] flex flex-col  gap-[40px];
 }
 
 .update_pass {
-  @apply w-[725px] h-[272px] flex flex-col items-start self-stretch gap-[40px];
+  @apply w-[735px] h-[272px] flex flex-col items-start self-stretch gap-[40px] m-auto;
 }
 
 .update_pass h1,
@@ -53,8 +53,87 @@
 
 .update_pass button,
 .update_locatn button {
+  @apply w-[180px] h-[44px] flex justify-center items-center gap-[10px] rounded-md px-[20px];
+  background: var(---neutral-500);
+  color: var(---white);
+}
+
+.update_pass span {
+  @apply w-[100%] h-[50px] flex items-center justify-between px-[1.5rem] bg-[#eee];
+}
+
+.update_pass span img {
+  @apply w-[14px] h-[14px];
+}
+
+.update_pass span input {
+  @apply w-[97%] h-[100%] outline-none;
+  background-color: var(---neutral-50);
+  padding: 16px 5px;
+}
+
+.update_pass span input::placeholder {
+  font-family: "Urbanist";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral-500);
+}
+
+.pwdVisible img {
+  @apply w-[14px] h-[14px] cursor-pointer;
 }
 
 .update_locatn {
-  @apply w-[100%] h-[354px] flex flex-col items-start gap-[40px];
+  @apply w-[735px] h-[354px] flex flex-col items-start self-stretch gap-[40px] m-auto;
+}
+
+.custom_dropdown {
+  @apply w-[100%] h-[50px] flex items-center justify-between pr-[1.5rem]  bg-[#eee];
+}
+
+.custom_dropdown select {
+  @apply w-[100%] h-[100%] bg-[#eee] px-[1.5rem];
+  outline: none;
+}
+
+.update_locatn span {
+  @apply w-[100%] h-[50px] flex items-center justify-between px-[1.5rem] bg-[#eee];
+}
+
+.update_locatn span img {
+  @apply w-[14px] h-[14px];
+}
+
+.update_locatn span input {
+  @apply w-[97%] h-[100%] outline-none;
+  background-color: var(---neutral-50);
+  padding: 16px 5px;
+}
+
+.update_locatn span input::placeholder {
+  font-family: "Urbanist";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral-500);
+}
+
+.card {
+  @apply w-[444px] h-[145px] flex flex-col items-start gap-[36px];
+}
+
+.card div {
+  @apply w-[394px] h-[40px] flex p-[20px] justify-between items-center;
+}
+
+.card div h1 {
+  font-family: "Urbanist";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---neutral-500);
 }
