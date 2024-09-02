@@ -15,6 +15,7 @@ import NavBar from "./component/NavBar";
 import Footer from "./component/Footer";
 import Sucess from "./Pages/Sucess";
 import Dashboard_page from "./Pages/Dashboard_page";
+import Profile_page from "./Pages/Profile_page";
 
 function App() {
   const routes = createBrowserRouter([
@@ -59,6 +60,10 @@ function App() {
         {
           path: "dashboard",
           element: <Dashboard_page />,
+        },
+        {
+          path: "dashboard/profile",
+          element: <Profile_page />,
         },
       ],
     },

@@ -13,8 +13,6 @@ const Login = () => {
   const navigate = useNavigate();
   const { setAuth } = useContext(AuthContext);
 
-  // const [fullname, setFullname] = useState("");
-
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
 
@@ -53,14 +51,18 @@ const Login = () => {
       );
       const token = res?.data.token;
       const fullname = res?.data.fullname;
+      const phone = res?.data.phone;
+      // const email = res?.data.email;
       localStorage.setItem("authToken", token);
-      setAuth({ email, fullname, token });
+      setAuth({ email, fullname, token, phone });
       setEmail("");
       setPassword("");
       setSuccess(true);
       navigate("/dashboard");
       localStorage.setItem("fullname", fullname);
       localStorage.setItem("authToken", token);
+      localStorage.setItem("phone", phone);
+      localStorage.setItem("email", email);
     } catch (error) {
       setErrMsg(error.response?.data.message || "An error occurred");
       errRef.current.focus();

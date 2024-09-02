@@ -1,0 +1,83 @@
+.wrapper {
+  @apply w-[100vw] h-[max-content] py-[56px] flex flex-col gap-[56px];
+}
+
+.header_div {
+  @apply w-[100%] h-[63px] flex flex-col items-start gap-[8px] self-stretch;
+  padding: 0 88px;
+}
+
+.header_div h1 {
+  font-family: "Urbanist";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: var(---black);
+}
+
+.header_div span {
+  @apply w-[188px] h-[17px] flex items-start gap-[8px];
+  color: #b2b2b2;
+}
+
+.header_div span p {
+  font-family: "Urbanist";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.header_div span p:hover {
+  color: var(---black);
+}
+
+main {
+  @apply w-[100%] h-[354px] flex justify-between items-start;
+  padding: 0 88px;
+}
+
+.Profile_details {
+  @apply w-[395px] h-[100%] flex flex-col items-end shrink-0 self-stretch gap-[24px];
+}
+
+.Profile_details span {
+  @apply w-[100%] h-[22px] flex justify-between items-center self-stretch;
+}
+
+.Profile_details span h1 {
+  font-family: "Urbanist";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: var(---neutral-500);
+}
+
+.Profile_details span p {
+  font-family: "Urbanist";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: var(---neutral-500);
+}
+
+.update_profile {
+  @apply w-[612px] h-[100%] flex flex-col items-start gap-[40px] shrink-0;
+}
+
+.update_profile h1 {
+  font-family: "Urbanist";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: var(---black);
+}
+
+.update_profile form {
+  @apply w-[100%] h-[288px] flex flex-col items-start self-stretch gap-[32px];
+}

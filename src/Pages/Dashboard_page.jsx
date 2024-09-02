@@ -1,12 +1,10 @@
 import styles from "../styles/Dashboard_page.module.css";
 import AuthContext from "../context/AuthProvider";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const Dashboard_page = () => {
   const { auth } = useContext(AuthContext);
-  if (auth) {
-    console.log(auth);
-  }
 
   return (
     <main className={styles.container}>
@@ -53,7 +51,9 @@ const Dashboard_page = () => {
         <div className={styles.profile_edit}>
           <div>
             <img src="/svg/UserIcon.svg" alt="" />
-            <p>Edit</p>
+            <p>
+              <Link to="/dashboard/profile">Edit</Link>
+            </p>
           </div>
           <div className={styles.profile_intro}>
             <h1>Orders</h1>
