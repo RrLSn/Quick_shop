@@ -17,6 +17,8 @@ import Sucess from "./Pages/Sucess";
 import Dashboard_page from "./Pages/Dashboard_page";
 import Profile_page from "./Pages/Profile_page";
 import Settings from "./Pages/Settings";
+import Orders_page from "./Pages/Orders_page";
+import Order_history from "./Pages/Order_history";
 
 function App() {
   const routes = createBrowserRouter([
@@ -69,6 +71,14 @@ function App() {
         {
           path: "dashboard/settings",
           element: <Settings />,
+        },
+        {
+          path: "dashboard/orders_page",
+          element: <Orders_page />,
+        },
+        {
+          path: "dashboard/order_history",
+          element: <Order_history />,
         },
       ],
     },

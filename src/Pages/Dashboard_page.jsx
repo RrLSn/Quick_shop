@@ -26,7 +26,9 @@ const Dashboard_page = () => {
         <span className={styles.prev_order}>
           <div>
             <img src="/svg/order_block2.svg" alt="" />
-            <p>View all</p>
+            <p>
+              <Link to="/dashboard/order_history">View all</Link>
+            </p>
           </div>
           <div className={styles.order_details}>
             <div>

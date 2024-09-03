@@ -8,6 +8,12 @@ import cors from "cors";
 dotenv.config();
 const app = express();
 
+const corsOptions = {
+  origin: "*", // replace with your Vercel URL
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
 //Middleware
 app.use(express.json());
 
