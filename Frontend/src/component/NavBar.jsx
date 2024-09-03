@@ -16,7 +16,7 @@ const NavBar = () => {
         <p>Shop</p>
       </span>
       <span className={styles.cartUser}>
-        <Link>
+        <Link to="/auth/login">
           <div className={styles.cart}>
             <img src="/svg/CartIcon.svg" alt="" />
             <p>0</p>
