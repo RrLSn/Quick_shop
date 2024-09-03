@@ -8,12 +8,6 @@ import cors from "cors";
 dotenv.config();
 const app = express();
 
-const corsOptions = {
-  origin: "*", // replace with your Vercel URL
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
-
 //Middleware
 app.use(express.json());
 
@@ -24,7 +18,10 @@ const mongoUri = process.env.MONGO_URI;
 // Enable CORS for all routes and origins
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://quickshop-rrlsns-projects.vercel.app/",
+    ],
     credentials: true,
   })
 );
