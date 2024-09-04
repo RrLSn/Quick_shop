@@ -2,8 +2,8 @@ import { useRef, useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Login.module.css";
 import AuthContext from "../context/AuthProvider";
-import axios from "../Api/axios";
-import { loginUrl } from "../Api/axios";
+import axios from "../Api/axios.jsx";
+import { loginUrl } from "../Api/axios.jsx";
 import { pwd_Regex, email_Regex } from "../validation.jsx";
 // import useLocalStorage from "../hooks/useLocalStorage.jsx";
 

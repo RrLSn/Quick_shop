@@ -1,5 +1,8 @@
 import Users from "../modules/users_modules.js";
-import { registerValidation, loginValidation } from "../Validation.js";
+import {
+  registerValidation,
+  loginValidation,
+} from "../validation/validation.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 

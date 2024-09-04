@@ -20,7 +20,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://quickshop-rrlsns-projects.vercel.app",
+      "https://starlit-cannoli-3a53fb.netlify.app",
     ],
     credentials: true,
   })

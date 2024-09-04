@@ -8,8 +8,8 @@ import {
   name_Regex,
   email_Regex,
 } from "../validation.jsx";
-import axios from "../Api/axios.js";
-import { regUrl } from "../Api/axios.js";
+import axios from "../Api/axios.jsx";
+import { regUrl } from "../Api/axios.jsx";
 
 const Sign_up = () => {
   const [name, setName] = useState("");
