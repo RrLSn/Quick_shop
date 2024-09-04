@@ -35,7 +35,7 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [2000]);
 
   return (
     <div className={styles.container}>
@@ -49,7 +49,7 @@ const HomePage = () => {
           <Newsletter />
         </>
       ) : (
-        <>{/* loader */}</>
+        <div>Loading...</div>
       )}
     </div>
   );

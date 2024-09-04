@@ -1,5 +1,6 @@
 import Product from "../modules/product_module.js";
 
+//Get Products
 export const getProducts = async (req, res) => {
   try {
     const products = await Product.find({});
@@ -9,6 +10,7 @@ export const getProducts = async (req, res) => {
   }
 };
 
+//Get Product
 export const getProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -22,6 +24,28 @@ export const getProduct = async (req, res) => {
   }
 };
 
+//search product
+
+// export const searchProduct = async (req, res) => {
+//   const { title } = req.query;
+
+//   if (!title || title.trim() === "") {
+//     res.status(400).json({ message: "Product name required for search" });
+//   } else {
+//     try {
+//       const searchedProduct = await Product.find(title);
+//       if (!searchProduct) {
+//         return res.status(404).json({ message: "Product not found" });
+//       }
+//       return res.status(200).json({ message: "Ok", data: searchedProduct });
+//     } catch (error) {
+//       console.log(error);
+//       res.status(500).json({ error: "Internal server error" });
+//     }
+//   }
+// };
+
+//Post Product
 export const createProduct = async (req, res) => {
   try {
     const product = await Product.create(req.body);
@@ -31,6 +55,7 @@ export const createProduct = async (req, res) => {
   }
 };
 
+//Edit product
 export const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -47,6 +72,7 @@ export const updateProduct = async (req, res) => {
   }
 };
 
+//delete product
 export const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;

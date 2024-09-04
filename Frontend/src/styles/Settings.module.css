@@ -96,6 +96,7 @@
 .custom_dropdown select {
   @apply w-[100%] h-[100%] bg-[#eee] px-[1.5rem];
   outline: none;
+  position: relative;
 }
 
 .update_locatn span {

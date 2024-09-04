@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../styles/Settings.module.css";
 import { Link } from "react-router-dom";
+import { states } from "../data";
 
 const Settings = () => {
   const [pwdVisible, setPwdVisible] = useState(false);
@@ -82,11 +83,17 @@ const Settings = () => {
             <div className={styles.custom_dropdown}>
               <select>
                 <option value="">Select Country</option>
+                <option value="">Nigeria</option>
               </select>
             </div>
             <div className={styles.custom_dropdown}>
               <select>
                 <option value="">Select State</option>
+                {states.map((state, index) => (
+                  <option value={state} key={index}>
+                    {state}
+                  </option>
+                ))}
               </select>
             </div>
             <span>
