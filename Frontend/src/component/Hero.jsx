@@ -27,7 +27,7 @@ const Hero = ({ herodata }) => {
                   src={rndImage}
                   // className={styles.sliderCard}
                   key={product._id}
-                  alt={product.title}
+                  alt="Image"
                 />
               </div>
             );
