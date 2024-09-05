@@ -5,7 +5,6 @@ import AuthContext from "../context/AuthProvider";
 import axios from "../Api/axios.jsx";
 import { loginUrl } from "../Api/axios.jsx";
 import { pwd_Regex, email_Regex } from "../validation.jsx";
-// import useLocalStorage from "../hooks/useLocalStorage.jsx";
 
 const Login = () => {
   const userRef = useRef();
@@ -31,6 +30,7 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
+    console.log();
     const pwd_Res = pwd_Regex.test(password);
     const email_Res = email_Regex.test(email);
     setValidPassword(pwd_Res);

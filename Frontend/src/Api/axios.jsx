@@ -1,19 +1,19 @@
 import axios from "axios";
 
-// export const productApiUrl = "http://localhost:8080/api/products";
-// const userBaseUrl = "http://localhost:8080/api/auth";
+const Env = import.meta.env;
 
-// export const productApiUrl = `${process.env.REACT_APP_API_URL}/products`;
-// console.log(productApiUrl);
-// const userBaseUrl = `${process.env.REACT_APP_API_URL}/auth`;
-
-export const productApiUrl = `${process.env.REACT_APP_API_URL}/api/products`;
-const userBaseUrl = `${process.env.REACT_APP_API_URL}/api/auth`;
+export const productApiUrl = `${Env.VITE_API_URL}/api/products`;
+console.log(productApiUrl);
+const userBaseUrl = `${Env.VITE_API_URL}/api/auth`;
 
 export const regUrl = "/register";
 
 export const loginUrl = "/login";
 
-export default axios.create({
+console.log(Env);
+
+const Axios = axios.create({
   baseURL: userBaseUrl,
 });
+
+export default Axios;

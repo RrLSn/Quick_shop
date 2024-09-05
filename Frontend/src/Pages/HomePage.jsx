@@ -1,4 +1,4 @@
-import { productApiUrl } from "../Api/axios";
+import { productApiUrl } from "../Api/axios.jsx";
 import Arrivals from "../component/Arrivals";
 import Category from "../component/Category";
 import Hero from "../component/Hero";
@@ -19,23 +19,22 @@ const HomePage = () => {
     return shuffled.slice(0, num);
   };
 
-  const fetchData = async () => {
-    try {
-      const res = await axios.get(productApiUrl);
-      const data = res.data;
-      const items = getRndItems(res.data, 15);
-      const arrivals = getRndItems(res.data, 15);
-      setProducts(data);
-      setHerodata(items);
-      setNewArrivals(arrivals);
-    } catch (error) {
-      console.log({ message: error.message });
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(productApiUrl);
+        const data = res.data;
+        const items = getRndItems(res.data, 15);
+        const arrivals = getRndItems(res.data, 15);
+        setProducts(data);
+        setHerodata(items);
+        setNewArrivals(arrivals);
+      } catch (error) {
+        console.log({ message: error.message });
+      }
+    };
     fetchData();
-  }, [2000]);
+  }, []);
 
   return (
     <div className={styles.container}>

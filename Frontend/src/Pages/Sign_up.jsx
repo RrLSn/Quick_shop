@@ -1,4 +1,3 @@
-// import React from "react";
 import { useEffect, useState, useRef } from "react";
 import styles from "../styles/Sign_up.module.css";
 import { Link, useNavigate } from "react-router-dom";
