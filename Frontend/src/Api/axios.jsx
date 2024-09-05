@@ -1,5 +1,7 @@
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 const Env = import.meta.env;
 
 export const productApiUrl = `${Env.VITE_API_URL}/api/products`;
