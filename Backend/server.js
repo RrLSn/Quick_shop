@@ -20,7 +20,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://starlit-cannoli-3a53fb.netlify.app",
+      "https://spiffy-profiterole-42d932.netlify.app/",
     ],
     credentials: true,
   })
