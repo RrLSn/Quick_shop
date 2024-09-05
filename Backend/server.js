@@ -20,7 +20,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://spiffy-profiterole-42d932.netlify.app",
+      "https://quickshop-j9o4hb8tf-rrlsns-projects.vercel.app",
     ],
     credentials: true,
   })
@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 
 //Routes
 app.get("/", (req, res) => {
-  res.send("Hello from express API Updated");
+  res.send("Hello from express API, Welcome");
 });
 
 mongoose
