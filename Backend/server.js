@@ -96,4 +96,3 @@ mongoose
 //Router
 app.use("/api/products", productRoutes);
 app.use("/api/auth", userRoutes);
-app.get("/logout", sign_Out);
