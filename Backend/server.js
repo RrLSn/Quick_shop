@@ -28,23 +28,37 @@ const PORT = process.env.PORT || 8000;
 const mongoUri = process.env.MONGO_URI;
 
 // Enable CORS for all routes and origins
-const allowedOrigin = [
+const allowedOrigins = [
   "http://localhost:5173",
   "https://quickshop-omega.vercel.app",
 ];
 
 app.use(
   cors({
-    origin: allowedOrigin,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by cors"));
+      }
+    },
     credentials: true,
   })
 );
+
+// function (origin, callback) {
+//   if (!origin || allowedOrigins.includes(origin)) {
+//     callback(null, true);
+//   } else {
+//     callback(new Error("Not allowed by cors"));
+//   }
+// }
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
 
   //Check if the request is in the allowed list
-  if (allowedOrigin.includes(origin)) {
+  if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
 
