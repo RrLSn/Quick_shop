@@ -27,14 +27,11 @@ const PORT = process.env.PORT || 8000;
 const mongoUri = process.env.MONGO_URI;
 
 // Enable CORS for all routes and origins
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://quickshop-omega.vercel.app",
-];
+// const allowedOrigins = ;
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: ["http://localhost:5173", "https://quickshop-omega.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
