@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/NavBar.module.css";
 import { useContext, useState } from "react";
-import { logOutUrl } from "../Api/axios";
-import axios from "axios";
+import Axios, { logOutUrl } from "../Api/axios";
+
 import AuthContext from "../context/AuthProvider";
 
 const NavBar = () => {
@@ -15,7 +15,7 @@ const NavBar = () => {
 
   const handleLogOut = async () => {
     try {
-      await axios.get(logOutUrl, {
+      await Axios.get(logOutUrl, {
         withCredentials: true
       })
       localStorage.clear()

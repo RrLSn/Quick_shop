@@ -5,7 +5,6 @@ import productRoutes from "./routes/product.js";
 import userRoutes from "./routes/auth.js";
 import cors from "cors";
 import session from "express-session";
-import { sign_Out } from "./controllers/usersController.js";
 
 dotenv.config();
 const app = express();
