@@ -5,6 +5,7 @@ import productRoutes from "./routes/product.js";
 import userRoutes from "./routes/auth.js";
 import cors from "cors";
 import session from "express-session";
+import { sign_Out } from "./controllers/usersController.js";
 
 dotenv.config();
 const app = express();
@@ -27,15 +28,18 @@ const PORT = process.env.PORT || 8000;
 const mongoUri = process.env.MONGO_URI;
 
 // Enable CORS for all routes and origins
-// const allowedOrigins = ;
-
 app.use(
   cors({
     origin: ["http://localhost:5173", "https://quickshop-omega.vercel.app"],
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "PUT", "POST", "DELETE"],
   })
 );
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 
 //Routes
 app.get("/", (req, res) => {
@@ -55,3 +59,4 @@ mongoose
 //Router
 app.use("/api/products", productRoutes);
 app.use("/api/auth", userRoutes);
+app.get("/logout", sign_Out);
