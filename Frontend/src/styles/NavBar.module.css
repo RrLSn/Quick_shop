@@ -19,7 +19,26 @@ nav {
 }
 
 .cartUser {
-  @apply w-[118px] h-[30px] inline-flex justify-center items-center gap-[30px];
+  @apply w-[118px] h-[30px] flex justify-center items-center gap-[30px];
+}
+
+.drop_modal {
+  @apply w-[123px] min-h-[84px] h-[max-content] flex flex-col gap-[1px] justify-between bg-[#eee] absolute top-[5.5rem];
+  box-shadow: 0px 0px 8px 0px rgba(198, 198, 198, 0.25);
+}
+
+.drop_modal p {
+  @apply w-[100%] h-[49%] flex justify-center items-center self-stretch gap-[10px] text-black bg-white;
+  padding: 10px 30px;
+  font-family: "Urbanist";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.drop_modal p:hover {
+  @apply text-[#ffff] bg-[#F24810];
 }
 
 .cart {

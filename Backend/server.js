@@ -4,9 +4,21 @@ import mongoose from "mongoose";
 import productRoutes from "./routes/product.js";
 import userRoutes from "./routes/auth.js";
 import cors from "cors";
+import session from "express-session";
+import { sign_Out } from "./controllers/usersController.js";
 
 dotenv.config();
 const app = express();
+
+//Use session middleware
+app.use(
+  session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
+  })
+);
 
 //Middleware
 app.use(express.json());
@@ -46,3 +58,4 @@ mongoose
 //Router
 app.use("/api/products", productRoutes);
 app.use("/api/auth", userRoutes);
+app.get("/logout", sign_Out);

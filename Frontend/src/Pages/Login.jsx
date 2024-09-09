@@ -52,7 +52,6 @@ const Login = () => {
       const token = res?.data.token;
       const fullname = res?.data.fullname;
       const phone = res?.data.phone;
-      // const email = res?.data.email;
       localStorage.setItem("authToken", token);
       setAuth({ email, fullname, token, phone });
       setEmail("");

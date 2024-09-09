@@ -89,3 +89,22 @@ export const loginUser = async (req, res) => {
     email: user.email,
   });
 };
+
+export const sign_Out = async (req, res) => {
+  if (!req.session) {
+    return res.status(401).json({ message: "No active session" });
+  }
+
+  req.session.destroy((error) => {
+    if (error) {
+      return res.status(500).json({ message: "Error signing out" });
+    }
+
+    res.clearCookie("auth_token", {
+      httpOnly: true,
+      sameSite: true,
+      secure: true,
+    });
+    return res.status(200).json({ message: "Logout successfuly!" });
+  });
+};

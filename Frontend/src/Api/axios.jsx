@@ -12,7 +12,7 @@ export const regUrl = "/register";
 
 export const loginUrl = "/login";
 
-console.log(Env);
+export const logOutUrl = "/logout";
 
 const Axios = axios.create({
   baseURL: userBaseUrl,
