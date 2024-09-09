@@ -34,48 +34,11 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by cors"));
-      }
-    },
+    origin: allowedOrigins,
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
-
-// function (origin, callback) {
-//   if (!origin || allowedOrigins.includes(origin)) {
-//     callback(null, true);
-//   } else {
-//     callback(new Error("Not allowed by cors"));
-//   }
-// }
-
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-
-  //Check if the request is in the allowed list
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-
-  //Allow credentials (cookies, authorization headers)
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-
-  //Allow Specific HTTP methods
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-
-  //Allow headers used by the frontend
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-  //Handle OPTIONS preflight request
-  if (res.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
-  next();
-});
 
 //Routes
 app.get("/", (req, res) => {
