@@ -23,10 +23,11 @@ const HomePage = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(productApiUrl);
-        console.log(data)
+        
         const data = res.data;
-        const items = getRndItems(res.data, 15);
-        const arrivals = getRndItems(res.data, 15);
+        console.log(data)
+        const items = getRndItems(data, 15);
+        const arrivals = getRndItems(data, 15);
         setProducts(data);
         setHerodata(items);
         setNewArrivals(arrivals);
