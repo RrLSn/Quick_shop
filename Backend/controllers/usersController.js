@@ -123,7 +123,7 @@ export const forget_password = async (req, res) => {
       from: "afo.sodiq022@gmail.com",
       to: `${email}`,
       subject: "Reset Your Password",
-      text: `https://quickshop-omega.vercel.app/auth/resetPassword/${token}`,
+      text: `https://quickshop-omega.vercel.app/auth/resetPassword/${user._id}/${token}`,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {

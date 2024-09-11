@@ -9,6 +9,7 @@ const Forget_pass = () => {
   const [errMssg, setErrMsg] = useState(null)
   const [success, setSuccess] = useState()
 
+
   const userRef = useRef()
   const errRef = useRef()
   const navigate = useNavigate()
@@ -55,7 +56,7 @@ const Forget_pass = () => {
             </p>
           </span>
         </div>
-        {errMssg ? <p className="flex">{errMssg}</p> : <p className="hidden"></p>}
+        {/* {errMssg ? <p className="flex">{errMssg}</p> : <p className="hidden"></p>} */}
         <div className={styles.form_fill}>
           <div className={styles.input_mail}>
             <span>
