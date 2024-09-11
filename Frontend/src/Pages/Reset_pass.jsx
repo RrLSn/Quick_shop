@@ -1,6 +1,9 @@
+import { useParams } from "react-router-dom";
 import styles from "../styles/Reset_pass.module.css";
 
 const Reset_pass = () => {
+  const {id, token} = useParams()
+  console.log(id, token)
   return (
     <div className={styles.wrapper}>
       <form action="">

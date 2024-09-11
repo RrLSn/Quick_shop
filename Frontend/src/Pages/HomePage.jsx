@@ -39,7 +39,7 @@ const HomePage = () => {
 
   return (
     <div className={styles.container}>
-      {products ? (
+      {products ? 
         <>
           <Hero herodata={herodata} />
           <Category />
@@ -48,9 +48,9 @@ const HomePage = () => {
           <Arrivals newArrivals={newArrivals} />
           <Newsletter />
         </>
-      ) : (
+       : 
         <div>Loading...</div>
-      )}
+      }
     </div>
   );
 };

@@ -2,7 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Forget_pass.module.css";
 import { useEffect, useRef, useState } from "react";
-import axios, { resetPassUrl } from "../Api/axios";
+import Axios, { resetPassUrl } from "../Api/axios";
 
 const Forget_pass = () => {
   const [email, setEmail] = useState("")
@@ -23,7 +23,7 @@ const Forget_pass = () => {
   const handleSubmit = async(e) => {
     e.preventDefault()
     try {
-        const res = await axios.post(
+        const res = await Axios.post(
           resetPassUrl,
           JSON.stringify({email: email}),
           {headers: {"Content-Type": "application/json"}
