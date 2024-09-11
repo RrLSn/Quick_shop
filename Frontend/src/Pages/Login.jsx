@@ -10,6 +10,7 @@ const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
+  const { setAuth } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
@@ -51,6 +52,7 @@ const Login = () => {
         const token = res?.data.token;
         const fullname = res?.data.fullname;
         const phone = res?.data.phone;
+        setAuth({ email, fullname, token, phone });
         setEmail("");
         setPassword("");
         setSuccess(true);

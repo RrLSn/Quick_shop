@@ -2,8 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Forget_pass.module.css";
 import { useEffect, useRef, useState } from "react";
-import { email_Regex } from "../validation";
-import Axios, { resetPassUrl } from "../Api/axios";
+import axios, { resetPassUrl } from "../Api/axios";
 
 const Forget_pass = () => {
   const [email, setEmail] = useState("")
@@ -23,7 +22,7 @@ const Forget_pass = () => {
   const handleSubmit = async(e) => {
     e.preventDefault()
     try {
-        const res = await Axios.post(
+        const res = await axios.post(
           resetPassUrl,
           JSON.stringify({email: email}),
           {headers: {"Content-Type": "application/json"}
@@ -35,8 +34,8 @@ const Forget_pass = () => {
         }
    
     } catch (error) {
-      setErrMsg(error.response?.data.message || "An error occured")
-      errRef.current.focus()
+      setErrMsg(error.message || "An error occured")
+      // errRef.current.focus()
     }
   }
 
@@ -44,7 +43,7 @@ const Forget_pass = () => {
 
   return (
     <div className={styles.wrapper}>
-      <form action="">
+      <form onSubmit={handleSubmit} >
         <img src="/svg/Logo.svg" alt="" />
 
         <div className={styles.rem_login}>
@@ -57,7 +56,7 @@ const Forget_pass = () => {
           </span>
         </div>
         {errMssg ? <p className="flex">{errMssg}</p> : <p className="hidden"></p>}
-        <form onSubmit={handleSubmit} className={styles.form_fill}>
+        <div className={styles.form_fill}>
           <div className={styles.input_mail}>
             <span>
               <img src="/svg/mailIcon.svg" alt="" />
@@ -74,7 +73,7 @@ const Forget_pass = () => {
             <p>Password reset link will be sent to your email.</p> 
           </div>
           <button>Submit</button>
-        </form>
+        </div>
       </form>
     </div>
   );

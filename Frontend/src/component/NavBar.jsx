@@ -18,11 +18,8 @@ const NavBar = () => {
       await Axios.get(logOutUrl, {
         withCredentials: true
       })
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("fullname");
-      localStorage.removeItem("phone");
-      localStorage.removeItem("email");
-      setAuth()
+      localStorage.clear(); 
+      setAuth();
       navigate("/")
       setDrop(false)
       
@@ -83,7 +80,7 @@ const NavBar = () => {
           <Link to="/dashboard/profile">Profile</Link>
         </p>
         <p onClick={() => setDrop(false)}>
-          <Link to="/dashboard">Settings</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </p>
         <p  onClick={handleLogOut}>
           <Link to="">Signout</Link>
