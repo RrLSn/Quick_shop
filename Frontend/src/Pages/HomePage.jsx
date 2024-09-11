@@ -15,7 +15,7 @@ const HomePage = () => {
   const [newArrivals, setNewArrivals] = useState([]);
 
   const getRndItems = (arr, num) => {
-    const shuffled = [...arr].slice(() => 0.5 - Math.random());
+    const shuffled = [...arr].slice(() => 0.5 - Math.random()* num);
     return shuffled.slice(0, num);
   };
 
@@ -25,7 +25,6 @@ const HomePage = () => {
         const res = await axios.get(productApiUrl);
         
         const data = res.data;
-        console.log(data)
         const items = getRndItems(data, 15);
         const arrivals = getRndItems(data, 15);
         setProducts(data);

@@ -1,11 +1,11 @@
 .wrapper {
-  @apply w-[100vw] h-[100vh] inline-flex justify-center items-center;
+  @apply w-[100vw] h-[100vh] flex justify-center items-center;
   padding: 341px 369px 340px 370px;
   background: var(---white);
 }
 
 .wrapper form {
-  @apply w-[701px] h-[343px] flex flex-col items-start gap-[40px];
+  @apply w-[701px] h-[343px] flex flex-col items-start gap-[25px];
 }
 
 .wrapper form img {
@@ -68,13 +68,13 @@
 .input_mail input {
   @apply w-[100%] h-[100%] outline-none;
   background-color: var(---neutral-50);
-  padding: 16px 5px;
-  font-size: 25px;
+  padding: 5px;
+  font-size: 14px;
 }
 
 .input_mail input::placeholder {
   font-family: "Urbanist";
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;

@@ -5,6 +5,7 @@ import {
 } from "../validation/validation.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
 
 //Create a user
 export const registerUser = async (req, res) => {
@@ -71,7 +72,7 @@ export const loginUser = async (req, res) => {
 
   //create and assign a token
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
-    expiresIn: "1h",
+    expiresIn: "1d",
   });
 
   res.cookie("auth_token", token, {
@@ -91,20 +92,48 @@ export const loginUser = async (req, res) => {
 };
 
 export const sign_Out = async (req, res) => {
-  if (!req.session) {
-    return res.status(401).json({ message: "No active session" });
-  }
-
-  req.session.destroy((error) => {
-    if (error) {
-      return res.status(500).json({ message: "Error signing out" });
-    }
-
-    res.clearCookie("auth_token", {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None",
-    });
-    return res.status(200).json({ message: "Logout successfuly!" });
+  res.clearCookie("auth_token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
   });
+  return res.status(200).json({ message: "Logged out successfuly!" });
+};
+
+export const forget_password = async (req, res) => {
+  try {
+    const { email } = req.body;
+    //checking if email exist
+    const user = await Users.findOne({ email: email });
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    //create and assign a token
+    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
+      expiresIn: "1d",
+    });
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "afo.sodiq022@gmail.com",
+        pass: "thylfhhrbtfpnfai",
+      },
+    });
+
+    var mailOptions = {
+      from: "afo.sodiq022@gmail.com",
+      to: `${email}`,
+      subject: "Reset Your Password",
+      text: `http://localhost:5173/auth/reset_password/${user._id}/${token}`,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        res.status(200).json({ message: `We sent you a mail at ${email}` });
+      }
+    });
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
 };

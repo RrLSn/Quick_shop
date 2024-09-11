@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Login.module.css";
 import AuthContext from "../context/AuthProvider";
-import axios from "../Api/axios.jsx";
+import Axios from "../Api/axios.jsx";
 import { loginUrl } from "../Api/axios.jsx";
 import { pwd_Regex, email_Regex } from "../validation.jsx";
 
@@ -30,7 +30,6 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
-    console.log();
     const pwd_Res = pwd_Regex.test(password);
     const email_Res = email_Regex.test(email);
     setValidPassword(pwd_Res);
@@ -41,7 +40,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
+      const res = await Axios.post(
         loginUrl,
         JSON.stringify({ email: email, password: password }),
         {
@@ -49,19 +48,21 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      const token = res?.data.token;
-      const fullname = res?.data.fullname;
-      const phone = res?.data.phone;
-      localStorage.setItem("authToken", token);
-      setAuth({ email, fullname, token, phone });
-      setEmail("");
-      setPassword("");
-      setSuccess(true);
-      navigate("/dashboard");
-      localStorage.setItem("fullname", fullname);
-      localStorage.setItem("authToken", token);
-      localStorage.setItem("phone", phone);
-      localStorage.setItem("email", email);
+      if(res.status === 200){
+        const token = res?.data.token;
+        const fullname = res?.data.fullname;
+        const phone = res?.data.phone;
+        setAuth({ email, fullname, token, phone });
+        setEmail("");
+        setPassword("");
+        setSuccess(true);
+        navigate("/dashboard");
+        // localStorage.setItem("fullname", fullname);
+        // localStorage.setItem("authToken", token);
+        // localStorage.setItem("phone", phone);
+        // localStorage.setItem("email", email);
+        localStorage.setItem({"fullname": fullname, "authToken": token, "phone": phone, "email": email})
+      }
     } catch (error) {
       setErrMsg(error.response?.data.message || "An error occurred");
       errRef.current.focus();
@@ -161,8 +162,8 @@ const Login = () => {
               </span>
             </div>
             <button
-              disabled={!validEmail || !validPassword ? true : false}
-              className={validEmail || validPassword ? "" : "bg-[#c6c1c1]"}
+              disabled={!validEmail && !validPassword ? true : false}
+              className={validEmail && validPassword ? "" : "bg-[#c6c1c1]"}
             >
               Login
             </button>

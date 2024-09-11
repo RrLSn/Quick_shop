@@ -18,8 +18,8 @@ const NavBar = () => {
       await Axios.get(logOutUrl, {
         withCredentials: true
       })
-      localStorage.clear()
-      setAuth("")
+      localStorage.removeItem(auth)
+      setAuth()
       navigate("/")
       setDrop(false)
       
