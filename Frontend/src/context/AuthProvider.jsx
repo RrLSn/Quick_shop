@@ -7,7 +7,14 @@ export const AuthProvider = ({ children }) => {
   const [drop, setDrop] = useState(false);
 
   useEffect(() => {
-   setAuth(localStorage.getItem(localStorage.setItem("fullname", "authToken", "phone", "email")));
+    const token = localStorage.getItem("authToken");
+    const fullname = localStorage.getItem("fullname");
+    const phone = localStorage.getItem("phone");
+    const email = localStorage.getItem("email");
+
+    if (token && fullname) {
+      setAuth({ token, fullname, phone, email });
+    }
   }, []);
 
   return (

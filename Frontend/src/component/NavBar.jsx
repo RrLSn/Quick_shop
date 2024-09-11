@@ -18,7 +18,10 @@ const NavBar = () => {
       await Axios.get(logOutUrl, {
         withCredentials: true
       })
-      localStorage.removeItem(auth)
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("fullname");
+      localStorage.removeItem("phone");
+      localStorage.removeItem("email");
       setAuth()
       navigate("/")
       setDrop(false)
@@ -40,7 +43,7 @@ const NavBar = () => {
         <Link to="/">
           <p>Home</p>
         </Link>
-        <Link to="">
+        <Link to="/auth/resetPassword">
           <p>Female</p>
         </Link>
         <p>Male</p>
@@ -48,7 +51,7 @@ const NavBar = () => {
       </span>
       <div>
         <span className={styles.cartUser}>
-          <Link to="/auth/resetPassword">
+          <Link>
             <div className={styles.cart}>
               <img src="/svg/CartIcon.svg" alt="Icon" />
               <p>0</p>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const Dashboard_page = () => {
   const { auth } = useContext(AuthContext);
+  console.log(auth)
 
   return (
     <main className={styles.container}>

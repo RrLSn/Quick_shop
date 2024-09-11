@@ -10,7 +10,6 @@ const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
-  const { setAuth } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
@@ -52,16 +51,14 @@ const Login = () => {
         const token = res?.data.token;
         const fullname = res?.data.fullname;
         const phone = res?.data.phone;
-        setAuth({ email, fullname, token, phone });
         setEmail("");
         setPassword("");
         setSuccess(true);
         navigate("/dashboard");
-        // localStorage.setItem("fullname", fullname);
-        // localStorage.setItem("authToken", token);
-        // localStorage.setItem("phone", phone);
-        // localStorage.setItem("email", email);
-        localStorage.setItem({"fullname": fullname, "authToken": token, "phone": phone, "email": email})
+        localStorage.setItem("fullname", fullname);
+        localStorage.setItem("authToken", token);
+        localStorage.setItem("phone", phone);
+        localStorage.setItem("email", email);
       }
     } catch (error) {
       setErrMsg(error.response?.data.message || "An error occurred");
