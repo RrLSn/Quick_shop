@@ -12,7 +12,7 @@ const Forget_pass = () => {
 
   const userRef = useRef()
   const errRef = useRef()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   useEffect(() => {
     if(useRef.current){
@@ -30,8 +30,8 @@ const Forget_pass = () => {
         }
         )
         if(res.status === 200){
-          navigate('/')
-          setSuccess(res)
+          // navigate('/')
+          setSuccess(res.message)
         }
    
     } catch (error) {
@@ -40,7 +40,6 @@ const Forget_pass = () => {
     }
   }
 
-  console.log(errMssg)
 
   return (
     <div className={styles.wrapper}>
@@ -56,7 +55,7 @@ const Forget_pass = () => {
             </p>
           </span>
         </div>
-        {/* {errMssg ? <p className="flex">{errMssg}</p> : <p className="hidden"></p>} */}
+        {success ? <p className="flex">{success}</p> : <p className="hidden"></p>}
         <div className={styles.form_fill}>
           <div className={styles.input_mail}>
             <span>
