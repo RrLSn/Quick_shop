@@ -109,7 +109,7 @@ export const forget_password = async (req, res) => {
 
     //create and assign a token
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
-      expiresIn: "1d",
+      expiresIn: "1h",
     });
     var transporter = nodemailer.createTransport({
       service: "gmail",
@@ -135,5 +135,26 @@ export const forget_password = async (req, res) => {
     });
   } catch (error) {
     res.status(400).json({ message: error });
+  }
+};
+
+export const resetPassword = async (req, res) => {
+  const { id, token } = req.params;
+  try {
+    const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+    const user = await Users.findById(id);
+
+    if (!decode || decode._id !== id)
+      return res.status(404).json({ message: "Invalid token" });
+
+    if (!user) return res.status(400).json({ message: "User not found" });
+    res
+      .status(200)
+      .json({ message: "Token is valid. Proceed with password reset." });
+  } catch (error) {
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({ message: "Token has expired" });
+    }
+    return res.status(400).json({ message: "Invalid request" });
   }
 };

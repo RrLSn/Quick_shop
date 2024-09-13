@@ -160,7 +160,7 @@ const Login = () => {
                 </p>
               </span>
             </div>
-            <button
+            <button type="submit"
               disabled={!validEmail && !validPassword ? true : false}
               className={validEmail && validPassword ? "" : "bg-[#c6c1c1]"}
             >

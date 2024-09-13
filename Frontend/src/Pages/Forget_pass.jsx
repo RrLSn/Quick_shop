@@ -12,7 +12,7 @@ const Forget_pass = () => {
 
   const userRef = useRef()
   const errRef = useRef()
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if(useRef.current){
@@ -30,7 +30,7 @@ const Forget_pass = () => {
         }
         )
         if(res.status === 200){
-          // navigate('/')
+          navigate('/')
           setSuccess(res.message)
         }
    
