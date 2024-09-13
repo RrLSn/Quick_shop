@@ -1,16 +1,18 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import styles from "../styles/Reset_pass.module.css";
 import { useEffect, useRef, useState } from "react";
 import { pwd_Regex } from "../validation";
-import Axios from "../Api/axios";
+import Axios, { resetPassUrl } from "../Api/axios";
 
 const Reset_pass = () => {
-  const {id, token} = useParams()
+  const {token} = useParams()
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [validPassword, setValidPassword] = useState(false)
   const [sucess, setSucess] = useState("")
   const [errMsg, setErrMsg] = useState("")
+
+  const navigate = useNavigate()
 
   const userRef = useRef()
   const errRef = useRef()
@@ -34,7 +36,7 @@ const Reset_pass = () => {
     }
     try {
       const res = await Axios.put(
-        `/resetPassword/${id}/${token}`,
+        `${resetPassUrl}/${token}`,
         JSON.stringify({password: newPassword}),
         {
           headers: {"Content-Type": "application/json"}
@@ -43,6 +45,8 @@ const Reset_pass = () => {
       const data = await res.json()
       if(res.status === 200){
         setSucess("Password reset successfully")
+        setErrMsg("")
+        setTimeout(() => navigate('/auth/login'), 3000);
       }else{
         setErrMsg(data.message)
       }
@@ -50,7 +54,7 @@ const Reset_pass = () => {
       setErrMsg("An error occurrd while reseting your password")
     }
   }
-  console.log(id, token)
+  console.log(token)
   return (
     <div className={styles.wrapper}>
       <form onSubmit={handleResetPassword}>

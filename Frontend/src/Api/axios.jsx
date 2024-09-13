@@ -14,7 +14,9 @@ export const loginUrl = "/login";
 
 export const logOutUrl = "/logout";
 
-export const resetPassUrl = "/forget_password"
+export const forgotPassUrl = "/forget_password"
+
+export const resetPassUrl = "/resetPassword"
 
 const Axios = axios.create({
   baseURL: userBaseUrl,

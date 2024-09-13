@@ -68,10 +68,10 @@ const NavBar = () => {
         {
           !auth ? 
           <span className={drop ? styles.drop_modal : "hidden"}>
-          <p onClick={() => setDrop(false)}>
+          <p  className="cursor-pointer" onClick={() => setDrop(false)}>
             <Link to="/auth/sign_up">Sign up</Link>
           </p>
-          <p onClick={() => setDrop(false)}>
+          <p  className="cursor-pointer" onClick={() => setDrop(false)}>
             <Link to="/auth/login">Login</Link>
           </p>
         </span> :
@@ -79,10 +79,10 @@ const NavBar = () => {
           <p onClick={() => setDrop(false)}>
           <Link to="/dashboard/profile">Profile</Link>
         </p>
-        <p onClick={() => setDrop(false)}>
+        <p  className="cursor-pointer" onClick={() => setDrop(false)}>
           <Link to="/dashboard">Dashboard</Link>
         </p>
-        <p  onClick={handleLogOut}>
+        <p className="cursor-pointer"  onClick={handleLogOut}>
           <Link to="">Signout</Link>
         </p>
       </span>

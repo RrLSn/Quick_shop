@@ -111,6 +111,9 @@ export const forget_password = async (req, res) => {
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
       expiresIn: "1h",
     });
+
+    const resetLink = `https://quickshop-omega.vercel.app/auth/resetPassword/${token}`;
+
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -123,7 +126,7 @@ export const forget_password = async (req, res) => {
       from: "afo.sodiq022@gmail.com",
       to: `${email}`,
       subject: "Reset Your Password",
-      text: `https://quickshop-omega.vercel.app/auth/resetPassword/${user._id}/${token}`,
+      text: `Click the link to reset your password: ${resetLink}`,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -139,14 +142,15 @@ export const forget_password = async (req, res) => {
 };
 
 export const resetPassword = async (req, res) => {
-  const { id, token } = req.params;
+  const { token } = req.params;
   const { newPassword } = req.body;
+
   try {
     const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+    const id = decode._id;
     const user = await Users.findById({ _id: id });
 
-    if (!decode || decode._id !== id)
-      return res.status(404).json({ message: "Invalid token" });
+    if (!decode) return res.status(404).json({ message: "Invalid token" });
 
     if (!user) return res.status(400).json({ message: "User not found" });
 
