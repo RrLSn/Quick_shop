@@ -112,7 +112,7 @@ export const forget_password = async (req, res) => {
       expiresIn: "1h",
     });
 
-    const resetLink = `https://quickshop-omega.vercel.app/auth/resetPassword/${token}`;
+    const resetLink = `https://quickshop-omega.vercel.app/resetPassword/${token}`;
 
     var transporter = nodemailer.createTransport({
       service: "gmail",
