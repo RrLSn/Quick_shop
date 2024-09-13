@@ -140,17 +140,24 @@ export const forget_password = async (req, res) => {
 
 export const resetPassword = async (req, res) => {
   const { id, token } = req.params;
+  const { newPassword } = req.body;
   try {
     const decode = jwt.verify(token, process.env.TOKEN_SECRET);
-    const user = await Users.findById(id);
+    const user = await Users.findById({ _id: id });
 
     if (!decode || decode._id !== id)
       return res.status(404).json({ message: "Invalid token" });
 
     if (!user) return res.status(400).json({ message: "User not found" });
+
+    //Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+    user.password = hashedPassword;
+    await user.save();
     res
       .status(200)
-      .json({ message: "Token is valid. Proceed with password reset." });
+      .json({ message: "Password reset successfully, proceed to login" });
   } catch (error) {
     if (error.name === "TokenExpiredError") {
       return res.status(401).json({ message: "Token has expired" });

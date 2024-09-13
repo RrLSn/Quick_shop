@@ -33,7 +33,7 @@ const Reset_pass = () => {
       setErrMsg("Password not match")
     }
     try {
-      const res = await Axios.post(
+      const res = await Axios.put(
         `/resetPassword/${id}/${token}`,
         JSON.stringify({password: newPassword}),
         {

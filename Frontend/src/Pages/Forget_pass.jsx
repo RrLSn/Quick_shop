@@ -36,7 +36,7 @@ const Forget_pass = () => {
    
     } catch (error) {
       setErrMsg(error.message || "An error occured")
-      // errRef.current.focus()
+      errRef.current.focus()
     }
   }
 
