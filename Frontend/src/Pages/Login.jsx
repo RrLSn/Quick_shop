@@ -57,10 +57,7 @@ const Login = () => {
         setPassword("");
         setSuccess(true);
         navigate("/dashboard");
-        localStorage.setItem("fullname", fullname);
-        localStorage.setItem("authToken", token);
-        localStorage.setItem("phone", phone);
-        localStorage.setItem("email", email);
+        localStorage.setItem({email, fullname, token, phone})
       }
     } catch (error) {
       setErrMsg(error.response?.data.message || "An error occurred");

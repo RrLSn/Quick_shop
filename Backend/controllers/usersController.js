@@ -92,12 +92,18 @@ export const loginUser = async (req, res) => {
 };
 
 export const sign_Out = async (req, res) => {
-  res.clearCookie("auth_token", {
-    httpOnly: true,
-    secure: true,
-    sameSite: "None",
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Error destroying session" });
+    }
+
+    res.clearCookie("auth_token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    });
+    return res.status(200).json({ message: "Logged out successfuly!" });
   });
-  return res.status(200).json({ message: "Logged out successfuly!" });
 };
 
 export const forget_password = async (req, res) => {
