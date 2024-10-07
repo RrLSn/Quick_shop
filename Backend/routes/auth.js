@@ -13,6 +13,6 @@ router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
 router.route("/logout").get(sign_Out);
 router.route("/forget_password").post(forget_password);
-router.route("/resetPassword/:token").put(resetPassword);
+router.route("/resetPassword").put(resetPassword);
 
 export default router;

@@ -19,6 +19,7 @@ import Profile_page from "./Pages/Profile_page";
 import Settings from "./Pages/Settings";
 import Orders_page from "./Pages/Orders_page";
 import Order_history from "./Pages/Order_history";
+import OTPinput from "./Pages/OTPinput";
 
 function App() {
   const routes = createBrowserRouter([
@@ -95,7 +96,7 @@ function App() {
           element: <Forget_pass />,
         },
         {
-          path: "resetPassword/:token",
+          path: "resetPassword",
           element: <Reset_pass />,
         },
         {
@@ -105,6 +106,10 @@ function App() {
         {
           path: "sucess",
           element: <Sucess />,
+        },
+        {
+          path: "OTPinput",
+          element: <OTPinput />,
         },
       ],
     },

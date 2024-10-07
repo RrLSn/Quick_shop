@@ -108,38 +108,49 @@ export const sign_Out = async (req, res) => {
 
 export const forget_password = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, OTP } = req.body;
     //checking if email exist
     const user = await Users.findOne({ email: email });
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    //create and assign a token
-    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
-      expiresIn: "1h",
-    });
-
-    const resetLink = `https://quick-shop-beryl.vercel.app/auth/resetPassword/${token}`;
-
+    //Sending verification code with Nodemailer
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "afo.sodiq022@gmail.com",
-        pass: "thylfhhrbtfpnfai",
+        user: process.env.STORE_EMAIL,
+        pass: process.env.STORE_PASS,
       },
     });
 
     var mailOptions = {
-      from: "afo.sodiq022@gmail.com",
+      from: process.env.STORE_EMAIL,
       to: `${email}`,
-      subject: "Reset Your Password",
-      text: `Click the link to reset your password: ${resetLink}`,
+      subject: "QUICK SHOP PASSWORD RECOVERY...",
+      html: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quick Shop - OTP EMAIL TEMPLATE</title>
+  </head>
+  <body>
+    <div>
+    <p>PASSWORD RECOVERY VERIFICATION CODE: 
+    <br/>
+    <h1>${OTP}</h1>
+    </p>
+    </div>
+  </body>
+</html>
+`,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         res.status(500).json({ message: `Error sending mail to ${email}` });
       } else {
-        res.status(200).json({ message: `We sent you a mail to ${email}` });
+        res.status(200).json({
+          message: `We sent you a mail to ${email} with your verification code`,
+        });
       }
     });
   } catch (error) {

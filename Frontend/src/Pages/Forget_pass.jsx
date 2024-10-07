@@ -10,33 +10,34 @@ const Forget_pass = () => {
   const [success, setSuccess] = useState()
 
 
-  const userRef = useRef()
-  const errRef = useRef()
+  const userRef = useRef(null)
   const navigate = useNavigate()
 
   useEffect(() => {
     if(useRef.current){
-      userRef.current.focus()
+      userRef.current?.focus()
     }
   },[])
 
   const handleSubmit = async(e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
+      const OTP = Math.floor(Math.random() * 9000 + 1000)
+      console.log(OTP)
         const res = await Axios.post(
           forgotPassUrl,
+          OTP,
           JSON.stringify({email: email}),
-          {headers: {"Content-Type": "application/json"}
-        }
+        //   {headers: {"Content-Type": "application/json"}
+        // }
         )
         if(res.status === 200){
-          navigate('/')
           setSuccess(res.message)
+          navigate('/auth/OTPinput')
         }
    
     } catch (error) {
       setErrMsg(error.message || "An error occured")
-      errRef.current.focus()
     }
   }
 
@@ -55,7 +56,7 @@ const Forget_pass = () => {
             </p>
           </span>
         </div>
-        {success ? <p className="flex">{success}</p> : <p className="hidden"></p>}
+        {success ? <p className="flex">{success}</p> : <p className="hidden">{errMssg}</p>}
         <div className={styles.form_fill}>
           <div className={styles.input_mail}>
             <span>
