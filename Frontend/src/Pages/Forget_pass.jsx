@@ -38,7 +38,7 @@ const Forget_pass = () => {
         }
    
     } catch (error) {
-      setErrMsg(error.response?.data.message || "An error occured")
+      setErrMsg(error.response?.data.message || "An error occured sending otp")
     }
   }
 
