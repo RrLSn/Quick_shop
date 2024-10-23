@@ -1,14 +1,13 @@
-// import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Forget_pass.module.css";
 import { useEffect, useRef, useState } from "react";
 import Axios, { forgotPassUrl} from "../Api/axios";
+// import axios from "axios";
 
 const Forget_pass = () => {
   const [email, setEmail] = useState("")
   const [errMssg, setErrMsg] = useState(null)
-  const [success, setSuccess] = useState()
-
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const userRef = useRef(null)
   const navigate = useNavigate()
@@ -21,26 +20,27 @@ const Forget_pass = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    setIsSubmitting(true)
     try {
       const OTP = Math.floor(Math.random() * 9000 + 1000)
-      console.log(OTP)
         const res = await Axios.post(
           forgotPassUrl,
-          OTP,
-          JSON.stringify({email: email}),
-        //   {headers: {"Content-Type": "application/json"}
-        // }
+         {OTP: OTP, email: email},
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          }
         )
         if(res.status === 200){
-          setSuccess(res.message)
-          navigate('/auth/OTPinput')
+          setTimeout(() => {
+            navigate('/auth/OTPinput', {state: {OTP : OTP, email: email}})
+          }, 1000)
         }
    
     } catch (error) {
-      setErrMsg(error.message || "An error occured")
+      setErrMsg(error.response?.data.message || "An error occured")
     }
   }
-
 
   return (
     <div className={styles.wrapper}>
@@ -56,7 +56,7 @@ const Forget_pass = () => {
             </p>
           </span>
         </div>
-        {success ? <p className="flex">{success}</p> : <p className="hidden">{errMssg}</p>}
+        {errMssg ? <p className="flex">{errMssg}</p> : <p className="hidden"></p>}
         <div className={styles.form_fill}>
           <div className={styles.input_mail}>
             <span>
@@ -73,7 +73,7 @@ const Forget_pass = () => {
             </span>
             <p>Password reset link will be sent to your email.</p> 
           </div>
-          <button>Submit</button>
+          <button type="submit" disabled={isSubmitting}>Submit</button>
         </div>
       </form>
     </div>

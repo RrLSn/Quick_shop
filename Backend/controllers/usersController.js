@@ -107,8 +107,9 @@ export const sign_Out = async (req, res) => {
 };
 
 export const forget_password = async (req, res) => {
+  const { email, OTP } = req.body;
+
   try {
-    const { email, OTP } = req.body;
     //checking if email exist
     const user = await Users.findOne({ email: email });
     if (!user) return res.status(404).json({ message: "User not found" });
