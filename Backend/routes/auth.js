@@ -5,14 +5,20 @@ import {
   sign_Out,
   forget_password,
   resetPassword,
+  resendOtp,
+  verifyOTP,
 } from "../controllers/usersController.js";
 
 const router = express.Router();
 
+router.route("/logout").get(sign_Out);
+
+router.route("/resetPassword").put(resetPassword);
+
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
-router.route("/logout").get(sign_Out);
 router.route("/forget_password").post(forget_password);
-router.route("/resetPassword").put(resetPassword);
+router.route("/resend_otp").post(resendOtp);
+router.route("/verify_otp").post(verifyOTP);
 
 export default router;

@@ -91,6 +91,7 @@ export const loginUser = async (req, res) => {
   });
 };
 
+//SignOut User
 export const sign_Out = async (req, res) => {
   req.session.destroy((err) => {
     if (err) {
@@ -106,13 +107,26 @@ export const sign_Out = async (req, res) => {
   });
 };
 
+//Forget User password and generate OTP
 export const forget_password = async (req, res) => {
-  const { email, OTP } = req.body;
+  const { email } = req.body;
 
   try {
     //checking if email exist
     const user = await Users.findOne({ email: email });
     if (!user) return res.status(404).json({ message: "User not found" });
+
+    //Generate a 6-digits OTP
+    const OTP = Math.floor(1000 + Math.random() * 9000);
+
+    //Create a JWT toke for OTP with 5min expiration
+    const otpToken = jwt.sign({ OTP }, process.env.TOKEN_SECRET, {
+      expiresIn: "5m",
+    });
+
+    //Save OTP in user record
+    user.otpToken = otpToken;
+    await user.save();
 
     //Sending verification code with Nodemailer
     var transporter = nodemailer.createTransport({
@@ -131,7 +145,7 @@ export const forget_password = async (req, res) => {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Quick Shop - OTP EMAIL TEMPLATE</title>
+    <title>Quick Shop - OTP EMAIL</title>
   </head>
   <body>
     <div>
@@ -145,12 +159,14 @@ export const forget_password = async (req, res) => {
 `,
     };
 
+    //Send the email
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         res.status(500).json({ message: `Error sending mail to ${email}` });
       } else {
         res.status(200).json({
           message: `We sent you a mail to ${email} with your verification code`,
+          otpToken,
         });
       }
     });
@@ -159,6 +175,93 @@ export const forget_password = async (req, res) => {
   }
 };
 
+//Generate and resend a new OTP
+export const resendOtp = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await Users.findOne({ email: email });
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    //Genrate new OTP and replace the old one
+    const newOTP = Math.floor(1000 + Math.random() * 9000);
+    const newOtpToken = jwt.sign({ OTP: newOTP }, process.env.TOKEN_SECRET, {
+      expiresIn: "5m",
+    });
+
+    //Overwrite the old OTP n the user's record
+    user.otpToken = newOtpToken;
+
+    //Save the user
+    await user.save();
+
+    //Sending verification code with Nodemailer
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.STORE_EMAIL,
+        pass: process.env.STORE_PASS,
+      },
+    });
+
+    var mailOptions = {
+      from: process.env.STORE_EMAIL,
+      to: `${email}`,
+      subject: "QUICK SHOP PASSWORD RECOVERY...",
+      html: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quick Shop - OTP EMAIL</title>
+  </head>
+  <body>
+    <div>
+    <p>PASSWORD RECOVERY VERIFICATION CODE: 
+    <br/>
+    <h1>${newOTP}</h1>
+    </p>
+    </div>
+  </body>
+</html>
+`,
+    };
+
+    //Send the email
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        res.status(500).json({ message: `Error sending mail to ${email}` });
+      } else {
+        res.status(200).json({
+          message: `New OTP sent!`,
+          otpToken: newOtpToken,
+        });
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ message: `Error resending OTP` });
+  }
+};
+
+//Verified the latest generated OTP
+export const verifyOTP = async (req, res) => {
+  const { OTP, otpToken, email } = req.body;
+
+  try {
+    const user = await Users.findOne({ email: email });
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    //Verify the latest OTP token
+    const decode = jwt.verify(otpToken, process.env.TOKEN_SECRET);
+    if (decode.OTP === OTP) {
+      return res.status(200).json({ message: "OTP verified Successfully!" });
+    } else {
+      return res.status(400).json({ message: "Invalid OTP!" });
+    }
+  } catch (error) {
+    return res.status(400).json({ message: "OTP has expired or invalid" });
+  }
+};
+
+//Reset user password
 export const resetPassword = async (req, res) => {
   const { token } = req.params;
   const { newPassword } = req.body;

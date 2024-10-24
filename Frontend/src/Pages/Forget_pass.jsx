@@ -6,8 +6,8 @@ import Axios, { forgotPassUrl} from "../Api/axios";
 
 const Forget_pass = () => {
   const [email, setEmail] = useState("")
-  const [errMssg, setErrMsg] = useState(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [message, setMessage] = useState("")
 
   const userRef = useRef(null)
   const navigate = useNavigate()
@@ -22,23 +22,22 @@ const Forget_pass = () => {
     e.preventDefault();
     setIsSubmitting(true)
     try {
-      const OTP = Math.floor(Math.random() * 9000 + 1000)
         const res = await Axios.post(
           forgotPassUrl,
-         {OTP: OTP, email: email},
+         JSON.stringify({email: email}),
           {
             headers: { "Content-Type": "application/json" },
             withCredentials: true,
           }
         )
         if(res.status === 200){
-          setTimeout(() => {
-            navigate('/auth/OTPinput', {state: {OTP : OTP, email: email}})
-          }, 1000)
+          setMessage(res.data.message)
+          localStorage.setItem('otpToken', res?.data.otpToken)
+          localStorage.setItem('email', email)
+          navigate('/auth/OTPinput', {state: {email: email}})
         }
-   
     } catch (error) {
-      setErrMsg(error.response?.data.message || "An error occured sending otp")
+      setMessage(error.res?.data.message || "An error occured sending otp")
     }
   }
 
@@ -56,7 +55,7 @@ const Forget_pass = () => {
             </p>
           </span>
         </div>
-        {errMssg ? <p className="flex">{errMssg}</p> : <p className="hidden"></p>}
+        {message ? <p className="flex text-green-500">{message}</p> : <p className="hidden"></p>}
         <div className={styles.form_fill}>
           <div className={styles.input_mail}>
             <span>
@@ -73,7 +72,7 @@ const Forget_pass = () => {
             </span>
             <p>Password reset link will be sent to your email.</p> 
           </div>
-          <button type="submit" disabled={isSubmitting}>Submit</button>
+          <button type="submit" disabled={isSubmitting && !message}>Submit</button>
         </div>
       </form>
     </div>

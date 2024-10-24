@@ -16,6 +16,10 @@ export const logOutUrl = "/logout";
 
 export const forgotPassUrl = "/forget_password"
 
+export const resend_otp = "/resend_otp"
+
+export const verify_otp = "/verify_otp"
+
 export const resetPassUrl = "/resetPassword"
 
 const Axios = axios.create({

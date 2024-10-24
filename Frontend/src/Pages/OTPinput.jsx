@@ -1,33 +1,45 @@
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import Axios, { forgotPassUrl } from "../Api/axios"
+import Axios, { resend_otp, verify_otp } from "../Api/axios"
 
 const OTPinput = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const {OTP, email} = location.state
+  const {email} = location.state
   const [otp, setOtp] = useState(new Array(4).fill(""))
-  const [errMsg, setErrMsg] = useState("")
+  const [message, setMessage] = useState("")
   const [counter, setCounter] = useState(59)
   const [disable, setDisable] = useState(true)
 
   const inputstyle = "w-[5rem] h-[5rem] rounded-xl text-[3rem] text-center border-2 focus:outline-blue-500"
 
-  const handleVerificationSubmit = (e) => {
+  const handleVerificationSubmit = async(e) => {
     e.preventDefault()
-    const code = parseInt(otp.join(""))
-    if(code === OTP){
-      setErrMsg("")
+    const OTP = parseInt(otp.join(""))
+   //Retrieve the otpToken
+   const otpToken = localStorage.getItem('otpToken')
+   const email = localStorage.getItem('email')
+
+   try {
+    const res = await Axios.post(
+      verify_otp,
+      JSON.stringify({OTP, otpToken, email}),
+      {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      }
+    )
+    if(res.status === 200){
+      setMessage(res?.data.message)
       navigate("/auth/resetPassword")
-    } else if(otp === undefined){
-      setErrMsg("input verification code")
-    }else{
-      setErrMsg("Invalid verification Code")
     }
+   } catch (error) {
+    setMessage(error.res?.data.message || `An error occurred!`)
+   }
   }
 
   const handleChange = (el, index) => {
-    setErrMsg("")
+    setMessage("")
     if(isNaN(el.value)) return false
     setOtp([...otp.map((data, i) => (i===index? el.value : data))])
     if(el.nextSibling){
@@ -52,21 +64,21 @@ const OTPinput = () => {
     if (disable) return;
     try {
       const res = await Axios.post(
-        forgotPassUrl,
-        {OTP: OTP, email: email},
+        resend_otp,
+        JSON.stringify({email: email}),
           {
             headers: { "Content-Type": "application/json" },
             withCredentials: true,
           }
       )
       if(res.status === 200){
+        setMessage(res?.data.message)
+        localStorage.setItem('otpToken', res.data.otpToken)
         setDisable(true)
-        alert("otp sent")
         setCounter(59)
-    
       }
     } catch (error) {
-      setErrMsg(error.response?.data.message || "An error occurred sending otp")
+      setMessage(error.response?.data.message || "An error occurred sending otp")
     }
   }
 
@@ -77,7 +89,7 @@ const OTPinput = () => {
           <h1 className="text-[2rem] font-bold">Email Verification</h1>
           <p>We sent a code to your email {email}</p>
         </div>
-        {errMsg? <p className="text-red-600 text-2xl">{errMsg}</p>: <p className="hidden"></p>}
+        {message? <p className="text-red-600 text-2xl">{message}</p>: <p className="hidden"></p>}
         <div className="w-[100%] h-[max-content] flex gap-5 justify-center">
           {
             otp.map((data, index) => {
