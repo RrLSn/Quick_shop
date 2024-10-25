@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Forget_pass.module.css";
 import { useEffect, useRef, useState } from "react";
 import Axios, { forgotPassUrl} from "../Api/axios";
-// import axios from "axios";
 
 const Forget_pass = () => {
   const [email, setEmail] = useState("")

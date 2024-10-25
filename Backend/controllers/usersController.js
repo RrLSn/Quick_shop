@@ -251,8 +251,17 @@ export const verifyOTP = async (req, res) => {
 
     //Verify the latest OTP token
     const decode = jwt.verify(otpToken, process.env.TOKEN_SECRET);
+
     if (decode.OTP === OTP) {
-      return res.status(200).json({ message: "OTP verified Successfully!" });
+      //OTP is valid, genrate a reset token
+      const resetToken = jwt.sign(
+        { email: user.email },
+        process.env.TOKEN_SECRET,
+        { expiresIn: "10m" }
+      );
+      return res
+        .status(200)
+        .json({ resetToken, message: "OTP verified Successfully!" });
     } else {
       return res.status(400).json({ message: "Invalid OTP!" });
     }
@@ -263,16 +272,16 @@ export const verifyOTP = async (req, res) => {
 
 //Reset user password
 export const resetPassword = async (req, res) => {
-  const { token } = req.params;
-  const { newPassword } = req.body;
+  const { resetToken, newPassword } = req.body;
 
   try {
-    const decode = jwt.verify(token, process.env.TOKEN_SECRET);
-    const id = decode._id;
-    const user = await Users.findById({ _id: id });
+    const decode = jwt.verify(resetToken, process.env.TOKEN_SECRET);
 
-    if (!decode) return res.status(404).json({ message: "Invalid token" });
+    if (!decode || !decode.email)
+      return res.status(404).json({ message: "Invalid token" });
 
+    // find user by the decoded email
+    const user = await Users.findOne({ email: decode.email });
     if (!user) return res.status(400).json({ message: "User not found" });
 
     //Hash password

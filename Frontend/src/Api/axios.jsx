@@ -20,7 +20,7 @@ export const resend_otp = "/resend_otp"
 
 export const verify_otp = "/verify_otp"
 
-export const resetPassUrl = "/resetPassword"
+export const resetPassword = "/resetPassword"
 
 const Axios = axios.create({
   baseURL: userBaseUrl,

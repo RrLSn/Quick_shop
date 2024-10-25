@@ -57,9 +57,9 @@ const Sign_up = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const v1 = name_Regex.test(name);
-    const v2 = pwd_Regex.test(password);
-    if (!v1 || !v2) {
+    const nameTest = name_Regex.test(name);
+    const passwordTest = pwd_Regex.test(password);
+    if (!nameTest || !passwordTest) {
       setErrMsg("Invalid Entry");
       return;
     }
@@ -77,10 +77,12 @@ const Sign_up = () => {
           withCredentials: true,
         }
       );
-      setSucess(true);
 
-      //Navigate
-      navigate("/auth/sucess");
+      if(res === 200) {
+        setSucess(true);
+        navigate("/auth/sucess");
+      }
+      
     } catch (error) {
       setErrMsg(error.response?.data.message || "An error occurred");
       errRef.current.focus();

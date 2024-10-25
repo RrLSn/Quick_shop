@@ -1,11 +1,10 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/Reset_pass.module.css";
 import { useEffect, useRef, useState } from "react";
 import { pwd_Regex } from "../validation";
-import Axios, { resetPassUrl } from "../Api/axios";
+import Axios, { resetPassword } from "../Api/axios";
 
 const Reset_pass = () => {
-  const {token} = useParams()
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [validPassword, setValidPassword] = useState(false)
@@ -14,7 +13,9 @@ const Reset_pass = () => {
   const [confirmPwdVisible, setConfirmPwdVisible] = useState(false);
 
   const navigate = useNavigate()
+  const location = useLocation()
 
+  const {resetToken} = location.state
   const userRef = useRef()
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const Reset_pass = () => {
       userRef.current.focus()
     }
   },[])
+
 
   useEffect(() => {
     const pwd_Res = pwd_Regex.test(newPassword)
@@ -31,26 +33,29 @@ const Reset_pass = () => {
 
   const handleResetPassword = async(e) => {
     e.preventDefault()
+
     if(newPassword !== confirmPassword){
       setMessage("Password not match")
+      return
     }
+
     try {
-      const res = await Axios.put(
-        `${resetPassUrl}/${token}`,
-        JSON.stringify({password: newPassword}),
+      const res = await Axios.post(
+        resetPassword,
+        JSON.stringify({resetToken, newPassword}),
         {
           headers: {"Content-Type": "application/json"}
         }
       )
-      const data = await res.json()
+      //check response and handle success or failure
       if(res.status === 200){
         setMessage("Password reset successfully")
         setTimeout(() => navigate('/auth/login'), 3000);
       }else{
-        setMessage(data.message)
+        setMessage(res.data.message || 'failed to reset password')
       }
     } catch (error) {
-      setMessage("An error occurrd while reseting your password")
+      setMessage(`An error occurred while reseting your password ${error.response?.data?.message || error.message}`)
     }
   }
 
@@ -63,6 +68,7 @@ const Reset_pass = () => {
           <p>Enter your new password here</p>
         </div>
         <div className={styles.reset_form}>
+        <div className={message? "flex" : "hidden"}>{message? <p>{message}</p>: <p className="hidden"></p>}</div>
           <span>
             <img src="/svg/lock.svg" alt="" />
             <input 

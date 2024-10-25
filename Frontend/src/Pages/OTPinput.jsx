@@ -16,6 +16,7 @@ const OTPinput = () => {
   const handleVerificationSubmit = async(e) => {
     e.preventDefault()
     const OTP = parseInt(otp.join(""))
+    
    //Retrieve the otpToken
    const otpToken = localStorage.getItem('otpToken')
    const email = localStorage.getItem('email')
@@ -30,8 +31,9 @@ const OTPinput = () => {
       }
     )
     if(res.status === 200){
+      const resetToken = res?.data.resetToken
       setMessage(res?.data.message)
-      navigate("/auth/resetPassword")
+      navigate("/auth/resetPassword", {state: {resetToken: resetToken}})
     }
    } catch (error) {
     setMessage(error.res?.data.message || `An error occurred!`)
