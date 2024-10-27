@@ -272,16 +272,34 @@ export const verifyOTP = async (req, res) => {
 
 //Reset user password
 export const resetPassword = async (req, res) => {
-  const { resetToken, newPassword } = req.body;
+  const { resetToken, currentPassword, newPassword } = req.body;
 
   try {
-    const decode = jwt.verify(resetToken, process.env.TOKEN_SECRET);
+    let user;
+    if (req.user) {
+      //Case 1: Authenticated user
+      user = await Users.findById(req.user._id);
 
-    if (!decode || !decode.email)
-      return res.status(404).json({ message: "Invalid token" });
+      //Check if the current password matches
+      const isMatch = await bcrypt.compare(currentPassword, user.password);
+      if (!isMatch)
+        return res
+          .status(400)
+          .json({ message: "Current password is incorrect" });
+    } else if (resetToken) {
+      //Case 2:Unauthenticated user, verify resetToken
+      const decode = jwt.verify(resetToken, process.env.TOKEN_SECRET);
 
-    // find user by the decoded email
-    const user = await Users.findOne({ email: decode.email });
+      if (!decode || !decode.email) {
+        return res.status(404).json({ message: "Invalid token" });
+      }
+      // find user by the decoded email
+      user = await Users.findOne({ email: decode.email });
+    } else
+      return res
+        .status(404)
+        .json({ message: "neither authencated user nor reset token found" });
+
     if (!user) return res.status(400).json({ message: "User not found" });
 
     //Hash password

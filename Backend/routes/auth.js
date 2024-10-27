@@ -13,8 +13,6 @@ const router = express.Router();
 
 router.route("/logout").get(sign_Out);
 
-// router.route("/resetPassword").put(resetPassword);
-
 router.route("/resetPassword").post(resetPassword);
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);

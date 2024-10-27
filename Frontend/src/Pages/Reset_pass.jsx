@@ -50,7 +50,7 @@ const Reset_pass = () => {
       //check response and handle success or failure
       if(res.status === 200){
         setMessage("Password reset successfully")
-        setTimeout(() => navigate('/auth/login'), 3000);
+        setTimeout(() => navigate('/auth/login'), 2000);
       }else{
         setMessage(res.data.message || 'failed to reset password')
       }
@@ -68,7 +68,7 @@ const Reset_pass = () => {
           <p>Enter your new password here</p>
         </div>
         <div className={styles.reset_form}>
-        <div className={message? "flex" : "hidden"}>{message? <p>{message}</p>: <p className="hidden"></p>}</div>
+          <p className={message? "flex" : "hidden"}>{message}</p>
           <span>
             <img src="/svg/lock.svg" alt="" />
             <input 
