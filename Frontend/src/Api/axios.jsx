@@ -22,6 +22,8 @@ export const verify_otp = "/verify_otp"
 
 export const resetPassword = "/resetPassword"
 
+export const updatePassword = "/updatePassword"
+
 const Axios = axios.create({
   baseURL: userBaseUrl,
 });

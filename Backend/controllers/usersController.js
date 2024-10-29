@@ -272,33 +272,14 @@ export const verifyOTP = async (req, res) => {
 
 //Reset user password
 export const resetPassword = async (req, res) => {
-  const { resetToken, currentPassword, newPassword } = req.body;
+  const { resetToken, newPassword } = req.body;
 
   try {
-    let user;
-    if (req.user) {
-      //Case 1: Authenticated user
-      user = await Users.findById(req.user._id);
-
-      //Check if the current password matches
-      const isMatch = await bcrypt.compare(currentPassword, user.password);
-      if (!isMatch)
-        return res
-          .status(400)
-          .json({ message: "Current password is incorrect" });
-    } else if (resetToken) {
-      //Case 2:Unauthenticated user, verify resetToken
-      const decode = jwt.verify(resetToken, process.env.TOKEN_SECRET);
-
-      if (!decode || !decode.email) {
-        return res.status(404).json({ message: "Invalid token" });
-      }
-      // find user by the decoded email
-      user = await Users.findOne({ email: decode.email });
-    } else
-      return res
-        .status(404)
-        .json({ message: "neither authencated user nor reset token found" });
+    const decode = jwt.verify(resetToken, process.env.TOKEN_SECRET);
+    if (!decode || !decode.email) {
+      return res.status(404).json({ message: "Invalid token" });
+    }
+    const user = await Users.findOne({ email: decode.email });
 
     if (!user) return res.status(400).json({ message: "User not found" });
 
@@ -317,3 +298,48 @@ export const resetPassword = async (req, res) => {
     return res.status(400).json({ message: "Invalid request" });
   }
 };
+
+export const updatePasssword = async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  try {
+    const user = await Users.findById(req.user._id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    // Check if password matches
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch)
+      return res.status(401).json({ message: "Current Password incorrect" });
+
+    //Hash password and update new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+    user.password = hashedPassword;
+    await user.save();
+    res.status(200).json({ message: "Password updated successfully" });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ message: "An error occures while updating password" });
+  }
+};
+
+export const isAuthenticated = async (req, res, next) => {
+  //Check for token in cookies or authorization user
+  const token =
+    req.cookies.auth_token || req.headers.authorization?.split(" ")[1];
+
+  if (!token) {
+    return req.status(401).json({ message: "Not Authenticated" });
+  }
+
+  try {
+    //verify the token and decode the user ID
+    const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+    req.user = await Users.findById(decode._id);
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: "invalid token" });
+  }
+};
+
+export const updateUserInfo = async (req, res, next) => {};

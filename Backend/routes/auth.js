@@ -7,6 +7,8 @@ import {
   resetPassword,
   resendOtp,
   verifyOTP,
+  updatePasssword,
+  isAuthenticated,
 } from "../controllers/usersController.js";
 
 const router = express.Router();
@@ -19,5 +21,6 @@ router.route("/login").post(loginUser);
 router.route("/forget_password").post(forget_password);
 router.route("/resend_otp").post(resendOtp);
 router.route("/verify_otp").post(verifyOTP);
+router.route("/updatePassword").put(isAuthenticated, updatePasssword);
 
 export default router;

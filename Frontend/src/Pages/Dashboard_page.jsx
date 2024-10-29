@@ -1,16 +1,14 @@
 import styles from "../styles/Dashboard_page.module.css";
-import AuthContext from "../context/AuthProvider";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 const Dashboard_page = () => {
-  const { auth } = useContext(AuthContext);
+  const userData = JSON.parse(localStorage.getItem('userData'))
 
   return (
     <main className={styles.container}>
       <div className={styles.welcome}>
         <span className={styles.welc_note}>
-          <h1>Welcome To Your Dashboard {auth?.fullname}!</h1>
+          <h1>Welcome To Your Dashboard {userData?.fullname}!</h1>
           <p>Manage your profile, order history and account setting.</p>
         </span>
         <span className={styles.order_placed}>

@@ -5,6 +5,7 @@ import productRoutes from "./routes/product.js";
 import userRoutes from "./routes/auth.js";
 import cors from "cors";
 import session from "express-session";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 const app = express();
@@ -19,8 +20,12 @@ app.use(
   })
 );
 
-//Middleware
+//Use cookie-parser middleware
+app.use(cookieParser());
+
+//Other Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //Access PORT and DB
 const PORT = process.env.PORT || 8000;

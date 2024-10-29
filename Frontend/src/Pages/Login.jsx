@@ -49,15 +49,14 @@ const Login = () => {
         }
       );
       if(res.status === 200){
-        const token = res?.data.token;
         const fullname = res?.data.fullname;
         const phone = res?.data.phone;
-        setAuth({ email, fullname, token, phone });
+        setAuth({ email, fullname, phone });
         setEmail("");
         setPassword("");
         setSuccess(true);
         navigate("/dashboard");
-        localStorage.setItem({email, fullname, token, phone})
+        localStorage.setItem("userData", JSON.stringify({email, fullname, phone}))
       }
     } catch (error) {
       setErrMsg(error.response?.data.message || "An error occurred");

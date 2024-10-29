@@ -2,24 +2,25 @@ import { useState } from "react";
 import styles from "../styles/Settings.module.css";
 import { Link } from "react-router-dom";
 import { states } from "../data";
-import Axios, { resetPassword } from "../Api/axios";
+import Axios, { updatePassword } from "../Api/axios";
 
 const Settings = () => {
   const [pwdVisible, setPwdVisible] = useState(false);
   const [confirmPwdVisible, setConfirmPwdVisible] = useState(false);
 
-  const [currentpassword, setCurrentPassword] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [message, setMessage] = useState("")
 
-  const token = localStorage.getItem("token")
+  const userData = JSON.parse(localStorage.getItem("userData"))
+  const token = userData.token
 
-  const handleResetPassword = async(e) => {
+  const handleUpdatePassword = async(e) => {
     e.preventDefault()
     try {
-      const res = await Axios.post(
-        resetPassword,
-        JSON.stringify({currentpassword, newPassword}),
+      const res = await Axios.put(
+        updatePassword,
+        JSON.stringify({currentPassword, newPassword}),
         {
           headers: {
             "Content-Type": "application/json", 
@@ -30,10 +31,10 @@ const Settings = () => {
       if(res.status === 200){
         setMessage("Password updated successfully")
       }else{
-        setMessage(res.data.message || "this is the error")
+        setMessage(res.data.message || "Failed to update password")
       }
     } catch (error) {
-      setMessage(`An error occurred: ${error.res?.data?.message || error.message}`)
+      setMessage(`An error occurred: ${error.response?.data?.message || error.message}`)
     }
   }
   return (
@@ -57,17 +58,17 @@ const Settings = () => {
       <div className={styles.updates}>
         <div className={styles.update_pass}>
           <h1>Update Account Password</h1>
-          <form id="update_pass" name="update_pass" onSubmit={handleResetPassword}>
+          <form id="update_pass" name="update_pass" onSubmit={handleUpdatePassword}>
             <p className={message ? "flex" : "hidden"}>{message}</p>
             <span>
               <img src="/svg/lock.svg" alt="" />
               <input
                 type={pwdVisible ? "text" : "password"}
                 placeholder="Current Password"
-                id="password"
+                id="currentPassword"
                 //   ref={userRef}
                 autoComplete="off"
-                value={currentpassword}
+                value={currentPassword}
                 required
                 onChange={(e) => setCurrentPassword(e.target.value)}
               />
@@ -84,7 +85,7 @@ const Settings = () => {
               <input
                 type={confirmPwdVisible ? "text" : "password"}
                 placeholder="New Password"
-                id="password"
+                id="newPassword"
                 //   ref={userRef}
                 autoComplete="off"
                 value={newPassword}

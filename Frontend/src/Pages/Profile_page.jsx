@@ -1,10 +1,9 @@
 import styles from "../styles/Profile_page.module.css";
-import AuthContext from "../context/AuthProvider";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 const Profile_page = () => {
-  const { auth } = useContext(AuthContext);
+  const userData = JSON.parse(localStorage.getItem("userData"))
+  
   return (
     <section className={styles.wrapper}>
       <div className={styles.header_div}>
@@ -27,15 +26,15 @@ const Profile_page = () => {
         <div className={styles.Profile_details}>
           <span>
             <h1>Name</h1>
-            <p>{auth?.fullname}</p>
+            <p>{userData?.fullname}</p>
           </span>
           <span>
             <h1>Email</h1>
-            <p>{auth?.email}</p>
+            <p>{userData?.email}</p>
           </span>
           <span>
             <h1>Phone Number</h1>
-            <p>{auth?.phone}</p>
+            <p>{userData?.phone}</p>
           </span>
         </div>
         <div className={styles.update_profile}>
