@@ -24,6 +24,8 @@ export const resetPassword = "/resetPassword"
 
 export const updatePassword = "/updatePassword"
 
+export const updateUserInfo = '/updateUserInfo'
+
 const Axios = axios.create({
   baseURL: userBaseUrl,
 });

@@ -56,8 +56,8 @@ const Dashboard_page = () => {
             </p>
           </div>
           <div className={styles.profile_intro}>
-            <h1>Orders</h1>
-            <p>Manage and view all your orders</p>
+            <h1>Profile</h1>
+            <p>Manage and view your profile</p>
           </div>
         </div>
         <div className={styles.settings_edit}>

@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "../styles/Settings.module.css";
 import { Link } from "react-router-dom";
 import { states } from "../data";
 import Axios, { updatePassword } from "../Api/axios";
+import { pwd_Regex } from "../validation";
 
 const Settings = () => {
   const [pwdVisible, setPwdVisible] = useState(false);
   const [confirmPwdVisible, setConfirmPwdVisible] = useState(false);
+  // const [validPassword, setValidPassword] = useState(false)
 
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -14,6 +16,20 @@ const Settings = () => {
 
   const userData = JSON.parse(localStorage.getItem("userData"))
   const token = userData.token
+
+  const userRef = useRef()
+
+  useEffect(() => {
+    if(useRef.current){
+      userRef.current.focus()
+    }
+  },[])
+
+  useEffect(() => {
+    pwd_Regex.test(newPassword)
+    // setValidPassword(pwd_Res)
+    // setMessage("")
+  }, [newPassword])
 
   const handleUpdatePassword = async(e) => {
     e.preventDefault()
@@ -66,7 +82,7 @@ const Settings = () => {
                 type={pwdVisible ? "text" : "password"}
                 placeholder="Current Password"
                 id="currentPassword"
-                //   ref={userRef}
+                  ref={userRef}
                 autoComplete="off"
                 value={currentPassword}
                 required
@@ -86,7 +102,7 @@ const Settings = () => {
                 type={confirmPwdVisible ? "text" : "password"}
                 placeholder="New Password"
                 id="newPassword"
-                //   ref={userRef}
+                  ref={userRef}
                 autoComplete="off"
                 value={newPassword}
                 required

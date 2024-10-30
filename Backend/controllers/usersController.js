@@ -1,7 +1,8 @@
 import Users from "../modules/users_modules.js";
 import {
   registerValidation,
-  loginValidation,
+  updateUserValidation,
+  passwordValidation,
 } from "../validation/validation.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -13,7 +14,7 @@ export const registerUser = async (req, res) => {
   const { error, value } = registerValidation(req.body, { abortEarly: false });
   if (error) {
     return res.status(400).json({
-      message: "Validation failed",
+      message: "Invalidated Details",
       details: error.details[0].message,
     });
   }
@@ -50,13 +51,6 @@ export const registerUser = async (req, res) => {
 
 //Login a user
 export const loginUser = async (req, res) => {
-  const { error } = loginValidation(req.body, { abortEarly: false });
-  if (error)
-    return res.status(400).json({
-      message: "Validation failed",
-      details: error.details[0].message,
-    });
-
   //checking if email exist
   const user = await Users.findOne({ email: req.body.email });
   if (!user)
@@ -114,6 +108,7 @@ export const forget_password = async (req, res) => {
   try {
     //checking if email exist
     const user = await Users.findOne({ email: email });
+    console.log(user);
     if (!user) return res.status(404).json({ message: "User not found" });
 
     //Generate a 6-digits OTP
@@ -270,9 +265,37 @@ export const verifyOTP = async (req, res) => {
   }
 };
 
+//Check if user is Authenticated/Authorized
+export const isAuthenticated = async (req, res, next) => {
+  //Check for token in cookies or authorization user
+  const token =
+    req.cookies.auth_token || req.headers.authorization?.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ message: "Not Authenticated" });
+  }
+
+  try {
+    //verify the token and decode the user ID
+    const decode = jwt.verify(token, process.env.TOKEN_SECRET);
+    req.user = await Users.findById(decode._id);
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: "invalid token" });
+  }
+};
+
 //Reset user password
 export const resetPassword = async (req, res) => {
   const { resetToken, newPassword } = req.body;
+
+  //validate user details
+  const { error } = passwordValidation({ newPassword });
+  if (error)
+    return res.status(400).json({
+      message: "invalidated password",
+      details: error.details[0].message,
+    });
 
   try {
     const decode = jwt.verify(resetToken, process.env.TOKEN_SECRET);
@@ -280,10 +303,9 @@ export const resetPassword = async (req, res) => {
       return res.status(404).json({ message: "Invalid token" });
     }
     const user = await Users.findOne({ email: decode.email });
-
     if (!user) return res.status(400).json({ message: "User not found" });
 
-    //Hash password
+    //Hash new password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newPassword, salt);
     user.password = hashedPassword;
@@ -299,8 +321,18 @@ export const resetPassword = async (req, res) => {
   }
 };
 
+//Update user password
 export const updatePasssword = async (req, res) => {
   const { currentPassword, newPassword } = req.body;
+
+  //validate user details
+  const { error } = passwordValidation({ newPassword });
+  if (error)
+    return res.status(400).json({
+      message: "invalidated password",
+      details: error.details[0].message,
+    });
+
   try {
     const user = await Users.findById(req.user._id);
     if (!user) return res.status(404).json({ message: "User not found" });
@@ -317,29 +349,46 @@ export const updatePasssword = async (req, res) => {
     await user.save();
     res.status(200).json({ message: "Password updated successfully" });
   } catch (error) {
-    res
+    return res
       .status(400)
       .json({ message: "An error occures while updating password" });
   }
 };
 
-export const isAuthenticated = async (req, res, next) => {
-  //Check for token in cookies or authorization user
-  const token =
-    req.cookies.auth_token || req.headers.authorization?.split(" ")[1];
+//update user information
+export const updateUserInfo = async (req, res) => {
+  const { fullname, email, phone } = req.body;
 
-  if (!token) {
-    return req.status(401).json({ message: "Not Authenticated" });
-  }
+  //Create an object to hold the fields that need to be updated
+  const updatedFields = {};
+
+  //only add fields that are present in the request body
+  if (fullname) updatedFields.fullname = fullname;
+  if (email) updatedFields.email = email;
+  if (phone) updatedFields.phone = phone;
+
+  //validate user details
+  const { error } = updateUserValidation(updatedFields);
+  if (error)
+    return res.status(400).json({
+      message: "invalidated Details",
+      details: error.details[0].message,
+    });
 
   try {
-    //verify the token and decode the user ID
-    const decode = jwt.verify(token, process.env.TOKEN_SECRET);
-    req.user = await Users.findById(decode._id);
-    next();
+    //Find and update the user document in database
+    const user = await Users.findByIdAndUpdate(req.user._id, updatedFields, {
+      new: true,
+      runValidators: true,
+    });
+    if (!user) return res.status(401).json({ message: "user not found" });
+
+    return res
+      .status(200)
+      .json({ message: "Information updated successfully" });
   } catch (error) {
-    return res.status(401).json({ message: "invalid token" });
+    return res
+      .status(400)
+      .json({ message: `Error updating information`, error: error.message });
   }
 };
-
-export const updateUserInfo = async (req, res, next) => {};

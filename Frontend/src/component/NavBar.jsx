@@ -8,7 +8,6 @@ import AuthContext from "../context/AuthProvider";
 const NavBar = () => {
   
   const [errMsg, setErrMsg] = useState(null);
-  // const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate()
   const {auth, setAuth, drop, setDrop} = useContext(AuthContext)
