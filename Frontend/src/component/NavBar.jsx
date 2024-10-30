@@ -39,7 +39,7 @@ const NavBar = () => {
         <Link to="/">
           <p>Home</p>
         </Link>
-        <Link to="/auth/resetPassword">
+        <Link to="">
           <p>Female</p>
         </Link>
         <p>Male</p>
