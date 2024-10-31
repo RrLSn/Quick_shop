@@ -22,6 +22,19 @@ const UsersSchema = new mongoose.Schema(
       required: true,
       min: 5,
     },
+    country: {
+      type: String,
+      require: false,
+      min: 5,
+    },
+    state: {
+      type: String,
+      require: false,
+    },
+    address: {
+      type: String,
+      require: false,
+    },
   },
   {
     timestamps: true,

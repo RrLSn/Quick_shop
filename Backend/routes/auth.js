@@ -10,6 +10,7 @@ import {
   updatePasssword,
   isAuthenticated,
   updateUserInfo,
+  userDeliveryInfo,
 } from "../controllers/usersController.js";
 
 const router = express.Router();
@@ -24,5 +25,6 @@ router.route("/resend_otp").post(resendOtp);
 router.route("/verify_otp").post(verifyOTP);
 router.route("/updatePassword").put(isAuthenticated, updatePasssword);
 router.route("/updateUserInfo").put(isAuthenticated, updateUserInfo);
+router.route("/userDeliveryInfo").put(isAuthenticated, userDeliveryInfo);
 
 export default router;

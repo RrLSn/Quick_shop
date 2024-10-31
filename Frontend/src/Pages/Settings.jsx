@@ -2,17 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import styles from "../styles/Settings.module.css";
 import { Link } from "react-router-dom";
 import { states } from "../data";
-import Axios, { updatePassword } from "../Api/axios";
+import Axios, { updatePassword, updateUserDeliveryInfo } from "../Api/axios";
 import { pwd_Regex } from "../validation";
 
 const Settings = () => {
   const [pwdVisible, setPwdVisible] = useState(false);
   const [confirmPwdVisible, setConfirmPwdVisible] = useState(false);
-  // const [validPassword, setValidPassword] = useState(false)
 
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [country, setCountry] = useState("")
+  const [state, setState] = useState("")
+  const [address, setAddress] = useState("")
+
   const [message, setMessage] = useState("")
+  const [deliveryInfoMsg, setDeliveryInfoMsg] = useState("")
 
   const userData = JSON.parse(localStorage.getItem("userData"))
   const token = userData.token
@@ -27,8 +31,6 @@ const Settings = () => {
 
   useEffect(() => {
     pwd_Regex.test(newPassword)
-    // setValidPassword(pwd_Res)
-    // setMessage("")
   }, [newPassword])
 
   const handleUpdatePassword = async(e) => {
@@ -51,6 +53,29 @@ const Settings = () => {
       }
     } catch (error) {
       setMessage(`An error occurred: ${error.response?.data?.message || error.message}`)
+    }
+  }
+
+  const handleDeliveryUpdates = async(e) => {
+    e.preventDefault()
+    try {
+      const res = await Axios.put(
+        updateUserDeliveryInfo,
+        JSON.stringify({}),
+        {
+          headers: {
+            "Content-Type" : "applicationa/json",
+            "Authorization": `Bearer ${token}`
+          }
+        }
+      )
+      if(res.status === 200){
+        setDeliveryInfoMsg("Delivery Information updated successfully")
+      }else{
+        setDeliveryInfoMsg(res.data.message || "failed to updated delivery information")
+      }
+    } catch (error) {
+      setDeliveryInfoMsg(`An error occurred: ${error.response?.data?.message || error.message}`)
     }
   }
   return (
@@ -121,7 +146,8 @@ const Settings = () => {
         </div>
         <div className={styles.update_locatn}>
           <h1>Delivery Location</h1>
-          <form id="update_locatn" name="update_locatn">
+          <form id="update_locatn" name="update_locatn" onSubmit={handleDeliveryUpdates}>
+          <p className={deliveryInfoMsg ? "flex" : "hidden"}>{deliveryInfoMsg}</p>
             <div className={styles.custom_dropdown}>
               <select>
                 <option value="">Select Country</option>
@@ -140,7 +166,13 @@ const Settings = () => {
             </div>
             <span>
               <img src="/svg/location.svg" alt="" />
-              <input type="text" placeholder="Street Address" />
+              <input 
+              type="text" 
+              placeholder="Street Address" 
+              autoComplete="off" 
+              ref={userRef} 
+              value={address}
+              onChange={(e) => setAddress(e.target.value)} />
             </span>
             <button>Save Changes</button>
           </form>

@@ -392,3 +392,34 @@ export const updateUserInfo = async (req, res) => {
       .json({ message: `Error updating information`, error: error.message });
   }
 };
+
+export const userDeliveryInfo = async (req, res) => {
+  const { country, state, address } = req.body;
+  //Create an object field to hold the fields that need to be updated
+  const updatedFields = {};
+
+  //Only add fields that are present in the request body
+  if (country) updatedFields.country = country;
+  if (state) updatedFields.state = state;
+  if (address) updatedFields.address = address;
+  try {
+    const user = await Users.findByIdAndUpdate(
+      req.user._id,
+      { $set: updatedFields },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!user) return res.status(404).json({ message: "user not found" });
+    return res
+      .status(200)
+      .json({ message: "Delivery information updated successfully" });
+  } catch (error) {
+    res.status(400).json({
+      message: `Error updating delivery information`,
+      error: error.message,
+    });
+  }
+};
