@@ -48,6 +48,8 @@ const Settings = () => {
       )
       if(res.status === 200){
         setMessage("Password updated successfully")
+        setCurrentPassword("")
+        setNewPassword("")
       }else{
         setMessage(res.data.message || "Failed to update password")
       }
@@ -72,6 +74,9 @@ const Settings = () => {
 
       if(res.status === 200){
         setDeliveryInfoMsg(`Delivery Information updated successfully`)
+        setAddress("")
+        setCountry("")
+        setState("")
       }else{
         setDeliveryInfoMsg(res.data.message || "failed to updated delivery information")
       }
