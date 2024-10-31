@@ -61,16 +61,17 @@ const Settings = () => {
     try {
       const res = await Axios.put(
         updateUserDeliveryInfo,
-        JSON.stringify({}),
+        JSON.stringify({country, state, address}),
         {
           headers: {
-            "Content-Type" : "applicationa/json",
+            "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
           }
         }
       )
+
       if(res.status === 200){
-        setDeliveryInfoMsg("Delivery Information updated successfully")
+        setDeliveryInfoMsg(`Delivery Information updated successfully`)
       }else{
         setDeliveryInfoMsg(res.data.message || "failed to updated delivery information")
       }
@@ -149,13 +150,13 @@ const Settings = () => {
           <form id="update_locatn" name="update_locatn" onSubmit={handleDeliveryUpdates}>
           <p className={deliveryInfoMsg ? "flex" : "hidden"}>{deliveryInfoMsg}</p>
             <div className={styles.custom_dropdown}>
-              <select>
+              <select value={country} onChange={(e) => setCountry(e.target.value)}>
                 <option value="">Select Country</option>
-                <option value="">Nigeria</option>
+                <option value="Nigeria">Nigeria</option>
               </select>
             </div>
             <div className={styles.custom_dropdown}>
-              <select>
+              <select value={state} onChange={(e) => setState(e.target.value)}>
                 <option value="">Select State</option>
                 {states.map((state, index) => (
                   <option value={state} key={index}>

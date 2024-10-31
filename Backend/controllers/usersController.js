@@ -39,6 +39,9 @@ export const registerUser = async (req, res) => {
     email: req.body.email,
     phone: req.body.phone,
     password: hashedPassword,
+    country: req.body.country,
+    state: req.body.state,
+    address: req.body.address,
   });
 
   try {
@@ -403,7 +406,7 @@ export const userDeliveryInfo = async (req, res) => {
   if (state) updatedFields.state = state;
   if (address) updatedFields.address = address;
   try {
-    const user = await Users.findByIdAndUpdate(
+    const user = await Users.findOneAndUpdate(
       req.user._id,
       { $set: updatedFields },
       {
@@ -411,11 +414,10 @@ export const userDeliveryInfo = async (req, res) => {
         runValidators: true,
       }
     );
-
     if (!user) return res.status(404).json({ message: "user not found" });
-    return res
-      .status(200)
-      .json({ message: "Delivery information updated successfully" });
+    return res.status(200).json({
+      message: "Delivery information updated successfully",
+    });
   } catch (error) {
     res.status(400).json({
       message: `Error updating delivery information`,

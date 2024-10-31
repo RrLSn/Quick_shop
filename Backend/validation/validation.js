@@ -20,6 +20,9 @@ export const registerValidation = (data) => {
       )
       .min(5)
       .required(),
+    country: Joi.string(),
+    state: Joi.string(),
+    address: Joi.string(),
   });
   return Schema.validate(data);
 };
