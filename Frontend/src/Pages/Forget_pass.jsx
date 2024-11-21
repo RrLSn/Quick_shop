@@ -1,12 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Forget_pass.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Axios, { forgotPassUrl} from "../Api/axios";
+import AuthContext from "../context/AuthProvider";
 
 const Forget_pass = () => {
   const [email, setEmail] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [message, setMessage] = useState("")
+  // const [message, setMessage] = useState("")
+  const {message, setMessage} = useContext(AuthContext)
 
   const userRef = useRef(null)
   const navigate = useNavigate()

@@ -1,13 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from "../styles/Settings.module.css";
 import { Link } from "react-router-dom";
 import { states } from "../data";
 import Axios, { updatePassword, updateUserDeliveryInfo } from "../Api/axios";
 import { pwd_Regex } from "../validation";
+import AuthContext from "../context/AuthProvider";
 
 const Settings = () => {
   const [pwdVisible, setPwdVisible] = useState(false);
   const [confirmPwdVisible, setConfirmPwdVisible] = useState(false);
+  const {message, setMessage} = useContext(AuthContext)
 
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -15,7 +17,7 @@ const Settings = () => {
   const [state, setState] = useState("")
   const [address, setAddress] = useState("")
 
-  const [message, setMessage] = useState("")
+  // const [message, setMessage] = useState("")
   const [deliveryInfoMsg, setDeliveryInfoMsg] = useState("")
 
   const userData = JSON.parse(localStorage.getItem("userData"))

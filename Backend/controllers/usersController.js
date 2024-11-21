@@ -98,7 +98,7 @@ export const sign_Out = async (req, res) => {
     res.clearCookie("auth_token", {
       httpOnly: true,
       secure: true,
-      sameSite: "None",
+      sameSite: "Strict",
     });
     return res.status(200).json({ message: "Logged out successfuly!" });
   });
@@ -111,7 +111,6 @@ export const forget_password = async (req, res) => {
   try {
     //checking if email exist
     const user = await Users.findOne({ email: email });
-    console.log(user);
     if (!user) return res.status(404).json({ message: "User not found" });
 
     //Generate a 6-digits OTP
@@ -423,5 +422,16 @@ export const userDeliveryInfo = async (req, res) => {
       message: `Error updating delivery information`,
       error: error.message,
     });
+  }
+};
+
+export const googleUserAuth = (req, res) => {
+  try {
+    const { user, token } = req.user;
+    res.status(200).json({ user, token });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Authentication eror", error: error.message });
   }
 };

@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
+import AuthContext from "../context/AuthProvider";
 import styles from "../styles/Profile_page.module.css";
 import { Link } from "react-router-dom";
 import { email_Regex, name_Regex, phone_Regex} from "../validation";
@@ -11,7 +12,8 @@ const Profile_page = () => {
   const [fullname, setFullname] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
-  const [message, setMessage] = useState("")
+  const { message, setMessage } = useContext(AuthContext);
+  // const [message, setMessage] = useState("")
 
   const userRef = useRef()
 
@@ -42,6 +44,9 @@ const Profile_page = () => {
       )
       if(res.status === 200){
         setMessage("Deatails updated successfully")
+        setFullname("")
+        setEmail("")
+        setPhone("")
       } else{
         setMessage(res.data.message || "failed to update details")
       }

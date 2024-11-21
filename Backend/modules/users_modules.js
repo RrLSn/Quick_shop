@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const UsersSchema = new mongoose.Schema(
   {
+    googleId: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
     fullname: {
       type: String,
       required: true,
@@ -24,16 +29,13 @@ const UsersSchema = new mongoose.Schema(
     },
     country: {
       type: String,
-      require: false,
       min: 5,
     },
     state: {
       type: String,
-      require: false,
     },
     address: {
       type: String,
-      require: false,
     },
   },
   {

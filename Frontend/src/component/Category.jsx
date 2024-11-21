@@ -1,4 +1,5 @@
 // import React from "react";
+import { Link } from "react-router-dom";
 import styles from "../styles/Category.module.css";
 
 const Category = () => {
@@ -19,7 +20,9 @@ const Category = () => {
             reprehenderit omnis sit est consectetur dolores sint fugit corrupti
             cum harum!
           </p>
-          <button>Explore Collections</button>
+          <button>
+            <Link to="/product_categories" >Explore Collections</Link>
+          </button>
         </div>
       </div>
       <div className={styles.maleCate}>
@@ -33,7 +36,9 @@ const Category = () => {
             reprehenderit omnis sit est consectetur dolores sint fugit corrupti
             cum harum!
           </p>
-          <button>Explore Collections</button>
+          <button>
+            <Link to="/product_categories">Explore Collections</Link>
+          </button>
         </div>
         <div className={styles.m_image}>
           <img src="/svg/m_Category.svg" alt="" />

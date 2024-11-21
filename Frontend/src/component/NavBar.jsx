@@ -10,7 +10,7 @@ const NavBar = () => {
   const [errMsg, setErrMsg] = useState(null);
 
   const navigate = useNavigate()
-  const {auth, setAuth, drop, setDrop} = useContext(AuthContext)
+  const {auth, setAuth, drop, setDrop, loggedIn, setLoggedIn} = useContext(AuthContext)
 
   const handleLogOut = async () => {
     try {
@@ -21,15 +21,13 @@ const NavBar = () => {
       localStorage.clear();
       navigate("/")
       setDrop(false)
+      setLoggedIn(false)
       
     } catch (error) {
       setErrMsg({message: "Logout failed", error})
     }
   };
 
-  const handleDropModal = () => {
-    setDrop(!drop);
-  };
   return (
     <nav>
       <Link to="/" className={styles.logo}>
@@ -53,7 +51,7 @@ const NavBar = () => {
               <p>0</p>
             </div>
           </Link>
-          <div className=" w-[58px] gap-[4px] flex items-center cursor-pointer" onClick={handleDropModal}>
+          <div className=" w-[58px] gap-[4px] flex items-center cursor-pointer" onClick={() => setDrop(!drop)}>
             <img src="/svg/UserIcon.svg" alt="" />
             <div>
               {drop ? (
@@ -65,7 +63,7 @@ const NavBar = () => {
           </div>
         </span>
         {
-          !auth ? 
+          !auth && !loggedIn ? 
           <span className={drop ? styles.drop_modal : "hidden"}>
           <p  className="cursor-pointer" onClick={() => setDrop(false)}>
             <Link to="/auth/sign_up">Sign up</Link>

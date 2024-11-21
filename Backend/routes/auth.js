@@ -11,7 +11,9 @@ import {
   isAuthenticated,
   updateUserInfo,
   userDeliveryInfo,
+  googleUserAuth,
 } from "../controllers/usersController.js";
+import passport from "passport";
 
 const router = express.Router();
 
@@ -26,5 +28,8 @@ router.route("/verify_otp").post(verifyOTP);
 router.route("/updatePassword").put(isAuthenticated, updatePasssword);
 router.route("/updateUserInfo").put(isAuthenticated, updateUserInfo);
 router.route("/userDeliveryInfo").put(isAuthenticated, userDeliveryInfo);
+router
+  .route("/google/callback")
+  .get(passport.authenticate("google", { session: false }), googleUserAuth);
 
 export default router;

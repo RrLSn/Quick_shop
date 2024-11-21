@@ -10,7 +10,7 @@ const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth, handleGoogleUserAuth } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
@@ -79,7 +79,7 @@ const Login = () => {
             collection.
           </p>
           <div className={styles.login_socials}>
-            <button>
+            <button onClick={handleGoogleUserAuth}>
               <img src="/svg/google.svg" alt="" />
               Google
             </button>

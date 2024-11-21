@@ -1,14 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/Reset_pass.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { pwd_Regex } from "../validation";
 import Axios, { resetPassword } from "../Api/axios";
+import AuthContext from "../context/AuthProvider";
 
 const Reset_pass = () => {
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [validPassword, setValidPassword] = useState(false)
-  const [message, setMessage] = useState(null)
+  const {message, setMessage} = useContext(AuthContext)
+  // const [message, setMessage] = useState(null)
   const [pwdVisible, setPwdVisible] = useState(false);
   const [confirmPwdVisible, setConfirmPwdVisible] = useState(false);
 

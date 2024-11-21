@@ -20,6 +20,8 @@ import Settings from "./Pages/Settings";
 import Orders_page from "./Pages/Orders_page";
 import Order_history from "./Pages/Order_history";
 import OTPinput from "./Pages/OTPinput";
+import Product_category from "./Pages/Product_category";
+import Shop from "./Pages/Shop";
 
 function App() {
   const routes = createBrowserRouter([
@@ -36,6 +38,14 @@ function App() {
         {
           index: true,
           element: <HomePage />,
+        },
+        {
+          path: "product_categories",
+          element: <Product_category />,
+        },
+        {
+          path: "shop",
+          element: <Shop />,
         },
         {
           path: "product_details",
