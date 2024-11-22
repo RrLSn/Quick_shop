@@ -1,4 +1,3 @@
-// import React from "react";
 import { useState } from "react";
 import styles from "../styles/Arrivals.module.css";
 import { truncateString } from "../utils";

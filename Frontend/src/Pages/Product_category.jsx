@@ -1,6 +1,28 @@
+import { useEffect, useState } from "react"
+import Cate_sidebar from "../component/Cate_sidebar"
+import axios from "axios"
+import { productApiUrl } from "../Api/axios"
+import { truncateString } from "../utils"
+import { useNavigate } from "react-router-dom"
 
 const Product_category = () => {
-    const sizes = ["SM", "MD", "LG", "XL", "XXL"]
+    const [products, setProducts] = useState([])
+    const [fullname, setFullname] = useState(false)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const fetchProduct = async() => {
+            try {
+                const res = await axios.get(productApiUrl)
+                const data = res.data
+                setProducts(data)
+            } catch (error) {
+                console.log({message: error.message})
+            }
+        }
+        fetchProduct()
+    }, [])
+
   return (
     <main className="w-full h-[1422px] flex flex-col gap-[56px] font-Urbanist">
         <section className="w-full h-[400px] bg-[#feede7] flex justify-between items-center px-[88px] overflow-hidden">
@@ -18,42 +40,7 @@ const Product_category = () => {
         </section>
 
         <section className="search w-full h-[966px] px-[88px] gap-[40px] flex bg-[#ffffff]">
-            <div className="w-[286px] h-[577px] flex flex-col gap-[56px]">
-                <div className="w-full h-[114px] flex flex-col gap-[28px] font-Urbanist">
-                    <p className="text-[22px] text-[400] leading-[26.4px]">Gender</p>
-                    <div className="flex flex-col gap-[20px]">
-                        <span className="w-full h-[20px] flex gap-[8px] items-center font-Urbanist text-[14px] text-[400] leading-[16.8px]">
-                            <input type="checkbox" name="" id="" className="w-[20px] h-[20px] bg-[#eeeee]" />
-                            Male
-                        </span>
-                        <span className="w-full h-[20px] flex gap-[8px] items-center">
-                        <input type="checkbox" name="" id="" className="w-[20px] h-[20px] bg-[#eeeee]" />
-                        Female
-                        </span>
-                    </div>
-                </div>
-                <div className="w-full h-[234px] flex flex-col gap-[28px]">
-                <p className="text-[22px] text-[400] leading-[26.4px]">Size</p>
-                <div className="w-full h-[180px] flex flex-col gap-[20px]">
-                    {
-                        sizes.map((size, index) => {
-                            return (
-                                <span key={index} className="w-full h-[20px] flex gap-[8px] items-center font-Urbanist text-[14px] text-[400] leading-[16.8px]">
-                                <input type="checkbox" name="" id=""  className="w-[20px] h-[20px] bg-[#eeeee]" />
-                                {size}
-                            </span>
-                            )
-                        })
-                    }
-                </div>
-                </div>
-                <div className="w-full h-[117px] flex flex-col gap-[32px]">
-                    <span className="w-full h-[35px] flex justify-between">
-                        <p className="font-Urbanist text-[400] text-[22px] leading-[26.4px]">Price</p>
-                        <button className="w-[90px] h-[35px] border-[1px] flex justify-center items-center text-center border-[#f24810] font-Urbanist text-[16px] text-[#f24810] leading-[19.2px]">Apply</button>
-                    </span>
-                </div>
-            </div>
+            <Cate_sidebar />
             <div className="w-[938px] h-[910px] flex flex-col gap-[40px]">
                 <div className="w-full h-[50px] flex justify-between">
                     <span className="w-[286px] h-[50px] gap-[4px] flex justify-between items-center px-4 border-[1px] border-[#575757] rounded-md">
@@ -65,7 +52,23 @@ const Product_category = () => {
                         <span className="w-[183px] h-[100%] gap-[4px] flex justify-center items-center text-center bg-[#eeeeee]"></span>
                     </div>
                 </div>
-                <div className="w-full h-[740px] flex gap-[40px]"></div>
+                <div className="w-full h-[740px] flex flex-wrap gap-y-[40px] gap-x-[30px] overflow-hidden justify-center items-center">
+                    {
+                        products.map((product) => {
+                            return (
+                                <div key={product._id} className="w-1/4 min-w-[286px] h-[350px] flex flex-col justify-between" onClick={() => navigate("/product_details")}>
+                                    <img src={product.image[0]} alt="" className="w-full h-[283px]" />
+                                    <span className="w-[183px] h-[51px] flex flex-col top-[299px] gap-[8px]">
+                                        <p>
+                                            {fullname === false? truncateString(product.title) : product.title}
+                                        </p>
+                                        <p>${product.price}</p>
+                                    </span>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
                 <div className="w-full h-[40px] flex justify-between"></div>
             </div>
         </section>

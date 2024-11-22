@@ -1,3 +1,3 @@
 export const truncateString = (strings) => {
-  return strings?.substr(0, 30) + "...";
+  return strings?.substr(0, 20) + "...";
 };
