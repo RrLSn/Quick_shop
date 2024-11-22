@@ -41,7 +41,7 @@ const NavBar = () => {
           <p>Female</p>
         </Link>
         <p>Male</p>
-        <p>Shop</p>
+        <Link to="/shop"><p>Shop</p></Link>
       </span>
       <div>
         <span className={styles.cartUser}>

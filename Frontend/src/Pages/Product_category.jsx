@@ -3,7 +3,7 @@ import Cate_sidebar from "../component/Cate_sidebar"
 import axios from "axios"
 import { productApiUrl } from "../Api/axios"
 import { truncateString } from "../utils"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Product_category = () => {
     const [products, setProducts] = useState([])
@@ -29,7 +29,7 @@ const Product_category = () => {
             <div className="w-[235px] h-[111px] top-[139px] left-[88px] gap-[8px]">
                 <h1 className="text-[64px] font-[400] leading-[76.8px]">Clothing</h1>
                 <span className="w-[169px] h-[26px] flex gap-[8px] leading-[26.4px] font-[400] font-Urbanist text-[22px] text-[#b2b2b2]">
-                    <p className="hover:text-black cursor-pointer">Home</p>
+                    <p className="hover:text-black cursor-pointer"><Link to="/">Home</Link></p>
                     /
                     <p className="hover:text-black cursor-pointer">Clothing</p>
                 </span>
