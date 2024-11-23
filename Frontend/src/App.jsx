@@ -22,8 +22,10 @@ import Order_history from "./Pages/Order_history";
 import OTPinput from "./Pages/OTPinput";
 import Product_category from "./Pages/Product_category";
 import Shop from "./Pages/Shop";
+import { ProductProvider } from "./context/ProductContext";
 
 function App() {
+
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -125,9 +127,11 @@ function App() {
     },
   ]);
   return (
-    <div className="wholeWrapper">
-      <RouterProvider router={routes} />
-    </div>
+    <ProductProvider>
+      <div className="wholeWrapper">
+        <RouterProvider router={routes} />
+      </div>
+    </ProductProvider>
   );
 }
 

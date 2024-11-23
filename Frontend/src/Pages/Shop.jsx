@@ -1,36 +1,30 @@
 import Checkbox from "@mui/material/Checkbox"
 import Cate_sidebar from "../component/Cate_sidebar"
 import { Link, useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
-import axios from "axios"
-import { productApiUrl } from "../Api/axios"
-import { truncateString } from "../utils"
+import { useContext, useEffect} from "react"
+import { categories, truncateString } from "../utils"
+import { ProductContext } from "../context/ProductContext"
 
 const Shop = () => {
-  const categories = ["Clothings", "Sun Glasses", "Jewelries", "Caps", "Shoes"]
-  const [products, setProducts] = useState([])
-  const [fullname, setFullname] = useState(false)
+  
+  const {products, fetchProduct, fullname, setSelectedProduct} = useContext(ProductContext)
   const navigate = useNavigate()
 
   useEffect(() => {
-    const fetchProducts = async () => {
-     try {
-      const res = await axios.get(productApiUrl)
-      const data = res.data
-      setProducts(data)
-     } catch (error) {
-      console.log({message: error.message})
-     }
-    }
-    fetchProducts()
-  }, [])
+    fetchProduct()
+  }, [fetchProduct])
+
+  const handleSelectedProduct = (_id) => {
+    setSelectedProduct(_id)
+    navigate("/product_details")
+  }
 
   return (
     <div className="w-full min-h-[2920px] h-[max-content] flex flex-col gap-[48px] py-[40px]">
       <span className="w-full h-[26px] flex gap-[8px] leading-[26.4px] font-[400] font-Urbanist text-[22px] text-[#b2b2b2] px-[40px]">
         <p className="hover:text-black cursor-pointer "><Link to="/">Home</Link></p>
         /
-        <p className="hover:text-black cursor-pointer">Shop</p>
+        <p className="hover:text-black text-black cursor-pointer">Shop</p>
       </span>
       <section className="w-full h-[1300px] flex gap-40px] px-[40px]">
         <div className="w-[286px] h-[867px] flex flex-col gap-[56px]">
@@ -66,7 +60,7 @@ const Shop = () => {
             {
               products.map((product) => {
                 return (
-                  <div key={product._id} className="w-1/4 min-w-[286px] h-[350px] flex flex-col justify-between" onClick={() => navigate("/product_details")}>
+                  <div key={product._id} className="w-1/4 min-w-[286px] h-[350px] flex flex-col justify-between cursor-pointer" onClick={() => handleSelectedProduct(product._id)}>
                     <img src={product.image[0]} alt="" className="w-full h-[283px]" />
                       <span className="w-[183px] h-[51px] flex flex-col top-[299px] gap-[8px]">
                         <p>

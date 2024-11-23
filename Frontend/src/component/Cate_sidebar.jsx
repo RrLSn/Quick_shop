@@ -2,9 +2,9 @@ import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useState } from 'react';
+import { sizes } from '../utils';
 
 const Cate_sidebar = () => {
-    const sizes = ["SM", "MD", "LG", "XL", "XXL"]
     const [value, setValue] = useState([0,100])
 
     const valueText = (value) => {

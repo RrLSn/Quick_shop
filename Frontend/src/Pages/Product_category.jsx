@@ -1,27 +1,22 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect} from "react"
 import Cate_sidebar from "../component/Cate_sidebar"
-import axios from "axios"
-import { productApiUrl } from "../Api/axios"
 import { truncateString } from "../utils"
 import { Link, useNavigate } from "react-router-dom"
+import { ProductContext } from "../context/ProductContext"
 
 const Product_category = () => {
-    const [products, setProducts] = useState([])
-    const [fullname, setFullname] = useState(false)
     const navigate = useNavigate()
 
+    const {products, fetchProduct, fullname, setSelectedProduct} = useContext(ProductContext)
+
     useEffect(() => {
-        const fetchProduct = async() => {
-            try {
-                const res = await axios.get(productApiUrl)
-                const data = res.data
-                setProducts(data)
-            } catch (error) {
-                console.log({message: error.message})
-            }
-        }
         fetchProduct()
-    }, [])
+    }, [fetchProduct])
+
+    const handleSelectedProduct = (_id) => {
+        setSelectedProduct(_id)
+        navigate("/product_details")
+    }
 
   return (
     <main className="w-full h-[1422px] flex flex-col gap-[56px] font-Urbanist">
@@ -56,7 +51,7 @@ const Product_category = () => {
                     {
                         products.map((product) => {
                             return (
-                                <div key={product._id} className="w-1/4 min-w-[286px] h-[350px] flex flex-col justify-between" onClick={() => navigate("/product_details")}>
+                                <div key={product._id} className="w-1/4 min-w-[286px] h-[350px] flex flex-col justify-between cursor-pointer" onClick={() => handleSelectedProduct(product._id)}>
                                     <img src={product.image[0]} alt="" className="w-full h-[283px]" />
                                     <span className="w-[183px] h-[51px] flex flex-col top-[299px] gap-[8px]">
                                         <p>
