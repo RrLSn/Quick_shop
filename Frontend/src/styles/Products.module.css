@@ -33,11 +33,11 @@
 }
 
 .products {
-  @apply w-[100%] h-[487px] flex gap-[40px];
+  @apply w-[100%] h-[487px] flex gap-[40px] overflow-hidden;
 }
 
 .product_card {
-  @apply w-[395px] h-[100%] flex flex-col justify-center gap-[16px] items-start;
+  @apply min-w-[395px] h-[100%] flex flex-col justify-center gap-[16px] items-start;
 }
 
 .product_card img {

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext } from "react";
 import styles from "../styles/Arrivals.module.css";
 import { truncateString } from "../utils";
+import { ProductContext } from "../context/ProductContext";
 
 const Arrivals = ({ newArrivals }) => {
-  const [fullname, setFullname] = useState(false);
+  const {fullname} = useContext(ProductContext)
+
   const getRnd = (max) => {
     return Math.floor(Math.random() * max);
   };
@@ -39,27 +41,6 @@ const Arrivals = ({ newArrivals }) => {
             </div>
           );
         })}
-        {/* <div className={styles.products_card}>
-          <img src="" alt="" />
-          <span>
-            <p>Product title</p>
-            <p>title</p>
-          </span>
-        </div>
-        <div className={styles.products_card}>
-          <img src="" alt="" />
-          <span>
-            <p>Product title</p>
-            <p>title</p>
-          </span>
-        </div>
-        <div className={styles.products_card}>
-          <img src="" alt="" />
-          <span>
-            <p>Product title</p>
-            <p>title</p>
-          </span>
-        </div> */}
       </div>
     </div>
   );

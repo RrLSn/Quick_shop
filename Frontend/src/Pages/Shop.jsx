@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { useContext, useEffect} from "react"
 import { categories, truncateString } from "../utils"
 import { ProductContext } from "../context/ProductContext"
+import Recommeded_product from "../component/Recommeded_product"
+import Top_selling from "../component/Top_selling"
 
 const Shop = () => {
   
@@ -75,6 +77,8 @@ const Shop = () => {
           </div>
         </div>
       </section>
+      <Recommeded_product products={products} />
+      <Top_selling products={products} />
     </div>
   )
 }

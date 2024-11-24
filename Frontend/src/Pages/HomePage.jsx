@@ -10,7 +10,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const [herodata, setHerodata] = useState([]);
   const [newArrivals, setNewArrivals] = useState([]);
 
@@ -39,18 +39,12 @@ const HomePage = () => {
 
   return (
     <div className={styles.container}>
-      {products ? 
-        <>
-          <Hero herodata={herodata} />
-          <Category />
-          <Products products={products} />
-          <Offers />
-          <Arrivals newArrivals={newArrivals} />
-          <Newsletter />
-        </>
-       : 
-        <div>Loading...</div>
-      }
+      <Hero herodata={herodata} />
+      <Category />
+      <Products products={products} />
+      <Offers />
+      <Arrivals newArrivals={newArrivals} />
+      <Newsletter />
     </div>
   );
 };

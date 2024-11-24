@@ -1,5 +1,5 @@
 .wrapper {
-  @apply w-[100%] h-[685px] flex bg-red-400;
+  @apply w-[100%] h-[750px] flex overflow-hidden;
 }
 
 .wrapper div:nth-child(1) {
