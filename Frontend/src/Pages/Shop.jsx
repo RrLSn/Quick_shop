@@ -9,17 +9,12 @@ import Top_selling from "../component/Top_selling"
 
 const Shop = () => {
   
-  const {products, fetchProduct, fullname, setSelectedProduct} = useContext(ProductContext)
+  const {products, fetchProduct, fullname, handleSelectedProduct} = useContext(ProductContext)
   const navigate = useNavigate()
 
   useEffect(() => {
     fetchProduct()
   }, [fetchProduct])
-
-  const handleSelectedProduct = (_id) => {
-    setSelectedProduct(_id)
-    navigate("/product_details")
-  }
 
   return (
     <div className="w-full min-h-[2920px] h-[max-content] flex flex-col gap-[48px] py-[40px]">
@@ -62,7 +57,10 @@ const Shop = () => {
             {
               products.map((product) => {
                 return (
-                  <div key={product._id} className="w-1/4 min-w-[286px] h-[350px] flex flex-col justify-between cursor-pointer" onClick={() => handleSelectedProduct(product._id)}>
+                  <div key={product._id} className="w-1/4 min-w-[286px] h-[350px] flex flex-col justify-between cursor-pointer" onClick={() => {
+                    handleSelectedProduct(product._id)
+                    navigate("/product_details")
+                  }}>
                     <img src={product.image[0]} alt="" className="w-full h-[283px]" />
                       <span className="w-[183px] h-[51px] flex flex-col top-[299px] gap-[8px]">
                         <p>
@@ -77,8 +75,8 @@ const Shop = () => {
           </div>
         </div>
       </section>
-      <Recommeded_product products={products} />
-      <Top_selling products={products} />
+      <Recommeded_product products={products} handleSelectedProduct={handleSelectedProduct} navigate={navigate} />
+      <Top_selling products={products} handleSelectedProduct={handleSelectedProduct} navigate={navigate} />
     </div>
   )
 }

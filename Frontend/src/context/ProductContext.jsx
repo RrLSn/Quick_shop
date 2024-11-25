@@ -10,6 +10,7 @@ export const ProductProvider = ({ children }) => {
   const [fullname, setFullname] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [productQuantity, setProductQuantity] = useState(1)
+  const [currentSlider, setCurrentSlider] = useState(0)
 
   const fetchProduct = async() => {
     try {
@@ -20,6 +21,14 @@ export const ProductProvider = ({ children }) => {
         console.log({message: error.message})
     }
   }
+
+  const handleSelectedProduct = (_id) => {
+    setSelectedProduct(_id)
+  }
+
+
+  const itemsPerSlide = 3;
+  const startIndex = currentSlider * itemsPerSlide
 
   return (
     <ProductContext.Provider
@@ -32,7 +41,12 @@ export const ProductProvider = ({ children }) => {
         selectedProduct,
         setSelectedProduct,
         productQuantity,
-        setProductQuantity
+        setProductQuantity,
+        startIndex,
+        itemsPerSlide,
+        currentSlider,
+        setCurrentSlider,
+        handleSelectedProduct
       }}
     >
       {children}

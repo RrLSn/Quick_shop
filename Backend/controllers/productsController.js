@@ -10,7 +10,7 @@ export const getProducts = async (req, res) => {
   }
 };
 
-//Get Product
+//Get a single Product
 export const getProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -72,7 +72,7 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-//delete product
+//Delete product
 export const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -81,6 +81,20 @@ export const deleteProduct = async (req, res) => {
       res.status(404).json({ message: "Product not Found" });
     }
     res.status(200).json({ message: "Product deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+//Get Related Product
+export const relatedProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    const related_products = await Product.find({
+      related: product.features,
+    }).limit(9);
+    res.status(200).json(related_products);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -2,13 +2,16 @@ import { useContext, useState } from "react";
 import styles from "../styles/Product_details.module.css";
 import { ProductContext } from "../context/ProductContext";
 import { Link } from "react-router-dom";
+import Related_product from "../component/Related_product";
 
 const Product_details = () => {
   const color_class = "w-[32px] h-[32px]"
   const button_class = "w-[290px] h-[100%] flex justify-center items-center border-[1px] font-Urbanist font-[500] text-[#575757] text-[18px] leading-[21.6px] bg-[#ffffff] hover:bg-[#F24810] hover:text-[#ffffff]"
   const review_style = "w-[250px] h-[100%] flex justify-center items-center font-Urbanist font-[500] text-[16px] leading-[19.2px]"
-  const {selectedProduct, products, productQuantity, setProductQuantity} = useContext(ProductContext)
+
+  const {selectedProduct, products} = useContext(ProductContext)
   const [selectedImage, setSelectedImage] = useState(null)
+ 
 
   const product_selected = products.find((products) => products._id === selectedProduct)
 
@@ -96,7 +99,7 @@ const Product_details = () => {
           </div>
         </div>
       </section>
-      <section className="w-full h-[677px] px-[88px] py-[56px]"></section>
+      <Related_product selectedProduct={selectedProduct} />
     </div>
   );
 };

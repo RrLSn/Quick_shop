@@ -4,8 +4,10 @@ axios.defaults.withCredentials = true;
 
 const Env = import.meta.env;
 
+//Product Auth
 export const productApiUrl = `${Env.VITE_API_URL}/api/products`;
 
+//User Auth
 const userBaseUrl = `${Env.VITE_API_URL}/api/auth`;
 
 export const regUrl = "/register";
