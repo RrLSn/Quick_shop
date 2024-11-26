@@ -39,7 +39,7 @@
 }
 
 .products_card {
-  @apply min-w-[341px] h-[487px] flex flex-col gap-[16px] items-start rounded-md;
+  @apply min-w-[395px] h-[487px] flex flex-col gap-[16px] items-start rounded-md;
   border: 2px solid #eeeeee;
 }
 

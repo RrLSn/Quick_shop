@@ -75,8 +75,8 @@ const Shop = () => {
           </div>
         </div>
       </section>
-      <Recommeded_product products={products} handleSelectedProduct={handleSelectedProduct} navigate={navigate} />
-      <Top_selling products={products} handleSelectedProduct={handleSelectedProduct} navigate={navigate} />
+      <Recommeded_product products={products} navigate={navigate} />
+      <Top_selling products={products} navigate={navigate} />
     </div>
   )
 }

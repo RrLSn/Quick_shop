@@ -1,5 +1,5 @@
 .wrapper {
-  @apply w-[100vw] h-[max-content] inline-flex flex-col items-start gap-[56px] py-[56px];
+  @apply w-[100vw] h-[max-content] inline-flex flex-col gap-[56px] py-[56px] items-center;
   background: var(---white);
 }
 
@@ -41,7 +41,7 @@
 }
 
 .product_info {
-  @apply w-[612px] h-[540px] flex flex-col items-start gap-[32px];
+  @apply w-[612px] h-[540px] flex flex-col items-start justify-between;
 }
 
 .product_review {

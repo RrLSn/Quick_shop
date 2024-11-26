@@ -23,6 +23,7 @@ import OTPinput from "./Pages/OTPinput";
 import Product_category from "./Pages/Product_category";
 import Shop from "./Pages/Shop";
 import { ProductProvider } from "./context/ProductContext";
+import Shopping_cart from "./Pages/Shopping_cart";
 
 function App() {
 
@@ -92,6 +93,10 @@ function App() {
         {
           path: "dashboard/order_history",
           element: <Order_history />,
+        },
+        {
+          path: "shopping_cart",
+          element: <Shopping_cart />,
         },
       ],
     },

@@ -7,8 +7,7 @@ import { productApiUrl } from "../Api/axios";
 import axios from "axios";
 
 const Related_product = ({selectedProduct}) => {
-  const {fullname, handleSelectedProduct} = useContext(ProductContext)
-  const [currentSlider, setCurrentSlider] = useState(0)
+  const {fullname, handleSelectedProduct, setCurrentSlider, itemsPerSlide, startIndex} = useContext(ProductContext)
   const [relatedProduct, setRelatedProduct] = useState([])
   const navigate = useNavigate()
 
@@ -22,9 +21,7 @@ const Related_product = ({selectedProduct}) => {
   },[selectedProduct])
 
   //Slider
-  const itemsPerSlide = 3;
   const totalSlides = Math.ceil(relatedProduct.length / itemsPerSlide)
-  const startIndex = currentSlider * itemsPerSlide
 
   const handleNext = () => {
       setCurrentSlider((prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides)

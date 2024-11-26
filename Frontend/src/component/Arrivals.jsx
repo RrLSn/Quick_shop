@@ -1,10 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styles from "../styles/Arrivals.module.css";
 import { truncateString } from "../utils";
 import { ProductContext } from "../context/ProductContext";
+import { useNavigate } from "react-router-dom";
 
 const Arrivals = ({ newArrivals }) => {
-  const {fullname} = useContext(ProductContext)
+  const {fullname, handleSelectedProduct} = useContext(ProductContext)
+  const [currentSlider, setCurrentSlider] = useState(0)
+  const navigate = useNavigate()
 
   const getRnd = (max) => {
     return Math.floor(Math.random() * max);

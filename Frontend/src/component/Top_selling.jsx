@@ -3,10 +3,9 @@ import styles from "../styles/Products.module.css";
 import { ProductContext } from "../context/ProductContext";
 import { truncateString } from "../utils";
 
-const Top_selling = ({products, handleSelectedProduct, navigate}) => {
+const Top_selling = ({products, navigate}) => {
     const [topSells, setTopSells] = useState([])
-    const {fullname} = useContext(ProductContext)
-    const [currentSlider, setCurrentSlider] = useState(0)
+    const {fullname, handleSelectedProduct, setCurrentSlider, itemsPerSlide, startIndex} = useContext(ProductContext)
 
     useState(() => {
         if(products && products.length > 0) {
@@ -18,9 +17,7 @@ const Top_selling = ({products, handleSelectedProduct, navigate}) => {
     },[products])
 
         //Slider
-        const itemsPerSlide = 3;
         const totalSlides = Math.ceil(topSells.length / itemsPerSlide)
-        const startIndex = currentSlider * itemsPerSlide
     
         const handleNext = () => {
             setCurrentSlider((prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides)

@@ -1,6 +1,6 @@
 .wrapper {
   padding: 88px;
-  @apply w-[100vw] h-[361px] gap-[88px] flex flex-col items-center;
+  @apply w-[100vw] h-[361px] justify-between flex flex-col items-center;
 }
 
 .footer_contents {

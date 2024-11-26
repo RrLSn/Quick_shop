@@ -3,10 +3,9 @@ import styles from "../styles/Products.module.css";
 import { ProductContext } from "../context/ProductContext";
 import { truncateString } from "../utils";
 
-const Recommeded_product = ({products, handleSelectedProduct, navigate}) => {
+const Recommeded_product = ({products, navigate}) => {
     const [recommendProduct, setRecommendProduct] = useState([])
-    const {fullname} = useContext(ProductContext)
-    const [currentSlider, setCurrentSlider] = useState(0)
+    const {fullname, handleSelectedProduct, setCurrentSlider, itemsPerSlide, startIndex} = useContext(ProductContext)
 
 
     useEffect(() => {
@@ -18,9 +17,7 @@ const Recommeded_product = ({products, handleSelectedProduct, navigate}) => {
     },[products])
 
     //Slider
-    const itemsPerSlide = 3;
     const totalSlides = Math.ceil(recommendProduct.length / itemsPerSlide)
-    const startIndex = currentSlider * itemsPerSlide
 
     const handleNext = () => {
         setCurrentSlider((prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides)

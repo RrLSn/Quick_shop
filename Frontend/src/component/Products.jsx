@@ -6,6 +6,7 @@ import { truncateString } from "../utils";
 const Products = ({ products }) => {
   const [featuredProduct, setFeaturedProduct] = useState([])
   const {fullname} = useContext(ProductContext)
+  
   useEffect(() => {
     if(products && products.length > 0) {
       const featured = products.filter((product) => product.price < 100)
