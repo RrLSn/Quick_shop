@@ -1,6 +1,7 @@
 // import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Contact_page.module.css";
+import Google_map from "../component/Google_map";
 
 const Contact_page = () => {
   return (
@@ -33,7 +34,9 @@ const Contact_page = () => {
               <p>1b Lekki Phase 1 Lagos, Nigeria</p>
             </span>
           </div>
-          <span className={styles.map}></span>
+          <span className={styles.map}>
+            <Google_map />
+          </span>
         </div>
         <div className={styles.input_info}>
           <h1>Message Us</h1>

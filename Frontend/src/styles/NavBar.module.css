@@ -45,8 +45,8 @@ nav {
   @apply flex;
 }
 
-.cart p {
-  @apply w-[1.5rem] h-[1.4rem] rounded-[50%] flex text-center justify-center items-center;
+.cart div {
+  @apply w-[40px] h-[23px] rounded-full flex text-center justify-center items-center;
   background-color: var(---black);
   color: var(---white);
   font-family: "Urbanist";

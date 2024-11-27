@@ -7,8 +7,7 @@
 }
 
 .success {
-  @apply w-[200px] h-[200px] flex  justify-center items-center p-[70px] rounded-full;
-  background: var(---neutral-50);
+  @apply w-[200px] h-[200px] flex  justify-center items-center p-[70px] rounded-full bg-[#ECF7E7];
 }
 
 .success img {
@@ -41,7 +40,7 @@
 }
 
 .nav_buttons button {
-  @apply w-[198px] h-[100%] flex justify-center items-center gap-[10px] rounded-sm;
+  @apply w-[198px] h-[100%] flex justify-center items-center gap-[10px] rounded-sm bg-white hover:bg-[#F24810] hover:text-white;
   font-family: "Urbanist";
   font-size: 18px;
   font-style: normal;
@@ -49,11 +48,6 @@
   line-height: normal;
   text-transform: capitalize;
   border: 1px solid var(---neutral-500);
-}
-
-.nav_buttons button:nth-child(1) {
-  background: var(---neutral-500);
-  color: var(---white);
 }
 
 .featured_items {

@@ -12,9 +12,10 @@ const Product_details = () => {
   const button_class = "w-[290px] h-[100%] flex justify-center items-center border-[1px] font-Urbanist font-[500] text-[#575757] text-[18px] leading-[21.6px] bg-[#ffffff] hover:bg-[#F24810] hover:text-[#ffffff]"
   const qty_style = "w-[40px] h-[40px] bg-[#EEEEEE] flex justify-center items-center"
 
-  const {selectedProduct, products} = useContext(ProductContext)
+  const {selectedProduct, products, setItemsInCart, itemsInCart, itemAddedtoCart, setItemAddedtoCart} = useContext(ProductContext)
   const [selectedImage, setSelectedImage] = useState(null)
   const [qtyValue, setQtyValue] = useState(0)
+  
 
   const product_selected = products.find((products) => products._id === selectedProduct)
 
@@ -31,10 +32,15 @@ const Product_details = () => {
       setQtyValue(qtyValue - 1)
     }
   }
+
+  const handleAddToCart = () => {
+    setItemAddedtoCart(true)
+    setItemsInCart(itemsInCart + 1)
+  }
     
   return (
     <div className={styles.wrapper}>
-      <Add_to_CartModal /> 
+      <Add_to_CartModal itemAddedtoCart={itemAddedtoCart} setItemAddedtoCart={setItemAddedtoCart} /> 
       <div className={styles.navigate_header}>
         <p><Link to="/">Home</Link></p>
         /
@@ -58,7 +64,7 @@ const Product_details = () => {
         <div className={styles.product_info}>
           <div className="w-full h-[75px] flex flex-col mb-3 gap-[12px]">
             <h1 className="font-Urbanist text-[32px] leading-[38.4px] font-[500]">{product_selected.title}</h1>
-            <span className="flex gap-2">
+            <span className={itemAddedtoCart? `hidden` : `flex gap-2`}>
               <Stack spacing={1}>
                 <Rating value={product_selected.rating} precision={0.5}/>
               </Stack>
@@ -88,7 +94,7 @@ const Product_details = () => {
             </div>
           </div>
           <div className="w-full min-h-[42px] flex gap-[32px]">
-            <button className={button_class}>Add To Cart</button>
+            <button className={button_class} onClick={handleAddToCart}>Add To Cart</button>
             <button className={button_class}>Buy Now</button>
           </div>
           <div className="w-full h-[57px] border-t-[1px] border-[#CBCBCB] flex justify-between py-[20px]">

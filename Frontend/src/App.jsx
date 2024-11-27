@@ -24,6 +24,7 @@ import Product_category from "./Pages/Product_category";
 import Shop from "./Pages/Shop";
 import { ProductProvider } from "./context/ProductContext";
 import Shopping_cart from "./Pages/Shopping_cart";
+import Checkout_page from "./Pages/Checkout_page";
 
 function App() {
 
@@ -97,6 +98,10 @@ function App() {
         {
           path: "shopping_cart",
           element: <Shopping_cart />,
+        },
+        {
+          path: "checkout",
+          element: <Checkout_page />,
         },
       ],
     },

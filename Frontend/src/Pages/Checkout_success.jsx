@@ -1,3 +1,4 @@
+import Related_product from "../component/Related_product";
 import styles from "../styles/Checkout_success.module.css";
 
 const Checkout_success = () => {
@@ -18,40 +19,7 @@ const Checkout_success = () => {
           <button>View All Orders</button>
         </span>
       </section>
-      <section className={styles.featured_items}>
-        <div className={styles.header}>
-          <span>
-            Related <h1>Items</h1>
-          </span>
-          <div className={styles.navigate}>
-            <img src="/svg/lessIcon.svg" alt="" />
-            <img src="/svg/greaterIcon.svg" alt="" />
-          </div>
-        </div>
-        <div className={styles.products}>
-          <div className={styles.product_card}>
-            <img src="" alt="" />
-            <span>
-              <p>Produts tittle</p>
-              <p>Price</p>
-            </span>
-          </div>
-          <div className={styles.product_card}>
-            <img src="" alt="" />
-            <span>
-              <p>Produts tittle</p>
-              <p>Price</p>
-            </span>
-          </div>
-          <div className={styles.product_card}>
-            <img src="" alt="" />
-            <span>
-              <p>Produts tittle</p>
-              <p>Price</p>
-            </span>
-          </div>
-        </div>
-      </section>
+      <Related_product />
     </div>
   );
 };

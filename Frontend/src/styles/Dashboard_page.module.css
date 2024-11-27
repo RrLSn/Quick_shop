@@ -130,7 +130,7 @@
 .order_info span {
   @apply w-[92px] h-[100%] flex justify-center items-center gap-[10px];
   border-radius: 4px;
-  background: var(---neutral-50);
+  background: #f24810;
   font-family: "Urbanist";
   font-size: 13px;
   font-style: normal;

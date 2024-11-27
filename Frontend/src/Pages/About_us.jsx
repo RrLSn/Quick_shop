@@ -6,15 +6,15 @@ const About_us = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.hero}>
-        <img src="" alt="" />
+        <img src="svg/about_us_hero.svg" alt="" />
         <div className={styles.page_header}>
           <h1>About Us</h1>
           <span>
-            <p>
+            <p className="text-[#EEEEEE]">
               <Link to="/">Home</Link>
             </p>
             /
-            <p>
+            <p className="text-white">
               <Link to="/about_us">About us</Link>
             </p>
           </span>
@@ -51,7 +51,7 @@ const About_us = () => {
         </p>
       </span>
       <section className={styles.mission}>
-        <img src="" alt="" />
+        <img src="/svg/mission_img.svg" alt="" />
         <div className={styles.mission_text}>
           <h1>Our Mission</h1>
           <p>
@@ -96,7 +96,7 @@ const About_us = () => {
             doloremque dignissimos aspernatur quo quis excepturi eaque suscipit!
           </p>
         </div>
-        <img src="" alt="" />
+        <img src="/svg/vision_img.svg" alt="" />
       </section>
     </div>
   );

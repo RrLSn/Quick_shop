@@ -68,8 +68,7 @@
 }
 
 .map {
-  @apply w-[100%] h-[440px] self-stretch;
-  background: var(---neutral);
+  @apply w-[100%] h-[440px] self-stretch border-[1px];
 }
 
 .input_info {
@@ -133,9 +132,9 @@ form textarea {
 }
 
 form button {
-  @apply w-[63px] h-[27px] flex justify-center items-center rounded-sm;
+  @apply w-[102px] h-[42px] flex justify-center items-center rounded-sm;
   padding: 10px 30px;
-  background: var(---neutral-500);
+  background: #f24810;
   color: var(---white);
   font-family: "Urbanist";
   font-size: 18px;

@@ -4,10 +4,12 @@ import { useContext, useState } from "react";
 import Axios, { logOutUrl } from "../Api/axios";
 
 import AuthContext from "../context/AuthProvider";
+import { ProductContext } from "../context/ProductContext";
 
 const NavBar = () => {
   
   const [errMsg, setErrMsg] = useState(null);
+  const {itemsInCart} = useContext(ProductContext)
 
   const navigate = useNavigate()
   const {auth, setAuth, drop, setDrop, loggedIn, setLoggedIn} = useContext(AuthContext)
@@ -48,7 +50,7 @@ const NavBar = () => {
           <Link>
             <div className={styles.cart}>
               <img src="/svg/CartIcon.svg" alt="Icon" />
-              <p>0</p>
+              <div>{itemsInCart}</div>
             </div>
           </Link>
           <div className=" w-[58px] gap-[4px] flex items-center cursor-pointer" onClick={() => setDrop(!drop)}>
