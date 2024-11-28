@@ -13,7 +13,8 @@ export const ProductProvider = ({ children }) => {
   const [currentSlider, setCurrentSlider] = useState(0)
   const [itemsInCart, setItemsInCart] = useState(0)
   const [itemAddedtoCart, setItemAddedtoCart] = useState(false)
-
+  const [cartItems, setCartItems] = useState([])
+  
   const fetchProduct = async() => {
     try {
         const res = await axios.get(productApiUrl)
@@ -52,7 +53,9 @@ export const ProductProvider = ({ children }) => {
         itemsInCart,
         setItemsInCart,
         itemAddedtoCart,
-        setItemAddedtoCart
+        setItemAddedtoCart,
+        cartItems,
+        setCartItems
       }}
     >
       {children}

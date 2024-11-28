@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import productRoutes from "./routes/product.js";
 import userRoutes from "./routes/auth.js";
+import cartRoutes from "./routes/cart.js";
 import cors from "cors";
 import session from "express-session";
 import cookieParser from "cookie-parser";
@@ -63,3 +64,4 @@ mongoose
 //Router
 app.use("/api/products", productRoutes);
 app.use("/api/auth", userRoutes);
+app.use("api/cart", cartRoutes);

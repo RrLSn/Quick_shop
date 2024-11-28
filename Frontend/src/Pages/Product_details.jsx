@@ -7,14 +7,26 @@ import { Rating, Stack } from "@mui/material"
 import Product_review from "../component/Product_review";
 import Add_to_CartModal from "../component/Add_to_CartModal";
 
-const Product_details = () => {
+
   const color_class = "w-[32px] h-[32px]"
   const button_class = "w-[290px] h-[100%] flex justify-center items-center border-[1px] font-Urbanist font-[500] text-[#575757] text-[18px] leading-[21.6px] bg-[#ffffff] hover:bg-[#F24810] hover:text-[#ffffff]"
   const qty_style = "w-[40px] h-[40px] bg-[#EEEEEE] flex justify-center items-center"
 
-  const {selectedProduct, products, setItemsInCart, itemsInCart, itemAddedtoCart, setItemAddedtoCart} = useContext(ProductContext)
+const Product_details = () => {
+  
+
+  const {
+    selectedProduct, 
+    products, 
+    setItemsInCart, 
+    itemsInCart, 
+    itemAddedtoCart, 
+    setItemAddedtoCart, 
+    cartItems, 
+    setCartItems} = useContext(ProductContext)
+
   const [selectedImage, setSelectedImage] = useState(null)
-  const [qtyValue, setQtyValue] = useState(0)
+  const [qtyValue, setQtyValue] = useState(1)
   
 
   const product_selected = products.find((products) => products._id === selectedProduct)
@@ -33,10 +45,24 @@ const Product_details = () => {
     }
   }
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (product_selected) => {
     setItemAddedtoCart(true)
     setItemsInCart(itemsInCart + 1)
-  }
+    setCartItems((prevCartItems) => {
+      const existingProductInCart = prevCartItems.find((item) => item._id === product_selected._id)
+
+      if(existingProductInCart){
+        return prevCartItems.map((item) => 
+          item._id === product_selected._id ?
+          {...item, quantity: item.quantity + qtyValue} :
+          item
+        )
+      } else{
+        return [prevCartItems, {...product_selected, quantity: qtyValue}]
+      }
+    } )
+    console.log(cartItems.quantity)
+    }
     
   return (
     <div className={styles.wrapper}>
@@ -94,7 +120,7 @@ const Product_details = () => {
             </div>
           </div>
           <div className="w-full min-h-[42px] flex gap-[32px]">
-            <button className={button_class} onClick={handleAddToCart}>Add To Cart</button>
+            <button className={button_class} onClick={() => handleAddToCart(product_selected)}>Add To Cart</button>
             <button className={button_class}>Buy Now</button>
           </div>
           <div className="w-full h-[57px] border-t-[1px] border-[#CBCBCB] flex justify-between py-[20px]">

@@ -425,13 +425,13 @@ export const userDeliveryInfo = async (req, res) => {
   }
 };
 
-export const googleUserAuth = (req, res) => {
-  try {
-    const { user, token } = req.user;
-    res.status(200).json({ user, token });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Authentication eror", error: error.message });
-  }
-};
+// export const googleUserAuth = (req, res) => {
+//   try {
+//     const { user, token } = req.user;
+//     res.status(200).json({ user, token });
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ message: "Authentication eror", error: error.message });
+//   }
+// };
