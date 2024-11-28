@@ -13,7 +13,6 @@ export const ProductProvider = ({ children }) => {
   const [currentSlider, setCurrentSlider] = useState(0)
   const [itemsInCart, setItemsInCart] = useState(0)
   const [itemAddedtoCart, setItemAddedtoCart] = useState(false)
-  const [cartItems, setCartItems] = useState([])
   
   const fetchProduct = async() => {
     try {
@@ -54,8 +53,6 @@ export const ProductProvider = ({ children }) => {
         setItemsInCart,
         itemAddedtoCart,
         setItemAddedtoCart,
-        cartItems,
-        setCartItems
       }}
     >
       {children}

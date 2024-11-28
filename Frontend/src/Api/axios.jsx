@@ -8,7 +8,7 @@ const Env = import.meta.env;
 export const productApiUrl = `${Env.VITE_API_URL}/api/products`;
 
 //Cart Auth
-const cartBaseUrl = `${Env.VITE_API_URL}/api/cart`;
+export const cartApiUrl = `${Env.VITE_API_URL}/api/cart`;
 
 //User Auth
 const userBaseUrl = `${Env.VITE_API_URL}/api/auth`;
@@ -29,8 +29,4 @@ const Axios = axios.create({
   baseURL: userBaseUrl,
 });
 
-const CartAxios = axios.create({
-  baseURL: cartBaseUrl
-})
-
-export default {Axios, CartAxios}
+export default Axios

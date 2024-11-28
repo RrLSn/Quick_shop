@@ -51,7 +51,8 @@ const Login = () => {
       if(res.status === 200){
         const fullname = res?.data.fullname;
         const phone = res?.data.phone;
-        setAuth({ email, fullname, phone });
+        const userId = res?.data.userId
+        setAuth({ email, fullname, phone, userId });
         setEmail("");
         setPassword("");
         setSuccess(true);

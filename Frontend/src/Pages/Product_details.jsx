@@ -1,11 +1,14 @@
 import { useContext, useState } from "react";
 import styles from "../styles/Product_details.module.css";
 import { ProductContext } from "../context/ProductContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Related_product from "../component/Related_product";
 import { Rating, Stack } from "@mui/material"
 import Product_review from "../component/Product_review";
 import Add_to_CartModal from "../component/Add_to_CartModal";
+import axios from "axios";
+import { cartApiUrl } from "../Api/axios";
+import AuthContext from "../context/AuthProvider";
 
 
   const color_class = "w-[32px] h-[32px]"
@@ -13,7 +16,8 @@ import Add_to_CartModal from "../component/Add_to_CartModal";
   const qty_style = "w-[40px] h-[40px] bg-[#EEEEEE] flex justify-center items-center"
 
 const Product_details = () => {
-  
+  const {auth} = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const {
     selectedProduct, 
@@ -21,11 +25,10 @@ const Product_details = () => {
     setItemsInCart, 
     itemsInCart, 
     itemAddedtoCart, 
-    setItemAddedtoCart, 
-    cartItems, 
-    setCartItems} = useContext(ProductContext)
+    setItemAddedtoCart,
+  } = useContext(ProductContext)
 
-  const [selectedImage, setSelectedImage] = useState(null)
+  const [selectedImage, setSelectedImage] = useState(0)
   const [qtyValue, setQtyValue] = useState(1)
   
 
@@ -45,24 +48,34 @@ const Product_details = () => {
     }
   }
 
-  const handleAddToCart = (product_selected) => {
-    setItemAddedtoCart(true)
-    setItemsInCart(itemsInCart + 1)
-    setCartItems((prevCartItems) => {
-      const existingProductInCart = prevCartItems.find((item) => item._id === product_selected._id)
-
-      if(existingProductInCart){
-        return prevCartItems.map((item) => 
-          item._id === product_selected._id ?
-          {...item, quantity: item.quantity + qtyValue} :
-          item
-        )
-      } else{
-        return [prevCartItems, {...product_selected, quantity: qtyValue}]
+  const userId = auth.userId
+  const price = product_selected.price
+  
+  const handleAddToCart = async(product_selected) => {
+    try {
+      const res = await axios.post(cartApiUrl, {
+        userId: userId,
+        productId: selectedProduct,
+        title: product_selected.title,
+        price: price,
+        quantity: qtyValue,
+        image: product_selected.image[0],
+        tax: product_selected.tax,
+        shippingFee: product_selected.shipping
+      })
+      if(res.status === 200){
+        setItemAddedtoCart(true)
+        setItemsInCart(itemsInCart + 1)
       }
-    } )
-    console.log(cartItems.quantity)
+    } catch (error) {
+      console.log("Error adding to cart:", error)
     }
+  }
+
+  const handleBuyNow = () => {
+    handleAddToCart(product_selected)
+    navigate("/shopping_cart")
+  }
     
   return (
     <div className={styles.wrapper}>
@@ -85,7 +98,7 @@ const Product_details = () => {
               })
             }
           </div>
-          <img src={!selectedImage ? product_selected.image[0] : product_selected.image[selectedImage]} className="w-[488px]" alt="" />
+          <img src={product_selected.image[selectedImage]} className="w-[488px]" alt="" />
         </div>
         <div className={styles.product_info}>
           <div className="w-full h-[75px] flex flex-col mb-3 gap-[12px]">
@@ -121,7 +134,7 @@ const Product_details = () => {
           </div>
           <div className="w-full min-h-[42px] flex gap-[32px]">
             <button className={button_class} onClick={() => handleAddToCart(product_selected)}>Add To Cart</button>
-            <button className={button_class}>Buy Now</button>
+            <button className={button_class} onClick={handleBuyNow}>Buy Now</button>
           </div>
           <div className="w-full h-[57px] border-t-[1px] border-[#CBCBCB] flex justify-between py-[20px]">
             <span className="flex gap-2">Brand <p>{product_selected.storename}</p></span>

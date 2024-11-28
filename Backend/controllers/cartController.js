@@ -1,10 +1,18 @@
 import Cart from "../modules/cart_module.js";
+import Users from "../modules/users_modules.js";
 
 //Add item to Cart
 export const addItemToCart = async (req, res) => {
-  const { userId, productId, title, price, quantity, image } = req.body;
+  const { userId, productId, title, price, quantity, image, tax, shippingFee } =
+    req.body;
 
   try {
+    //verify if user exist
+    const user = await Users.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
     let cart = await Cart.findOne({ userId });
     if (!cart) {
       //Create a new cart if it doesn't exist
@@ -25,8 +33,10 @@ export const addItemToCart = async (req, res) => {
         title,
         price,
         quantity,
-        total: price * quantity,
+        total: Math.ceil(price * quantity + tax),
         image,
+        tax,
+        shippingFee,
       });
     }
 
@@ -36,6 +46,7 @@ export const addItemToCart = async (req, res) => {
     await cart.save();
     res.status(200).json(cart);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error.message });
   }
 };

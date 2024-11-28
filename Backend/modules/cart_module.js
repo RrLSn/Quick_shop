@@ -22,11 +22,19 @@ const CartItemSchema = new mongoose.Schema(
     },
     total: {
       type: Number,
-      required: true,
+      default: 0,
     },
     image: {
       type: String,
       required: true,
+    },
+    tax: {
+      type: Number,
+      default: 0,
+    },
+    shippingFee: {
+      type: Number,
+      default: 0,
     },
   },
   {
@@ -43,18 +51,6 @@ const CartSchema = new mongoose.Schema(
     },
     items: [CartItemSchema],
     subtotal: {
-      type: Number,
-      required: true,
-    },
-    discount: {
-      type: Number,
-      default: 0,
-    },
-    shippingFee: {
-      type: Number,
-      default: 0,
-    },
-    total: {
       type: Number,
       required: true,
     },
