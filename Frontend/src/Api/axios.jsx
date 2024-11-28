@@ -23,12 +23,14 @@ export const resetPassword = "/resetPassword"
 export const updatePassword = "/updatePassword"
 export const updateUserInfo = '/updateUserInfo'
 export const updateUserDeliveryInfo = "/userDeliveryInfo"
-// export const userGoogleAuth = "/google/callback"
+export const userGoogleAuth = "/google/callback"
 
-export const Axios = axios.create({
+const Axios = axios.create({
   baseURL: userBaseUrl,
 });
 
-export const CartAxios = axios.create({
+const CartAxios = axios.create({
   baseURL: cartBaseUrl
 })
+
+export default {Axios, CartAxios}
