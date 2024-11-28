@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import Axios, { userGoogleAuth } from "../Api/axios";
+import Axios from "../Api/axios";
 // import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext({});
