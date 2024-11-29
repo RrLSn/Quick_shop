@@ -5,12 +5,11 @@ import Axios, { userGoogleAuth } from "../Api/axios";
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false)
   const [message, setMessage] = useState("")
   const [drop, setDrop] = useState(false);
   const OTP = Math.floor(Math.random() * 9000 + 1000)
-  // const navigate = useNavigate()
 
 
   const googleUserAuth = async() => {

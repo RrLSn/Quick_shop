@@ -33,7 +33,7 @@ export const addItemToCart = async (req, res) => {
         title,
         price,
         quantity,
-        total: Math.ceil(price * quantity + tax),
+        total: Math.round(price * quantity + tax),
         image,
         tax,
         shippingFee,
@@ -44,9 +44,8 @@ export const addItemToCart = async (req, res) => {
     cart.subtotal = cart.items.reduce((acc, item) => acc + item.total, 0);
 
     await cart.save();
-    res.status(200).json(cart);
+    res.status(200).json({ cart: cart, itemCount: cart.items.length });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -54,8 +53,15 @@ export const addItemToCart = async (req, res) => {
 //Get Items in Cart
 export const getItemsInCart = async (req, res) => {
   const { userId } = req.params;
+  //verify if user exist
+  const user = await Users.findById(userId);
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
   try {
-    const cart = await Cart.findOne({ userId }).populate("items.ProductId");
+    const cart = await Cart.findOne({ userId });
     if (!cart) {
       return res.status(404).json({ message: "Item not found" });
     }

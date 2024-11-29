@@ -30,6 +30,15 @@ const NavBar = () => {
     }
   };
 
+  const handleToCart = () => {
+    if(!auth){
+      navigate("/auth/login")
+    }
+    else{
+      navigate("/shopping_cart")
+    }
+  }
+
   return (
     <nav>
       <Link to="/" className={styles.logo}>
@@ -47,12 +56,10 @@ const NavBar = () => {
       </span>
       <div>
         <span className={styles.cartUser}>
-          <Link to="/shopping_cart">
-            <div className={styles.cart}>
-              <img src="/svg/CartIcon.svg" alt="Icon" />
-              <div>{itemsInCart}</div>
-            </div>
-          </Link>
+          <div className={styles.cart} onClick={handleToCart}>
+            <img src="/svg/CartIcon.svg" alt="Icon" />
+            <div>{itemsInCart}</div>
+          </div>
           <div className=" w-[58px] gap-[4px] flex items-center cursor-pointer" onClick={() => setDrop(!drop)}>
             <img src="/svg/UserIcon.svg" alt="" />
             <div>

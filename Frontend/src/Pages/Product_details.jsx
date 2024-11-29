@@ -23,7 +23,6 @@ const Product_details = () => {
     selectedProduct, 
     products, 
     setItemsInCart, 
-    itemsInCart, 
     itemAddedtoCart, 
     setItemAddedtoCart,
   } = useContext(ProductContext)
@@ -52,6 +51,9 @@ const Product_details = () => {
   const price = product_selected.price
   
   const handleAddToCart = async(product_selected) => {
+    if(!userId){
+      navigate("/auth/login")
+    }
     try {
       const res = await axios.post(cartApiUrl, {
         userId: userId,
@@ -65,16 +67,21 @@ const Product_details = () => {
       })
       if(res.status === 200){
         setItemAddedtoCart(true)
-        setItemsInCart(itemsInCart + 1)
       }
+        const item_count = res.data.items.length
+        setItemsInCart(item_count)
     } catch (error) {
-      console.log("Error adding to cart:", error)
+      console.log("Error adding to cart:", error.message)
     }
   }
 
   const handleBuyNow = () => {
-    handleAddToCart(product_selected)
-    navigate("/shopping_cart")
+    if(!userId){
+      navigate("/auth/login")
+    } else{
+      handleAddToCart(product_selected)
+      navigate("/shopping_cart")
+    }
   }
     
   return (

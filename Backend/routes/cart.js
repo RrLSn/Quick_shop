@@ -7,9 +7,9 @@ import {
 
 const router = express.Router();
 
-router.route("/cart/:userId/:itemId").delete(removerItemFrmCart);
+router.route("/:userId/:itemId").delete(removerItemFrmCart);
 
-router.route("/cart/:userId").get(getItemsInCart);
+router.route("/:userId").get(getItemsInCart);
 
 router.route("/").post(addItemToCart);
 
