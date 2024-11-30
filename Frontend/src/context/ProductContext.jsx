@@ -15,6 +15,9 @@ export const ProductProvider = ({ children }) => {
   const [itemAddedtoCart, setItemAddedtoCart] = useState(false)
   const [discount, setDiscount] = useState(0)
   const [shippingFee, setShippingFee] = useState(0)
+  const [cartItems, setCartItems] = useState([])
+  const [cart, setCart] = useState(null)
+  const [qtyValue, setQtyValue] = useState(1)
   
   const fetchProduct = async() => {
     setItemAddedtoCart(false)
@@ -29,6 +32,16 @@ export const ProductProvider = ({ children }) => {
 
   const handleSelectedProduct = (_id) => {
     setSelectedProduct(_id)
+  }
+
+  const handleQtyCountUp = () => {
+    setQtyValue(qtyValue + 1)
+  }
+
+  const handleQtyCountDown = () => {
+    if(qtyValue > 0){
+      setQtyValue(qtyValue - 1)
+    }
   }
 
   const itemsPerSlide = 3;
@@ -58,7 +71,14 @@ export const ProductProvider = ({ children }) => {
         shippingFee,
         setShippingFee,
         discount,
-        setDiscount
+        setDiscount,
+        cartItems, 
+        setCartItems,
+        cart, 
+        setCart,
+        qtyValue, 
+        handleQtyCountUp,
+        handleQtyCountDown
       }}
     >
       {children}

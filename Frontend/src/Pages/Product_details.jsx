@@ -13,7 +13,7 @@ import AuthContext from "../context/AuthProvider";
 
   const color_class = "w-[32px] h-[32px]"
   const button_class = "w-[290px] h-[100%] flex justify-center items-center border-[1px] font-Urbanist font-[500] text-[#575757] text-[18px] leading-[21.6px] bg-[#ffffff] hover:bg-[#F24810] hover:text-[#ffffff]"
-  const qty_style = "w-[40px] h-[40px] bg-[#EEEEEE] flex justify-center items-center"
+  const qty_style = "w-[40px] h-[40px] bg-[#EEEEEE] flex justify-center items-center cursor-pointer"
 
 const Product_details = () => {
   const {auth} = useContext(AuthContext)
@@ -25,10 +25,13 @@ const Product_details = () => {
     setItemsInCart, 
     itemAddedtoCart, 
     setItemAddedtoCart,
+    qtyValue, 
+    handleQtyCountUp,
+    handleQtyCountDown
   } = useContext(ProductContext)
 
   const [selectedImage, setSelectedImage] = useState(0)
-  const [qtyValue, setQtyValue] = useState(1)
+  
   
 
   const product_selected = products.find((products) => products._id === selectedProduct)
@@ -37,17 +40,7 @@ const Product_details = () => {
     setSelectedImage(index)
   }
 
-  const handleQtyCountUp = () => {
-    setQtyValue(qtyValue + 1)
-  }
-
-  const handleQtyCountDown = () => {
-    if(qtyValue > 0){
-      setQtyValue(qtyValue - 1)
-    }
-  }
-
-  const userId = auth.userId
+  const userId = auth?.userId
   const price = product_selected.price
   
   const handleAddToCart = async(product_selected) => {

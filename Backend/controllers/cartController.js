@@ -44,7 +44,7 @@ export const addItemToCart = async (req, res) => {
     cart.subtotal = cart.items.reduce((acc, item) => acc + item.total, 0);
 
     await cart.save();
-    res.status(200).json({ cart: cart, itemCount: cart.items.length });
+    res.status(200).json(cart);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
