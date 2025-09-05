@@ -1,24 +1,18 @@
-/* .wrapper { */
-/* @apply w-[100vw] h-[100vh] flex justify-center itemsce bg-red-400; */
-/* padding: 341px 369px 340px 370px; */
-/* background: var(---white); */
-/* } */
-
-.wrapper form {
-  @apply w-[701px] h-[343px] flex flex-col items-start gap-[25px] bg-blue-400;
+.wrapper {
+  @apply lg:w-[500px] md:w-[400px] w-[300px] xl:w-[900px] xl:h-[470px] lg:h-[300px] h-[200px] flex flex-col items-start xl:gap-[25px] lg:gap-3 gap-2 lg:p-4 p-3;
 }
 
-.wrapper form img {
-  @apply w-[177.931px] h-[40px];
+.wrapper img {
+  @apply lg:w-[100px] w-[60px] h-[15px] xl:w-[250px] lg:h-[20px] xl:h-[60px];
 }
 
 .rem_login {
-  @apply w-[308px] h-[81px] flex flex-col items-start gap-[8px];
+  @apply w-full lg:h-[40px] h-[30px] xl:h-[100px] flex flex-col lg:gap-2 gap-1;
 }
 
 .rem_login h1 {
+  @apply xl:text-[40px] text-[13px];
   font-family: "Urbanist";
-  font-size: 40px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -26,64 +20,52 @@
 }
 
 .rem_login span {
-  @apply w-[100%] flex gap-[5px] items-center;
+  @apply w-full flex gap-[5px] items-center;
 }
 
-.rem_login span p:nth-child(1) {
+.rem_login span p {
+  @apply xl:text-[20px] lg:text-[12px] text-[9px];
   font-family: "Urbanist";
-  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  color: var(---neutral-500);
-}
-
-.rem_login span p:nth-child(2) {
-  font-family: "Urbanist";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  color: var(---neutral-500);
+  color: var(---black);
 }
 
 .form_fill {
-  @apply w-[100%] h-[142px] flex flex-col items-start gap-[32px] self-stretch;
+  @apply w-full h-[max-content] flex flex-col items-start xl:gap-[32px] gap-2;
 }
 
 .input_mail {
-  @apply w-[100%] h-[68px] flex flex-col items-start gap-[4px];
+  @apply w-[100%] h-[max-content] flex flex-col items-start gap-[4px];
 }
 
 .input_mail span {
-  @apply w-[100%] h-[50px] flex self-stretch items-center rounded-md gap-[10px];
-  padding: 16px 15px;
+  @apply w-full lg:h-[40px] h-[30px] xl:h-[70px] flex items-center lg:px-[1.5rem] px-2 rounded-md xl:gap-[4rem] lg:gap-[2rem] gap-3;
   background: var(---neutral-50);
 }
 
 .input_mail span img {
-  @apply w-[14px] h-[14px];
+  @apply lg:w-[11px] w-[8px] h-[8px] xl:w-[18px] xl:h-[18px] lg:h-[11px];
 }
 
 .input_mail input {
-  @apply w-[100%] h-[100%] outline-none;
+  @apply md:w-[280px] w-[330px] xl:w-[76%] h-full flex outline-none lg:py-[16px] lg:px-[5px];
   background-color: var(---neutral-50);
-  padding: 5px;
-  font-size: 14px;
 }
 
 .input_mail input::placeholder {
   font-family: "Urbanist";
-  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---neutral-500);
+  @apply xl:text-[1.5rem] lg:text-[14px] text-[12px] text-center;
 }
 
 .input_mail p {
+  @apply xl:text-[20px] lg:text-[12px] text-[9px];
   font-family: "Urbanist";
-  font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -92,12 +74,10 @@
 }
 
 .form_fill button {
-  @apply w-[120px] h-[35px] flex justify-center items-center gap-[10px] rounded-md;
-  padding: 10px 30px;
+  @apply lg:w-[120px] md:w-[90px] w-[70px] lg:h-[40px] h-[30px] xl:h-[63px] flex items-center justify-center rounded-md xl:text-2xl lg:text-[12px] text-[8px];
   background: var(---neutral-500);
   color: var(---white);
   font-family: "Urbanist";
-  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;

@@ -43,39 +43,41 @@ const Forget_pass = () => {
   }
 
   return (
-    <div className={`${styles.wrapper} w-[100vw] h-[100vw] flex justify-center items-center bg-red-400`}>
-      <form onSubmit={handleSubmit} >
-        <img src="/svg/Logo.svg" alt="" />
+    <div className="w-[100vw] h-[100vh] flex justify-center items-center bg-[var(---white)]">
+      <div className={styles.wrapper}>
+            <img src="/svg/Logo.svg" alt="" />
 
-        <div className={styles.rem_login}>
-          <h1>Forgot Password</h1>
-          <span>
-            <p>Remeber your password?</p>
-            <p>
-              <Link to="/auth/login">Login here</Link>
-            </p>
-          </span>
-        </div>
-        {message ? <p className="flex text-green-500">{message}</p> : <p className="hidden"></p>}
-        <div className={styles.form_fill}>
-          <div className={styles.input_mail}>
-            <span>
-              <img src="/svg/mailIcon.svg" alt="" />
-              <input 
-               type="text" 
-               required
-               id="email"
-               autoComplete="on"
-               placeholder="email" 
-               ref={userRef} 
-               value={email} 
-               onChange={(e) => setEmail(e.target.value)} />
-            </span>
-            <p>Password reset link will be sent to your email.</p> 
-          </div>
-          <button type="submit" disabled={isSubmitting && !message}>Submit</button>
-        </div>
-      </form>
+            <div className={styles.rem_login}>
+              <h1>Forgot Password</h1>
+              <span>
+                <p>Remeber your password?</p>
+                <p>
+                  <Link to="/auth/login">Login here</Link>
+                </p>
+              </span>
+            </div>
+            {message ? <p className="flex text-red-500 xl:text-[18px] text-[12px]">{message}</p> : <p className="hidden"></p>}
+            <form onSubmit={handleSubmit}>
+              <div className={styles.form_fill}>
+                <div className={styles.input_mail}>
+                  <span>
+                    <img src="/svg/mailIcon.svg" alt="" />
+                    <input 
+                    type="text" 
+                    required
+                    id="email"
+                    autoComplete="on"
+                    placeholder="email" 
+                    ref={userRef} 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} />
+                  </span>
+                  <p>Password reset link will be sent to your email.</p> 
+                </div>
+                <button type="submit" disabled={isSubmitting && !message}>Submit</button>
+              </div>
+            </form>
+      </div>
     </div>
   );
 };
