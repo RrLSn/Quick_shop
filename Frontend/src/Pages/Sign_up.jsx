@@ -94,13 +94,12 @@ const Sign_up = () => {
   };
 
   return (
-    // <div></div>
     <div className={styles.wrapper}>
       <div className={styles.signup_info}>
         <img src="/svg/Logo.svg" alt="" />
         <div className={styles.signup_header}>
           <h1>Create Account</h1>
-          <p>Sign Up using any of these method to explore our collection.</p>
+          <p className="xl:text-[20px] lg:text-[12px] text-[9px]">Sign Up using any of these method to explore our collection.</p>
           <div className={styles.signup_socials}>
             <button>
               <img src="/svg/google.svg" alt="" />
@@ -211,7 +210,7 @@ const Sign_up = () => {
               }
               className={
                 validEmail || validName || validNum || validPassword
-                  ? "button"
+                  ? ""
                   : "bg-[#c6c1c1]"
               }
             >

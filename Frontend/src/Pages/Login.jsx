@@ -57,7 +57,8 @@ const Login = () => {
         setPassword("");
         setSuccess(true);
         navigate("/dashboard");
-        localStorage.setItem("userData", JSON.stringify({email, fullname, phone}))
+        localStorage.setItem("userData", JSON.stringify({ email, fullname, phone }));
+        localStorage.setItem("token", res.data.token);
       }
     } catch (error) {
       setErrMsg(error.response?.data.message || "An error occurred");
@@ -75,7 +76,7 @@ const Login = () => {
         <img src="/svg/Logo.svg" alt="" />
         <div className={styles.login_header}>
           <h1>Welcome Back!</h1>
-          <p>
+          <p className="xl:text-[20px] lg:text-[12px] text-[9px]">
             Log In to your account using any of these method to explore more
             collection.
           </p>
@@ -110,7 +111,7 @@ const Login = () => {
             className={styles.login_details}
             onSubmit={handleSubmit}
           >
-            <div className={styles.form_fill}>
+            {/* <div className={styles.form_fill}> */}
               <div className={styles.form_input}>
                 <img src="/svg/mailIcon.svg" alt="" />
                 <input
@@ -156,7 +157,7 @@ const Login = () => {
                   <Link to="/auth/forgetPassword">Forgot Password?</Link>
                 </p>
               </span>
-            </div>
+            {/* </div> */}
             <button type="submit"
               disabled={!validEmail && !validPassword ? true : false}
               className={validEmail && validPassword ? "" : "bg-[#c6c1c1]"}

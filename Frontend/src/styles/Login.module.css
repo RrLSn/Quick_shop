@@ -1,23 +1,23 @@
 .wrapper {
-  @apply w-[100vw] h-[1024px] flex justify-between overflow-hidden items-center pl-[88px];
+  @apply w-[100vw] h-[100vh] flex justify-between items-center xl:pl-[88px] lg:pl-[20px] md:pl-[14px];
   background: var(---white);
 }
 
 .login_info {
-  @apply w-[503px] h-[682px] flex flex-col items-start gap-[56px];
+  @apply lg:w-[450px] md:w-[350px] w-[100vw] h-[100vh] md:h-[350px] xl:w-[33%] p-4 lg:h-[450px] xl:h-[750px] inline-flex flex-col items-start xl:gap-[40px] gap-3;
 }
 
 .login_info img {
-  @apply w-[177.931px] h-[40px];
+  @apply lg:w-[100px] w-[60px] h-[15px] xl:w-[250px] lg:h-[20px] xl:h-[60px];
 }
 
 .login_header {
-  @apply w-[100%] h-[174px] flex flex-col items-start gap-[32px];
+  @apply w-full lg:h-[100px] md:h-[80px] h-[60px] xl:h-[180px] flex flex-col xl:gap-5 lg:gap-2 gap-1;
 }
 
 .login_header h1 {
+  @apply xl:text-[40px] text-[13px];
   font-family: "Urbanist";
-  font-size: 40px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -26,7 +26,6 @@
 
 .login_header p {
   font-family: "Urbanist";
-  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -34,11 +33,11 @@
 }
 
 .login_socials {
-  @apply w-[100%] h-[40px] flex gap-[16px];
+  @apply w-full lg:h-[30px] h-[22px] xl:h-[70px] flex gap-[16px];
 }
 
 .login_socials button {
-  @apply w-[184px] h-[100%] flex justify-center items-center gap-[10px];
+  @apply md:w-[18px] h-full flex justify-center items-center gap-[10px] xl:text-[1.5rem] lg:text-[11px] text-[8px];
   flex: 1 0 0;
   padding: 10px 30px;
   border: 1px solid var(---neutral-50);
@@ -47,29 +46,30 @@
 }
 
 .login_socials button img {
-  @apply w-[18px] h-[18px];
+  @apply lg:w-[12px] w-[8px] h-[8px] xl:w-[28px] lg:h-[12px] xl:h-[28px];
 }
 
 .form_area {
-  @apply w-[100%] h-[356px] flex flex-col items-start gap-[32px];
+  @apply w-full h-[max-content] flex flex-col items-start xl:gap-[32px] gap-4;
 }
 
 .form_header {
-  @apply w-[100%] h-[17px] flex items-center gap-[3px];
+  @apply w-full h-[max-content] flex items-center justify-center lg:gap-4 gap-2;
 }
 
 .form_header .line {
-  @apply w-[178.5px] h-[1px];
+  @apply md:w-[30%] w-[25%] h-[1px];
   background: var(---line-neutral);
 }
 
 .form_header p {
   font-family: "Urbanist";
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---neutral-700);
+  @apply xl:text-[1.5rem] lg:text-[10px] md:text-[8px];
 }
 
 .errMsg {
@@ -82,56 +82,56 @@
 }
 
 .login_details {
-  @apply w-[100%] h-[307px] flex flex-col items-center gap-[32px];
+  @apply w-full h-[max-content] flex flex-col items-center xl:gap-[32px] gap-3;
 }
-
+/* 
 .form_fill {
   @apply w-[100%] h-[176px] flex flex-col items-start gap-[24px];
-}
+} */
 
 .form_input {
-  @apply w-[100%] h-[50px] flex items-center px-[1.5rem] self-stretch gap-[4px] rounded-md justify-between;
+  @apply w-full lg:h-[40px] h-[30px] xl:h-[70px] flex items-center lg:px-[1.5rem] px-2 rounded-md xl:gap-[4rem] lg:gap-[2rem] gap-3;
   background: var(---neutral-50);
 }
 
 .form_input img {
-  @apply w-[14px] h-[14px];
+  @apply lg:w-[11px] w-[8px] h-[8px] xl:w-[18px] xl:h-[18px] lg:h-[11px];
 }
 
-.pwdVisible {
-  @apply w-[14px] h-[14px] cursor-pointer;
+.pwdVisible img {
+  @apply lg:w-[11px] w-[8px] h-[8px] xl:w-[18px] lg:h-[11px] cursor-pointer;
 }
 
 .form_input input {
-  @apply w-[450px] h-[100%] outline-none;
+  @apply md:w-[280px] w-[330px] xl:w-[76%] h-full flex outline-none lg:py-[16px] lg:px-[5px];
   background-color: var(---neutral-50);
-  padding: 16px 5px;
 }
 
 .form_input input::placeholder {
   font-family: "Urbanist";
-  font-size: 16px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---neutral-500);
+  @apply xl:text-[1.5rem] text-center;
 }
 
 .rem_pass {
-  @apply w-[100%] h-[20px] flex justify-between items-start;
+  @apply w-full xl:h-[30px] lg:h-[25px] h-[15px] flex justify-between items-center;
 }
 
 .rem_pass div {
-  @apply w-[134px] h-[100%] flex gap-[8px] items-center;
+  @apply w-[max-content] h-full flex gap-[8px] items-center;
 }
 
 .rem_pass div p {
   font-family: "Urbanist";
-  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---neutral-500);
+  @apply xl:text-[20px] lg:text-[12px] text-[9px];
 }
 
 .rem_pass p {
@@ -142,15 +142,13 @@
   font-weight: 500;
   line-height: normal;
   color: var(---neutral-500);
+  @apply xl:text-[20px] lg:text-[12px] text-[9px];
 }
 
 .login_details button {
-  @apply w-[100%] h-[42px] flex items-center justify-center gap-[10px] rounded-md;
-  padding: 10px 30px;
-  /* background-color: var(---neutral-500); */
+  @apply w-full lg:h-[40px] h-[35px] xl:h-[63px] flex items-center justify-center rounded-md xl:text-2xl lg:text-[12px] text-[8px];
   color: var(---white);
   font-family: "Urbanist";
-  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -158,33 +156,36 @@
 }
 
 footer {
-  @apply w-[236px] h-[25px] flex items-center gap-[5px];
+  @apply min-w-[236px] w-[max-content] h-[25px] xl:h-[35px] flex items-center gap-[5px] xl:gap-4;
 }
 
 footer h1 {
-  font-family: "Urbanist";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  color: var(---neutral-900);
-}
-
-footer p {
   font-family: "Urbanist";
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  color: var(---neutral-900);
+  @apply xl:text-[20px];
+}
+
+footer p {
+  font-family: "Urbanist";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   color: var(---neutral-500);
+  @apply xl:text-[18px];
 }
 
 .carve {
-  @apply w-[50%] h-[100%];
+  @apply w-[50%] xl:w-[55%] h-[100vh] md:flex hidden justify-end items-center;
 }
 
 .carve img {
-  width: auto;
-  height: 100%;
-  object-fit: fill 100%;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover 100%;
+  margin-right: -50px;
 }
