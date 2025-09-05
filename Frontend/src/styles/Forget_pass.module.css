@@ -1,11 +1,11 @@
-.wrapper {
-  @apply w-[100vw] h-[100vh] flex justify-center items-center;
-  padding: 341px 369px 340px 370px;
-  background: var(---white);
-}
+/* .wrapper { */
+/* @apply w-[100vw] h-[100vh] flex justify-center itemsce bg-red-400; */
+/* padding: 341px 369px 340px 370px; */
+/* background: var(---white); */
+/* } */
 
 .wrapper form {
-  @apply w-[701px] h-[343px] flex flex-col items-start gap-[25px];
+  @apply w-[701px] h-[343px] flex flex-col items-start gap-[25px] bg-blue-400;
 }
 
 .wrapper form img {

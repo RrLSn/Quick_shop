@@ -4,7 +4,7 @@
 }
 
 .login_info {
-  @apply lg:w-[450px] md:w-[350px] w-[100vw] h-[100vh] md:h-[350px] xl:w-[33%] p-4 lg:h-[450px] xl:h-[750px] inline-flex flex-col items-start xl:gap-[40px] gap-3;
+  @apply lg:w-[450px] md:w-[350px] w-[100vw] h-[100vh] md:h-[350px] xl:w-[33%] p-4 lg:h-[450px] xl:h-[750px] inline-flex flex-col items-start justify-center xl:gap-[40px] gap-3;
 }
 
 .login_info img {
@@ -58,7 +58,7 @@
 }
 
 .form_header .line {
-  @apply md:w-[30%] w-[25%] h-[1px];
+  @apply w-[30%] h-[1px];
   background: var(---line-neutral);
 }
 

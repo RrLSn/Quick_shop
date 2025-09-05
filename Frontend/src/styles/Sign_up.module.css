@@ -4,7 +4,7 @@
 }
 
 .signup_info {
-  @apply lg:w-[450px] md:w-[350px] w-[100vw] h-[100vh] md:h-[380px] xl:w-[33%] p-4 lg:h-[495px] xl:h-[1000px] inline-flex flex-col items-start xl:gap-[56px] lg:gap-4 gap-2;
+  @apply lg:w-[450px] md:w-[350px] w-[100vw] h-[100vh] md:h-[380px] xl:w-[33%] p-4 lg:h-[495px] xl:h-[1000px] inline-flex flex-col justify-center items-start xl:gap-[56px] gap-4;
 }
 
 .signup_info img {
@@ -68,7 +68,7 @@
 }
 
 .form_header .line {
-  @apply md:w-[30%] w-[25%] h-[1px];
+  @apply w-[30%] h-[1px];
   background: var(---line-neutral);
 }
 

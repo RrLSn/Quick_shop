@@ -43,7 +43,7 @@ const Forget_pass = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} w-[100vw] h-[100vw] flex justify-center items-center bg-red-400`}>
       <form onSubmit={handleSubmit} >
         <img src="/svg/Logo.svg" alt="" />
 
