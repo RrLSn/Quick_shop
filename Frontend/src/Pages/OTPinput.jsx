@@ -86,13 +86,13 @@ const OTPinput = () => {
 
   return (
     <section className="w-[100vw] h-[100vh] flex justify-center items-center">
-      <form className="xl:w-[40%] md:w-[60%] w-[80%] h-[45%] md:h-[45%] xl:h-[40%] border-2 rounded-xl flex flex-col m-auto items-center justify-center xl:gap-10 lg:gap-4 gap-2 xl:py-6 lg:py-2" onSubmit={handleVerificationSubmit}>
+      <form className="xl:w-[40%] md:w-[60%] w-[80%] h-[50%] md:h-[45%] xl:h-[40%] border-2 rounded-xl flex flex-col m-auto items-center justify-center xl:gap-10 lg:gap-4 gap-2 xl:py-6 lg:py-2" onSubmit={handleVerificationSubmit}>
         <div className="w-[full text-center">
           <h1 className="lg:text-[1.5rem] md:text-[20px] text-[16px] xl:text-5xl font-bold">Email Verification</h1>
           <p className="xl:text-2xl lg:text-[12px] text-[10px]">We sent a code to your email {email}</p>
         </div>
-        {message? <p className="text-red-600 text-2xl">{message}</p>: <p className="hidden"></p>}
-        <div className="w-full h-[max-content] flex gap-5 justify-center bg-red-400 xl:py-4 py-2">
+        {message? <p className="text-green-600 xl:text-2xl md:text-[14px] text-[12px]">{message}</p>: <p className="hidden"></p>}
+        <div className="w-full h-[max-content] flex gap-5 justify-center xl:py-4 py-2">
           {
             otp.map((data, index) => {
               return(

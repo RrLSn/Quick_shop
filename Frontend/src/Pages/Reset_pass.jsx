@@ -62,59 +62,61 @@ const Reset_pass = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <form onSubmit={handleResetPassword}>
+    <div className="w-[100vw] h-[100vh] flex justify-center items-center">
+      <div className={styles.wrapper}>
         <img src="/svg/Logo.svg" alt="" />
         <div className={styles.reset_header}>
           <h1>Reset Password</h1>
           <p>Enter your new password here</p>
         </div>
-        <div className={styles.reset_form}>
-          <p className={message? "flex" : "hidden"}>{message}</p>
-          <span>
-            <img src="/svg/lock.svg" alt="" />
-            <input 
-            type={pwdVisible ? "text" : "password"}
-            value={newPassword} 
-            ref={userRef}
-            autoComplete="off"
-            required
-            onChange={(e) => setNewPassword(e.target.value)} placeholder="Password" />
-            <div
-                  className={styles.pwdVisible}
-                  onClick={() => setPwdVisible(!pwdVisible)}
-                >
-                  {!pwdVisible ? (
-                    <img src="/svg/pass_hide.svg" alt="" />
-                  ) : (
-                    <img src="/svg/pass_show.svg" alt="" />
-                  )}
-                </div>
-          </span>
-          <span>
-            <img src="/svg/lock.svg" alt="" />
-            <input 
-            type={confirmPwdVisible ? "text" : "password"}
-            ref={userRef} 
-            autoComplete="off"
-            id="confirmPassword"
-            value={confirmPassword} 
-            required
-            onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Comfirm Password" />
-            <div
-                  className={styles.pwdVisible}
-                  onClick={() => setConfirmPwdVisible(!confirmPwdVisible)}
-                >
-                  {!confirmPwdVisible ? (
-                    <img src="/svg/pass_hide.svg" alt="" />
-                  ) : (
-                    <img src="/svg/pass_show.svg" alt="" />
-                  )}
-                </div>
-          </span>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+        <form onSubmit={handleResetPassword}>
+          <div className={styles.reset_form}>
+            <p className={message? "flex" : "hidden"}>{message}</p>
+            <span>
+              <img src="/svg/lock.svg" alt="" />
+              <input 
+              type={pwdVisible ? "text" : "password"}
+              value={newPassword} 
+              ref={userRef}
+              autoComplete="off"
+              required
+              onChange={(e) => setNewPassword(e.target.value)} placeholder="Password" />
+              <div
+                    className={styles.pwdVisible}
+                    onClick={() => setPwdVisible(!pwdVisible)}
+                  >
+                    {!pwdVisible ? (
+                      <img src="/svg/pass_hide.svg" alt="" />
+                    ) : (
+                      <img src="/svg/pass_show.svg" alt="" />
+                    )}
+                  </div>
+            </span>
+            <span>
+              <img src="/svg/lock.svg" alt="" />
+              <input 
+              type={confirmPwdVisible ? "text" : "password"}
+              ref={userRef} 
+              autoComplete="off"
+              id="confirmPassword"
+              value={confirmPassword} 
+              required
+              onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Comfirm Password" />
+              <div
+                    className={styles.pwdVisible}
+                    onClick={() => setConfirmPwdVisible(!confirmPwdVisible)}
+                  >
+                    {!confirmPwdVisible ? (
+                      <img src="/svg/pass_hide.svg" alt="" />
+                    ) : (
+                      <img src="/svg/pass_show.svg" alt="" />
+                    )}
+                  </div>
+            </span>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

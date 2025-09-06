@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className={styles.wrapper}>
       <div className={styles.footer_contents}>
         <div className={styles.content_a}>
-          <div className={styles.logo}>
+          {/* <div className={styles.logo}> */}
             <img src="/svg/Logo.svg" alt="" />
             <p>The quickest way to shop online</p>
             <span className={styles.socials}>
@@ -16,7 +16,7 @@ const Footer = () => {
               <img src="/svg/twitter.svg" alt="" />
               <img src="/svg/youtube.svg" alt="" />
             </span>
-          </div>
+          {/* </div> */}
         </div>
         <div className={styles.content_b}>
           <h1>Shop</h1>
@@ -60,7 +60,7 @@ const Footer = () => {
           </span>
         </div>
       </div>
-      <p>Copyrights. All rights reserved</p>
+      <p className={styles.copyright}>Copyrights. All rights reserved</p>
     </footer>
   );
 };

@@ -1,14 +1,13 @@
 .container {
-  @apply w-[100vw] h-[max-content] py-[56px] inline-flex items-start flex-col gap-[56px];
+  @apply w-[100vw] h-[max-content] xl:py-[56px] py-6 flex flex-col xl:gap-[56px] md:gap-5 gap-3;
 }
 
 .welcome {
-  @apply w-[100%] h-[210px] gap-[219px] flex items-center;
-  padding: 0px 197px;
+  @apply w-full h-[130px] lg:h-[180px] xl:h-[350px] flex justify-between items-center xl:px-24 md:px-8 px-4;
 }
 
 .welc_note {
-  @apply w-[611px] h-[189px] flex flex-col justify-between items-start gap-[16px];
+  @apply w-[350px] h-[80px] md:h-[100px] xl:h-[280px] xl:w-[1200px] lg:w-[480px] lg:h-[120px] flex flex-col md:justify-between items-start md:gap-[16px] gap-3;
 }
 
 .welc_note h1 {
@@ -18,38 +17,38 @@
   font-weight: 500;
   line-height: normal;
   color: var(---neutral-900);
+  @apply xl:text-8xl lg:text-4xl md:text-2xl text-[22px];
 }
 
 .welc_note p {
   color: var(---neutral-900);
   font-family: "Urbanist";
-  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  @apply xl:text-4xl lg:text-[16px] md:text-[12px] text-[9px];
 }
 
 .order_placed {
-  @apply w-[230px] h-[200px] flex flex-col items-start gap-[40px];
-  padding: 18px;
+  @apply w-[120px] h-[100px] md:w-[150px] md:h-full lg:w-[180px] xl:w-[320px] xl:h-[300px] flex flex-col items-start xl:gap-[40px] lg:gap-3 md:p-4 p-2;
   background: #f24810;
 }
 
 .order_placed img {
-  @apply w-[32px] h-[32px];
+  @apply w-[16px] h-[16px] md:w-[26px] md:h-[26px] lg:w-[26px] lg:h-[26px] xl:w-[50px] xl:h-[50px] shrink-0;
 }
 
 .order_placed div {
-  @apply w-[88px] h-[102px] flex flex-col items-start gap-[8px];
+  @apply w-full h-[max-cotent] flex flex-col items-start md:gap-[8px] gap-1;
 }
 
 .order_placed div h1 {
   font-family: "Urbanist";
-  font-size: 64px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---white);
+  @apply xl:text-8xl lg:text-[64px] md:text-4xl text-2xl;
 }
 
 .order_placed div p {
@@ -59,36 +58,33 @@
   font-weight: 500;
   line-height: normal;
   color: var(---white);
+  @apply xl:text-4xl;
 }
 
 .order {
-  @apply w-[100%] h-[286px] flex items-start gap-[40px];
-  padding: 0 197px;
+  @apply w-full md:h-[200px] h-[150px] xl:h-[500px] flex items-center justify-center md:gap-[40px] xl:gap-40 md:px-0 px-4 gap-4;
 }
 
 .prev_order,
 .recnt_order {
-  @apply w-[439px] h-[277px] flex flex-col items-start gap-[40px];
+  @apply md:w-[220px] w-[170px] lg:w-[300px] h-full xl:w-[600px] flex flex-col items-start xl:gap-20 lg:gap-10 xl:py-16 xl:px-8 lg:p-4 p-2;
 }
 
 .prev_order {
-  padding: 64px 32px;
-  border: 1px solid var(---neutral-300);
+  @apply xl:border-2 border border-[var(---neutral-300)];
 }
 
 .prev_order div:nth-child(1) {
-  @apply w-[100%] h-[32px] flex justify-between items-center;
+  @apply w-full h-[32px] flex justify-between items-center;
 }
 
 .prev_order div:nth-child(1) img {
-  @apply w-[32px] h-[32px] shrink-0;
+  @apply w-[18px] h-[18px] lg:w-[32px] lg:h-[32px] md:w-[24px] md:h-[24px] xl:w-[60px] xl:h-[60px] shrink-0;
 }
 
 .prev_order div:nth-child(1) p {
-  @apply h-[100%] flex justify-center items-center gap-[10px];
-  padding: 4px 12px;
+  @apply h-full flex justify-center items-center gap-[10px] xl:text-3xl  lg:text-[14px] text-[10px];
   font-family: "Urbanist";
-  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -97,20 +93,20 @@
 }
 
 .order_details {
-  @apply w-[100%] h-[86px] flex flex-col items-start gap-[12px] self-stretch;
+  @apply w-full h-[86px] xl:h-[300px] flex flex-col items-start lg:gap-[12px] gap-2 xl:gap-2;
 }
 
 .order_details div:nth-child(1) {
-  @apply w-[232px] h-[47px] flex flex-col items-start gap-[4px];
+  @apply w-full h-[40px] xl:h-[100px] xl:w-full flex flex-col items-start md:gap-1;
 }
 
 .order_details div:nth-child(1) h1 {
   font-family: "Urbanist";
-  font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   color: var(---neutral-700);
+  @apply xl:text-5xl lg:text-[20px] md:text-[18px] text-[14px];
 }
 
 .order_details div:nth-child(1) p {
@@ -121,23 +117,23 @@
   line-height: normal;
   color: var(---neutral-300);
   padding-left: 0;
+  @apply xl:text-2xl;
 }
 
 .order_info {
-  @apply w-[217px] h-[19px] flex items-start gap-[16px];
+  @apply w-full h-[max-content] xl:h-[100px] flex items-start md:gap-8 gap-4;
 }
 
 .order_info span {
-  @apply w-[92px] h-[100%] flex justify-center items-center gap-[10px];
-  border-radius: 4px;
+  @apply md:w-[80px] w-[50px] h-[25px] xl:w-[200px] md:h-[30px] flex justify-center items-center gap-[10px] xl:text-2xl xl:h-[45px] md:text-[12px] text-[7px] rounded;
   background: var(---neutral-50);
   font-family: "Urbanist";
-  font-size: 13px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   color: var(---neutral-500);
 }
+
 .recnt_order div:nth-child(1) {
   @apply w-[100%] h-[45px] flex flex-col items-start gap-[4px] self-stretch;
 }
@@ -149,26 +145,26 @@
   font-weight: 700;
   line-height: normal;
   color: var(---neutral-700);
+  @apply xl:text-5xl lg:text-[20px] md:text-[18px] text-[14px];
 }
 
 .recnt_order div:nth-child(1) p {
   font-family: "Urbanist";
-  font-size: 14px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  color: var(---neutral-500);
+  color: var(---neutral-300);
+  padding-left: 0;
+  @apply xl:text-2xl;
 }
 
 .profile {
-  @apply w-[100%] h-[255px] flex items-start gap-[40px];
-  padding: 0 197px;
+  @apply w-full md:h-[200px] h-[150px] xl:h-[500px] flex items-center justify-center md:gap-[40px] xl:gap-40 md:px-0 px-4 gap-4;
 }
 
 .profile_edit {
-  @apply w-[439px] h-[100%] flex flex-col items-start gap-[40px];
-  padding: 64px 32px;
-  border: 1px solid var(---neutral-300);
+  @apply w-[170px] md:w-[220px] lg:w-[300px] h-full xl:w-[600px] flex flex-col items-start xl:border-2 border-[var(---neutral-300)] xl:gap-20 lg:gap-10 xl:py-16 xl:px-8 lg:p-4 p-2;
 }
 
 .profile_edit div:nth-child(1) {
@@ -176,14 +172,12 @@
 }
 
 .profile_edit div:nth-child(1) img {
-  @apply w-[40px] h-[40px] shrink-0;
+  @apply w-[20px] h-[20px] md:w-[26px] md:h-[26px] lg:w-[32px] lg:h-[32px] xl:w-[50px] xl:h-[50px] shrink-0;
 }
 
 .profile_edit div:nth-child(1) p {
-  @apply h-[100%] flex justify-center items-center gap-[10px];
-  padding: 4px 12px;
+  @apply md:h-[28px] h-[18px] xl:h-[36px] lg:w-[76px] border p-2 xl:text-2xl flex justify-center items-center gap-[10px] lg:text-[14px] md:text-[10px] text-[8px];
   font-family: "Urbanist";
-  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -192,32 +186,30 @@
 }
 
 .profile_intro {
-  @apply w-[100%] h-[47px] flex flex-col items-start gap-[12px] self-stretch;
+  @apply w-full h-[47px] flex flex-col items-start gap-[12px] self-stretch;
 }
 
 .profile_intro h1 {
   font-family: "Urbanist";
-  font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   color: var(---neutral-700);
+  @apply xl:text-5xl lg:text-[20px] md:text-[18px] text-[14px];
 }
 
 .profile_intro p {
   font-family: "Urbanist";
-  font-size: 10px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---neutral-300);
   padding-left: 0;
+  @apply xl:text-2xl md:text-[10px] text-[8px];
 }
 
 .settings_edit {
-  @apply w-[439px] h-[100%] flex flex-col items-start gap-[40px];
-  padding: 64px 32px;
-  border: 1px solid var(---neutral-300);
+  @apply w-[170px] md:w-[220px] h-full lg:w-[300px] xl:w-[600px] flex flex-col items-start   xl:border-2 border border-[var(---neutral-300)] xl:gap-20 lg:gap-10 xl:py-16 xl:px-8 lg:p-4 p-2;
 }
 
 .settings_edit div:nth-child(1) {
@@ -225,14 +217,12 @@
 }
 
 .settings_edit div:nth-child(1) img {
-  @apply w-[40px] h-[40px] shrink-0;
+  @apply w-[20px] h-[20px] md:w-[26px] md:h-[26px] lg:w-[32px] lg:h-[32px] xl:w-[50px] xl:h-[50px] shrink-0;
 }
 
 .settings_edit div:nth-child(1) p {
-  @apply h-[100%] flex justify-center items-center gap-[10px];
-  padding: 4px 12px;
+  @apply h-[18px] md:h-[28px] xl:h-[36px] xl:w-[110px] lg:w-[76px] flex justify-center items-center gap-[10px] p-2 border xl:text-2xl lg:text-[14px] md:text-[10px] text-[8px];
   font-family: "Urbanist";
-  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -241,7 +231,7 @@
 }
 
 .settings_intro {
-  @apply w-[100%] h-[47px] flex flex-col items-start gap-[12px] self-stretch;
+  @apply w-full h-[47px] flex flex-col items-start gap-[12px] self-stretch;
 }
 
 .settings_intro h1 {
@@ -251,14 +241,15 @@
   font-weight: 700;
   line-height: normal;
   color: var(---neutral-700);
+  @apply xl:text-5xl lg:text-[20px] md:text-[18px] text-[14px];
 }
 
 .settings_intro p {
   font-family: "Urbanist";
-  font-size: 10px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---neutral-300);
   padding-left: 0;
+  @apply xl:text-2xl md:text-[10px] text-[8px];
 }

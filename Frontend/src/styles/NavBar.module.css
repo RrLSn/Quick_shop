@@ -1,37 +1,33 @@
 nav {
-  @apply w-[100vw] h-[80px] flex justify-between items-center px-[60px];
+  @apply w-[100vw] h-[80px] lg:h-[60px] xl:h-[130px] md:h-[45px] md:flex hidden justify-between items-center xl:px-[60px] lg:px-[30px] md:px-[15px];
   background-color: var(---white);
-  overflow-x: hidden;
 }
 
 .logo {
-  @apply h-[30px] w-[133.448px];
+  @apply h-[30px] w-[133.448px] lg:w-[80px] md:w-[60px] xl:w-[200px] xl:h-[60px];
   flex-shrink: 0;
 }
 
 .barText {
-  font-size: 16px;
   font-weight: 500;
   line-height: normal;
   font-family: "Urbanist";
   font-style: normal;
-  @apply w-[407px] h-[100%] flex justify-between items-center px-[30px];
+  @apply w-[407px] h-full lg:w-[350px] md:w-[250px] xl:w-[600px] flex justify-between items-center text-[16px] xl:text-2xl lg:text-[14px] md:text-[12px];
 }
 
 .cartUser {
-  @apply w-[118px] h-[30px] flex justify-center items-center gap-[30px];
+  @apply w-[118px] h-[30px] lg:w-[150px] lg:h-[70px] md:w-[100px] md:h-[40px] xl:w-[270px] xl:h-[100px] flex justify-center items-center gap-[30px];
 }
 
 .drop_modal {
-  @apply w-[123px] min-h-[84px] h-[max-content] flex flex-col gap-[1px] justify-between bg-[#eee] absolute top-[5.5rem];
+  @apply w-[123px] min-h-[84px] h-[max-content] xl:w-[270px] md:w-[100px] lg:w-[150px] flex flex-col gap-[1px] bg-[#eee]  absolute xl:top-[7rem] lg:top-[3.7rem];
   box-shadow: 0px 0px 8px 0px rgba(198, 198, 198, 0.25);
 }
 
 .drop_modal p {
-  @apply w-[100%] h-[49%] flex justify-center items-center self-stretch gap-[10px] text-black bg-white;
-  padding: 10px 30px;
+  @apply w-full h-[49%] lg:h-[45px] md:h-[28px] xl:h-[80px] flex justify-center items-center self-stretch gap-[10px] text-black hover:bg-[#F24810] cursor-pointer lg:text-[18px] md:text-[14px] xl:text-2xl;
   font-family: "Urbanist";
-  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -46,11 +42,10 @@ nav {
 }
 
 .cart div {
-  @apply w-[40px] h-[23px] rounded-full flex text-center justify-center items-center;
+  @apply w-[23px] h-[23px] lg:w-[15px] lg:h-[15px] md:w-[14px] md:h-[10px] rounded-full flex text-center justify-center items-center xl:text-[12px] lg:text-[10px] text-[8px];
   background-color: var(---black);
   color: var(---white);
   font-family: "Urbanist";
-  font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;

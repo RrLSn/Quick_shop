@@ -41,8 +41,8 @@ const NavBar = () => {
 
   return (
     <nav>
-      <Link to="/" className={styles.logo}>
-        <img src="/svg/Logo.svg" alt="" />
+      <Link to="/">
+        <img src="/svg/Logo.svg" alt="" className={styles.logo} />
       </Link>
       <span className={styles.barText}>
         <Link to="/">
@@ -57,16 +57,16 @@ const NavBar = () => {
       <div>
         <span className={styles.cartUser}>
           <div className={styles.cart} onClick={handleToCart}>
-            <img src="/svg/CartIcon.svg" alt="Icon" />
+            <img src="/svg/CartIcon.svg" alt="Icon" className="xl:w-[45px] xl:h-[40px] md:w-[25px] md:h-[15px]" />
             <div>{itemsInCart}</div>
           </div>
-          <div className=" w-[58px] gap-[4px] flex items-center cursor-pointer" onClick={() => setDrop(!drop)}>
-            <img src="/svg/UserIcon.svg" alt="" />
+          <div className=" w-[max-content] gap-[4px] flex items-center cursor-pointer" onClick={() => setDrop(!drop)}>
+            <img src="/svg/UserIcon.svg" alt="" className="xl:w-[45px] xl:h-[40px] md:w-[25px] md:h-[15px]" />
             <div>
               {drop ? (
-                <img src="/svg/ChevronUp.svg" alt="" />
+                <img src="/svg/ChevronUp.svg" alt="" className="xl:w-[45px] xl:h-[40px] lg:w-[20px] lg:h-[15px] w-[15px] h-[10px]" />
               ) : (
-                <img src="/svg/ChevronDown.svg" alt="" />
+                <img src="/svg/ChevronDown.svg" alt="" className="xl:w-[30px] xl:h-[20px] lg:w-[20px] lg:h-[15px]  w-[15px] h-[10px]" />
               )}
             </div>
           </div>
