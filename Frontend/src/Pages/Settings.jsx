@@ -107,83 +107,83 @@ const Settings = () => {
       <div className={styles.updates}>
         <div className={styles.update_pass}>
           <h1>Update Account Password</h1>
-          <form id="update_pass" name="update_pass" onSubmit={handleUpdatePassword}>
-            <p className={message ? "flex" : "hidden"}>{message}</p>
-            <span>
-              <img src="/svg/lock.svg" alt="" />
-              <input
-                type={pwdVisible ? "text" : "password"}
-                placeholder="Current Password"
-                id="currentPassword"
-                  ref={userRef}
-                autoComplete="off"
-                value={currentPassword}
-                required
-                onChange={(e) => setCurrentPassword(e.target.value)}
-              />
-              <div className={styles.pwdVisible} onClick={() => setPwdVisible(!pwdVisible)}>
-                {!pwdVisible ? (
-                  <img src="/svg/pass_hide.svg" alt="" />
-                ) : (
-                  <img src="/svg/pass_show.svg" alt="" />
-                )}
-              </div>
-            </span>
-            <span>
-              <img src="/svg/lock.svg" alt="" />
-              <input
-                type={confirmPwdVisible ? "text" : "password"}
-                placeholder="New Password"
-                id="newPassword"
-                  ref={userRef}
-                autoComplete="off"
-                value={newPassword}
-                required
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
-              <div className={styles.pwdVisible} onClick={() => setConfirmPwdVisible(!confirmPwdVisible)}>
-                {!confirmPwdVisible ? (
-                  <img src="/svg/pass_hide.svg" alt="" />
-                ) : (
-                  <img src="/svg/pass_show.svg" alt="" />
-                )}
-              </div>
-            </span>
-            <button>Save Changes</button>
-          </form>
+            <p className={message ? "flex text-green-400 font-bold lg:text-[18px] text-[12px]" : "hidden"}>{message}</p>
+            <form id="update_pass" name="update_pass" onSubmit={handleUpdatePassword}>
+              <span>
+                <img src="/svg/lock.svg" alt="" />
+                <input
+                  type={pwdVisible ? "text" : "password"}
+                  placeholder="Current Password"
+                  id="currentPassword"
+                    ref={userRef}
+                  autoComplete="off"
+                  value={currentPassword}
+                  required
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                />
+                <div className={styles.pwdVisible} onClick={() => setPwdVisible(!pwdVisible)}>
+                  {!pwdVisible ? (
+                    <img src="/svg/pass_hide.svg" alt="" />
+                  ) : (
+                    <img src="/svg/pass_show.svg" alt="" />
+                  )}
+                </div>
+              </span>
+              <span>
+                <img src="/svg/lock.svg" alt="" />
+                <input
+                  type={confirmPwdVisible ? "text" : "password"}
+                  placeholder="New Password"
+                  id="newPassword"
+                    ref={userRef}
+                  autoComplete="off"
+                  value={newPassword}
+                  required
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+                <div className={styles.pwdVisible} onClick={() => setConfirmPwdVisible(!confirmPwdVisible)}>
+                  {!confirmPwdVisible ? (
+                    <img src="/svg/pass_hide.svg" alt="" />
+                  ) : (
+                    <img src="/svg/pass_show.svg" alt="" />
+                  )}
+                </div>
+              </span>
+              <button>Save Changes</button>
+            </form>
         </div>
         <div className={styles.update_locatn}>
           <h1>Delivery Location</h1>
-          <form id="update_locatn" name="update_locatn" onSubmit={handleDeliveryUpdates}>
-          <p className={deliveryInfoMsg ? "flex" : "hidden"}>{deliveryInfoMsg}</p>
-            <div className={styles.custom_dropdown}>
-              <select value={country} onChange={(e) => setCountry(e.target.value)}>
-                <option value="">Select Country</option>
-                <option value="Nigeria">Nigeria</option>
-              </select>
-            </div>
-            <div className={styles.custom_dropdown}>
-              <select value={state} onChange={(e) => setState(e.target.value)}>
-                <option value="">Select State</option>
-                {states.map((state, index) => (
-                  <option value={state} key={index}>
-                    {state}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <span>
-              <img src="/svg/location.svg" alt="" />
-              <input 
-              type="text" 
-              placeholder="Street Address" 
-              autoComplete="off" 
-              ref={userRef} 
-              value={address}
-              onChange={(e) => setAddress(e.target.value)} />
-            </span>
-            <button>Save Changes</button>
-          </form>
+          <p className={deliveryInfoMsg ? "flex text-green-400 font-bold lg:text-[18px] text-[12px]" : "hidden"}>{deliveryInfoMsg}</p>
+          <form id="update_locatn" name="update_locatn" className="w-full h-full" onSubmit={handleDeliveryUpdates}>
+              <div className={styles.custom_dropdown}>
+                <select value={country} onChange={(e) => setCountry(e.target.value)}>
+                  <option value="">Select Country</option>
+                  <option value="Nigeria">Nigeria</option>
+                </select>
+              </div>
+              <div className={styles.custom_dropdown}>
+                <select value={state} onChange={(e) => setState(e.target.value)}>
+                  <option value="">Select State</option>
+                  {states.map((state, index) => (
+                    <option value={state} key={index}>
+                      {state}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <span>
+                <img src="/svg/location.svg" alt="" />
+                <input 
+                type="text" 
+                placeholder="Street Address" 
+                autoComplete="off" 
+                ref={userRef} 
+                value={address}
+                onChange={(e) => setAddress(e.target.value)} />
+              </span>
+              <button>Save Changes</button>
+            </form>
         </div>
       </div>
       <div className={styles.card}>
@@ -194,10 +194,10 @@ const Settings = () => {
             <label></label>
           </div>
         </div>
-        <span>
-          <img src="" alt="" />
+        {/* <span>
+          <img src="" alt="" /> */}
           <p>7456 **** **** **17</p>
-        </span>
+        {/* </span> */}
       </div>
     </section>
   );

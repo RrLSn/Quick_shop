@@ -17,7 +17,7 @@ const Checkout_page = () => {
         </div>
         <div className="w-full h-[852px] flex gap-[40px]">
             <div className="w-[829px] h-[698px] flex flex-col gap-[40px]"></div>
-            <form className="w-[395px] h-[max-content] border-[1px] p-[32px] flex flex-col gap-[40px]">
+            <form id="submit" className="w-[395px] h-[max-content] border-[1px] p-[32px] flex flex-col gap-[40px]">
                 <h1 className="font-Urbanist font-[700] text-[28px] leading-[33.6px]">Cart Total</h1>
                 <div className="w-full h-[248px]">
                     <span className={estimation_style}>

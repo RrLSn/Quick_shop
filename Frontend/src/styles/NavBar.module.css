@@ -1,10 +1,10 @@
 nav {
-  @apply w-[100vw] h-[80px] lg:h-[60px] xl:h-[130px] md:h-[45px] md:flex hidden justify-between items-center xl:px-[60px] lg:px-[30px] md:px-[15px];
+  @apply w-[100vw] h-[80px] lg:h-[60px] xl:h-[80px] md:h-[45px] md:flex hidden justify-between items-center xl:px-[40px] lg:px-[30px] md:px-[15px];
   background-color: var(---white);
 }
 
 .logo {
-  @apply h-[30px] w-[133.448px] lg:w-[80px] md:w-[60px] xl:w-[200px] xl:h-[60px];
+  @apply h-[30px] w-[133.448px] lg:w-[70px] md:w-[60px] xl:w-[150px] xl:h-[4s0px];
   flex-shrink: 0;
 }
 
@@ -13,20 +13,20 @@ nav {
   line-height: normal;
   font-family: "Urbanist";
   font-style: normal;
-  @apply w-[407px] h-full lg:w-[350px] md:w-[250px] xl:w-[600px] flex justify-between items-center text-[16px] xl:text-2xl lg:text-[14px] md:text-[12px];
+  @apply w-[407px] h-full lg:w-[350px] md:w-[250px] xl:w-[400px] flex justify-between items-center text-[16px] xl:text-[1.2rem] lg:text-[14px] md:text-[12px];
 }
 
 .cartUser {
-  @apply w-[118px] h-[30px] lg:w-[150px] lg:h-[70px] md:w-[100px] md:h-[40px] xl:w-[270px] xl:h-[100px] flex justify-center items-center gap-[30px];
+  @apply w-[118px] h-[30px] lg:w-[150px] lg:h-[70px] md:w-[100px] md:h-[40px] xl:w-[180px] xl:h-[100px] flex justify-center items-center gap-[30px];
 }
 
 .drop_modal {
-  @apply w-[123px] min-h-[54px] h-[max-content] xl:w-[270px] md:w-[100px] lg:w-[150px] flex flex-col gap-[1px] bg-[#eee]  absolute xl:top-[7rem] lg:top-[3.7rem];
+  @apply w-[123px] min-h-[54px] h-[max-content] xl:w-[180px] md:w-[100px] lg:w-[150px] flex flex-col gap-[1px] bg-[#eee]  absolute xl:top-[5rem] lg:top-[3.7rem];
   box-shadow: 0px 0px 8px 0px rgba(198, 198, 198, 0.25);
 }
 
 .drop_modal p {
-  @apply w-full h-[49%] lg:h-[45px] md:h-[28px] xl:h-[80px] flex justify-center items-center self-stretch gap-[10px] text-black hover:bg-[#F24810] cursor-pointer lg:text-[18px] md:text-[14px] xl:text-2xl;
+  @apply w-full h-[49%] lg:h-[45px] md:h-[28px] xl:h-[60px] flex justify-center items-center self-stretch gap-[10px] text-black hover:bg-[#F24810] cursor-pointer lg:text-[18px] md:text-[14px] xl:text-[1.2rem];
   font-family: "Urbanist";
   font-style: normal;
   font-weight: 500;

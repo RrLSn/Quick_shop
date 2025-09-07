@@ -1,31 +1,30 @@
 .wrapper {
-  @apply w-[100vw] h-[max-content] flex flex-col items-center gap-[56px] py-[56px];
+  @apply w-[100vw] h-[max-content] flex flex-col items-center lg:gap-10 lg:py-7 md:gap-5 gap-3 py-4;
 }
 
 .header {
-  @apply w-[100%] h-[63px] flex flex-col items-center gap-[8px] px-[88px];
+  @apply w-full lg:h-[63px] md:h-[58px] h-[max-content] xl:h-[80px] flex flex-col items-center lg:gap-2 gap-1;
 }
 
 .header h1 {
   font-family: "Urbanist";
-  font-size: 32px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---black);
+  @apply xl:text-4xl lg:text-[32px] md:text-[24px] text-[20px];
 }
 
 .header span {
-  @apply w-[188px] h-[17px] flex items-start gap-[8px];
+  @apply w-full h-[max-content] flex justify-center xl:gap-4 lg:gap-2 lg:text-[18px] gap-1 md:text-[14px] text-[12px] xl:text-2xl;
   color: #b2b2b2;
-}
-
-.header span p {
   font-family: "Urbanist";
-  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.header span p {
   cursor: pointer;
 }
 
@@ -34,42 +33,45 @@
 }
 
 .updates {
-  @apply w-[100%] h-[857px] flex flex-col  gap-[40px];
+  @apply w-full h-[max-content] flex flex-col items-center xl:gap-20 lg:gap-10 gap-6 md:p-0 p-4;
 }
 
 .update_pass {
-  @apply w-[735px] h-[272px] flex flex-col items-start self-stretch gap-[40px] m-auto;
+  @apply xl:w-[735px] lg:w-[600px] md:w-[450px] w-full h-[max-content] flex flex-col items-start lg:gap-3 gap-2;
+}
+
+.update_pass form {
+  @apply w-full h-full flex flex-col lg:gap-5 gap-3;
 }
 
 .update_pass h1,
 .update_locatn h1 {
   font-family: "Urbanist";
-  font-size: 22px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   color: var(---black);
+  @apply xl:text-2xl lg:text-[20px] text-[16px];
 }
 
 .update_pass button,
 .update_locatn button {
-  @apply w-[180px] h-[44px] flex justify-center items-center gap-[10px] rounded-md px-[20px];
+  @apply lg:w-[180px] md:w-[140px] w-[130px] lg:h-[44px] h-[35px] flex justify-center items-center rounded-md font-bold lg:text-[18px] md:text-[12px] text-[10px];
   background: var(---neutral-500);
   color: var(---white);
 }
 
 .update_pass span {
-  @apply w-[100%] h-[50px] flex items-center justify-between px-[1.5rem] bg-[#eee];
+  @apply w-full lg:h-[50px] h-[40px] flex items-center justify-between px-3 bg-[#eee];
 }
 
 .update_pass span img {
-  @apply w-[14px] h-[14px];
+  @apply xl:w-[20px] xl:h-[20px] lg:w-[16px] lg:h-[16px] w-[12px] h-[12px];
 }
 
 .update_pass span input {
-  @apply w-[97%] h-[100%] outline-none;
+  @apply w-[97%] h-full outline-none xl:py-4 xl:px-1;
   background-color: var(---neutral-50);
-  padding: 16px 5px;
 }
 
 .update_pass span input::placeholder {
@@ -79,38 +81,42 @@
   font-weight: 500;
   line-height: normal;
   color: var(---neutral-500);
+  @apply xl:text-[18px] lg:text-[16px] text-[12px];
 }
 
 .pwdVisible img {
-  @apply w-[14px] h-[14px] cursor-pointer;
+  @apply xl:w-[20px] xl:h-[20px] lg:w-[16px] lg:h-[16px] w-[12px] h-[12px] cursor-pointer;
 }
 
 .update_locatn {
-  @apply w-[735px] h-[354px] flex flex-col items-start self-stretch gap-[40px] m-auto;
+  @apply xl:w-[735px] lg:w-[600px] md:w-[450px] w-full h-[max-content] flex flex-col items-start lg:gap-4 gap-2;
+}
+
+.update_locatn form {
+  @apply w-full h-full flex flex-col lg:gap-5 gap-3;
 }
 
 .custom_dropdown {
-  @apply w-[100%] h-[50px] flex items-center justify-between pr-[1.5rem]  bg-[#eee];
+  @apply w-full lg:h-[50px] h-[40px] flex items-center justify-between lg:pr-[1.5rem] pr-[1rem]  bg-[#eee];
 }
 
 .custom_dropdown select {
-  @apply w-[100%] h-[100%] bg-[#eee] px-[1.5rem];
+  @apply w-full h-full bg-[#eee] lg:px-[1.5rem] px-[1rem];
   outline: none;
   position: relative;
 }
 
 .update_locatn span {
-  @apply w-[100%] h-[50px] flex items-center justify-between px-[1.5rem] bg-[#eee];
+  @apply w-full lg:h-[50px] h-[40px] flex items-center justify-between lg:px-[1.5rem] px-[1rem] bg-[#eee];
 }
 
 .update_locatn span img {
-  @apply w-[14px] h-[14px];
+  @apply xl:w-[20px] xl:h-[20px] lg:w-[16px] lg:h-[16px] w-[12px] h-[12px];
 }
 
 .update_locatn span input {
-  @apply w-[97%] h-[100%] outline-none;
+  @apply w-[97%] h-full outline-none xl:py-4 xl:px-2;
   background-color: var(---neutral-50);
-  padding: 16px 5px;
 }
 
 .update_locatn span input::placeholder {
@@ -123,18 +129,14 @@
 }
 
 .card {
-  @apply w-[444px] h-[145px] flex flex-col items-start gap-[36px];
-}
-
-.card div {
-  @apply w-[394px] h-[40px] flex p-[20px] justify-between items-center;
-}
-
-.card div h1 {
+  @apply w-full xl:h-[145px] lg:h-[100px] h-[80px] flex flex-col items-center lg:gap-6 gap-3 lg:text-[18px] text-[12px] md:px-0 px-7;
   font-family: "Urbanist";
-  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---neutral-500);
+}
+
+.card div {
+  @apply md:w-[394px] w-full h-[40px] flex justify-between items-center;
 }

@@ -1,32 +1,29 @@
 .wrapper {
-  @apply w-[100vw] h-[max-content] py-[56px] flex flex-col gap-[56px];
+  @apply w-[100vw] h-[100vh] md:h-[80vh] lg:h-[80vh] md:p-6 p-4 lg:py-6 flex flex-col lg:gap-7 md:gap-5 gap-3 xl:px-10 lg:px-8;
 }
 
 .header_div {
-  @apply w-[100%] h-[63px] flex flex-col items-start gap-[8px] self-stretch;
-  padding: 0 88px;
+  @apply w-full lg:h-[70px] h-[55px] flex flex-col items-start gap-1 xl:gap-2 self-stretch;
 }
 
 .header_div h1 {
   font-family: "Urbanist";
-  font-size: 32px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---black);
+  @apply lg:text-3xl text-2xl;
 }
 
 .header_div span {
-  @apply w-[188px] h-[17px] flex items-start gap-[8px];
+  @apply w-[max-content] h-[max-content] flex items-start gap-[8px] lg:text-[18px] text-[12px];
   color: #b2b2b2;
 }
 
 .header_div span p {
   font-family: "Urbanist";
-  font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: normal;
   cursor: pointer;
 }
 
@@ -35,77 +32,76 @@
 }
 
 .main {
-  @apply w-[100%] h-[354px] flex justify-between;
-  padding: 0 88px;
+  @apply w-full lg:h-[354px] md:h-[254px] h-full xl:h-[430px] md:flex justify-between;
 }
 
 .Profile_details {
-  @apply w-[395px] h-[100%] flex flex-col items-end shrink-0 self-stretch gap-[24px];
+  @apply md:w-[300px] w-full lg:w-[400px] md:h-full h-[150px] xl:w-[600px] flex flex-col items-end shrink-0 self-stretch lg:p-6 p-3 lg:gap-6 gap-3 md:mb-0 mb-5;
 }
 
 .Profile_details span {
-  @apply w-[100%] h-[22px] flex justify-between items-center self-stretch;
+  @apply w-full h-[22px] flex justify-between items-center self-stretch;
 }
 
 .Profile_details span h1 {
   font-family: "Urbanist";
-  font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   color: var(---neutral-500);
+  @apply xl:text-2xl lg:text-[18px] text-[14px];
 }
 
 .Profile_details span p {
   font-family: "Urbanist";
-  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   color: var(---neutral-500);
+  @apply xl:text-[22px] lg:text-[16px] text-[12px];
 }
 
 .update_profile {
-  @apply w-[612px] h-[100%] flex flex-col items-start gap-[40px] shrink-0;
+  @apply md:w-[350px] w-full lg:w-[450px] md:h-full h-[250px] xl:w-[600px] flex flex-col items-start xl:gap-6 gap-2 shrink-0 lg:p-6 p-3;
 }
 
 .update_profile h1 {
   font-family: "Urbanist";
-  font-size: 22px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   color: var(---black);
+  @apply xl:text-2xl lg:text-[22px] text-[14px];
 }
 
 .update_profile form {
-  @apply w-[100%] h-[288px] flex flex-col items-start self-stretch gap-[32px];
+  @apply w-full h-[max-content] flex flex-col items-start self-stretch lg:gap-[20px] gap-3;
 }
 
 .input {
-  @apply w-[100%] h-[50px] flex items-center gap-[4px] self-stretch bg-[#eee] rounded-md px-[15px];
+  @apply w-full lg:h-[46px] h-[36px] xl:h-[60px] flex items-center gap-2 xl:gap-4 self-stretch bg-[#eee] rounded-md lg:px-3 px-2;
 }
 
 .input img {
-  @apply w-[14px] h-[14px];
+  @apply lg:w-[14px] lg:h-[14px] w-[12px] h-[12px] xl:w-[30px] xl:h-[20px];
 }
 
 .input input {
-  @apply w-[90%] h-[90%] bg-[#eee];
+  @apply w-[90%] h-full bg-[#eee];
   outline: none;
 }
 
 .input input::placeholder {
   font-family: "Urbanist";
-  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---neutral-500);
+  @apply xl:text-[22px] lg:text-[16px] text-[12px];
 }
 
 .update_profile form button {
-  @apply w-[180px] h-[44px] flex justify-center items-center gap-[10px] rounded-md px-[20px];
+  @apply w-[130px] h-[34px] lg:w-[170px] lg:h-[44px] xl:w-[220px] xl:h-[60px] flex justify-center items-center rounded-md xl:text-[22px] font-bold lg:text-[14px] text-[10px];
   background: var(---neutral-500);
   color: var(---white);
 }

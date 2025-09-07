@@ -91,7 +91,7 @@ const Profile_page = () => {
         <div className={styles.update_profile}>
           <h1>Update Profile</h1>
           <form name="update" id="update" onSubmit={handleUpdateUserInfo}>
-          <p className={message ? "flex" : "hidden"}>{message}</p>
+          <p className={message ? "flex xl:text-2xl lg:text-[16px] md:text-[12px] text-[10px] text-green-400 font-bold" : "hidden"}>{message}</p>
             <span className={styles.input}>
               <img src="/svg/contactIcon.svg" alt="" />
               <input 

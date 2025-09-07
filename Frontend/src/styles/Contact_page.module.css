@@ -1,30 +1,29 @@
 .wrapper {
-  @apply w-[100vw] h-[max-content] inline-flex flex-col items-start gap-[56px];
+  @apply w-[100vw] h-[max-content] inline-flex flex-col items-start lg:gap-[38px] md:gap-6 gap-3 xl:px-20 lg:p-10 p-6;
   background: var(---white);
 }
 
 .page_title {
-  @apply w-[100%] h-[63px] flex flex-col items-start gap-[8px];
-  padding: 0 88px;
+  @apply w-full h-[63px] flex flex-col items-start gap-2;
 }
 
 .page_title h1 {
   font-family: "Urbanist";
-  font-size: 32px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---black);
+  @apply xl:text-3xl lg:text-[32px] text-2xl;
 }
 
 .page_title span {
-  @apply w-[109px] h-[17px] flex items-start gap-[8px];
+  @apply w-[109px] h-[17px] flex items-start lg:gap-2 gap-1;
   font-family: "Urbanist";
-  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---neutral);
+  @apply xl:text-[18px] lg:text-[14px] text-[12px];
 }
 
 .page_title span p:hover {
@@ -32,30 +31,29 @@
 }
 
 .contact {
-  @apply w-[100%] h-[594px] flex items-start gap-[40px];
-  padding: 0 88px;
+  @apply w-full xl:h-[594px] lg:h-[450px] md:h-[330px] h-[max-content] md:flex items-start lg:gap-[40px] gap-5;
   background: var(---white);
 }
 
 .contact_info {
-  @apply w-[50%] h-[100%] flex flex-col items-start gap-[40px];
+  @apply md:w-[50%] w-full h-full flex flex-col items-start lg:gap-[40px] gap-5 md:mb-0 mb-7;
 }
 
 .contact_details {
-  @apply w-[100%] h-[114px] flex flex-col gap-[24px];
+  @apply w-full h-[max-content] flex flex-col gap-[24px] py-6;
 }
 
 .contact_details span {
-  @apply w-[100%] h-[22px] flex justify-between self-stretch;
+  @apply w-full lg:h-[22px] h-[14px] flex justify-between self-stretch;
 }
 
 .contact_details span h1 {
   font-family: "Urbanist";
-  font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   color: var(---neutral-500);
+  @apply lg:text-[18px] text-[14px];
 }
 
 .contact_details span p {
@@ -65,32 +63,33 @@
   font-weight: 400;
   line-height: normal;
   color: var(---neutral-500);
+  @apply lg:text-[16px] text-[12px];
 }
 
 .map {
-  @apply w-[100%] h-[440px] self-stretch border-[1px];
+  @apply w-full h-[300px] self-stretch border-[1px];
 }
 
 .input_info {
-  @apply w-[50%] h-[586px] flex flex-col items-start shrink-0 gap-[40px];
+  @apply md:w-[50%] w-full lg:h-[450px] h-[330px] flex flex-col items-start shrink-0 lg:gap-5 gap-4;
 }
 
 .input_info h1 {
   font-family: "Urbanist";
-  font-size: 22px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   align-self: stretch;
   color: var(---neutral-500);
+  @apply lg:text-[22px] text-[16px];
 }
 
 form {
-  @apply w-[100%] h-[520px] flex items-start flex-col gap-[32px] self-stretch;
+  @apply w-full lg:h-[520px] h-[400px] flex items-start flex-col lg:gap-4 gap-3 self-stretch;
 }
 
 form .input1 {
-  @apply w-[100%] h-[50px] rounded-md px-[16px];
+  @apply w-full lg:h-[40px] h-[35px] rounded-md px-[16px];
   background: var(---neutral-50);
   font-family: "Urbanist";
   font-size: 14px;
@@ -102,11 +101,11 @@ form .input1 {
 }
 
 form span {
-  @apply w-[100%] h-[50px] flex items-center gap-[32px] self-stretch;
+  @apply w-full lg:h-[40px] h-[35px] flex items-center gap-[32px] self-stretch;
 }
 
 form span .input2 {
-  @apply w-[50%] h-[100%] px-[16px] rounded-md;
+  @apply w-[50%] h-full px-[16px] rounded-md;
   background: var(---neutral-50);
   font-family: "Urbanist";
   font-size: 14px;
@@ -118,7 +117,7 @@ form span .input2 {
 }
 
 form textarea {
-  @apply w-[100%] h-[200px] rounded-md flex  self-stretch;
+  @apply w-full lg:h-[170px] h-[100px] rounded-md flex  self-stretch;
   background: var(---neutral-50);
   font-family: "Urbanist";
   font-size: 14px;
@@ -132,12 +131,10 @@ form textarea {
 }
 
 form button {
-  @apply w-[102px] h-[42px] flex justify-center items-center rounded-sm;
-  padding: 10px 30px;
+  @apply lg:w-[102px] w-[90px] lg:h-[42px] h-[35px] flex justify-center items-center rounded-sm font-bold xl:text-[18px] text-[12px];
   background: #f24810;
   color: var(---white);
   font-family: "Urbanist";
-  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;

@@ -1,25 +1,23 @@
 .wrapper {
-  @apply w-[100vw] h-[max-content] inline-flex flex-col gap-[56px];
+  @apply w-[100vw] h-[max-content] inline-flex flex-col lg:gap-10 gap-4 py-10 lg:px-20 px-10;
 }
 
 .privacy_header {
-  @apply w-[100%] h-[63px] flex flex-col items-start gap-[8px];
-  padding: 0 88px;
+  @apply w-full h-[63px] flex flex-col items-start gap-[8px];
 }
 
 .privacy_header h1 {
   font-family: "Urbanist";
-  font-size: 32px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   color: var(---black);
+  @apply xl:text-[32px] lg:text-2xl text-xl;
 }
 
 .privacy_header span {
-  @apply w-[144px] h-[17px] flex items-start gap-[8px];
+  @apply w-full h-[17px] flex items-start gap-[8px] lg:text-[16px] text-[12px];
   font-family: "Urbanist";
-  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -31,8 +29,7 @@
 }
 
 .privacy_text {
-  @apply w-[100%] h-[max-content] flex flex-col justify-center items-center gap-[10px];
-  padding: 0 88px;
+  @apply w-full h-[max-content] flex flex-col justify-center items-center gap-3 lg:text-[16px] text-[12px];
 }
 
 .privacy_text p {
