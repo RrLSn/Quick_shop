@@ -1,5 +1,5 @@
 .container {
-  @apply w-[100vw] h-[max-content] py-6 flex flex-col xl:gap-[44px] md:gap-5 gap-3;
+  @apply w-[100vw] h-[max-content] py-6 flex flex-col xl:gap-[44px] md:gap-5 gap-3 bg-white;
 }
 
 .welcome {

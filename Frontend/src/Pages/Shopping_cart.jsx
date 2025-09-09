@@ -84,7 +84,7 @@ const Shopping_cart = () => {
                         )
                     })
                 } */}
-                <div className="xl:w-[350px] lg:w-[320px] md:w-[280px] w-full h-[66px] flex justify-between lg:px-4 px-2 items-center">
+                <div className="xl:w-[350px] lg:w-[320px] md:w-[280px] w-full h-[66px] flex justify-between lg:px-4 px-2 items-center border">
                     <input type="text" placeholder="Discount Code" className="placeholder:xl:text-[18px] placeholder:lg:ext-[14px] placeholder:text-[12px] xl:px-2 px-1 lg:h-[42px] h-[32px]" />
                     <button className="xl:w-[107px] lg:w-[90px] w-[60px] lg:h-[42px] h-[32px] flex justify-center items-center bg-[#575757] font-Urbanist xl:text-xl lg:text-[14px] text-[12px] font-bold cursor-pointer leading-[21.6px] text-white">Apply</button>
                 </div>

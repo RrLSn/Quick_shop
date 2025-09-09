@@ -1,59 +1,41 @@
 .wrapper {
-  @apply w-[100%] h-[750px] flex overflow-hidden;
+  @apply w-full xl:h-[750px] lg:h-[500px] h-[400px] flex;
 }
 
 .wrapper div:nth-child(1) {
-  @apply w-[50%] h-[100%];
-  background-color: var(---white);
+  @apply w-[50%] h-full hidden md:flex justify-center items-center;
 }
 
 .wrapper div:nth-child(1) img {
-  width: 100%;
-  object-fit: contain;
-  transition: opacity 1s ease-in-out;
-  opacity: 1;
+  @apply w-full h-full bg-cover ease-in-out opacity-100;
 }
 
 .offer_desc {
-  @apply w-[50%] h-[100%] flex justify-center items-center;
+  @apply md:w-[50%] w-full h-full flex justify-center items-center;
   background-color: var(---black);
   color: var(---white);
 }
 
 .offer_desc span {
-  @apply w-[458px] h-[340px] flex flex-col gap-[24px] items-start;
+  @apply xl:w-[458px] lg:w-[358px] w-[258px] xl:h-[340px] lg:h-[300px] h-[250px] flex flex-col gap-[24px] items-start;
 }
 
 .offer_desc span p:nth-child(1) {
-  font-family: "Urbanist";
-  font-size: 16px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
-  color: var(---neutral-300);
+  @apply font-Urbanist xl:text-2xl lg:text-xl text-xs font-normal text-[var(---neutral-300)];
 }
 
 .offer_desc span p:nth-child(2) {
-  font-family: "Urbanist";
-  font-size: 64px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
-  color: var(---neutral-50);
+  @apply font-Urbanist xl:text-6xl lg:text-5xl text-4xl font-bold text-[var(---neutral-50)];
 }
 
 .offer_desc button {
-  @apply w-[max-content] h-[32px] flex justify-center items-center gap-[10px];
-  padding: 10px 30px;
+  @apply xl:w-[250px] lg:w-[130px] w-[100px] lg:h-[50px] h-[40px] flex justify-center items-center font-Urbanist bg-[var(---neutral-500)] xl:text-xl lg:text-xs text-[10px] font-normal gap-4;
   background-color: var(---neutral-500);
-  font-family: "Urbanist";
-  font-size: 18px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
-  text-transform: capitalize;
 }
 
 .offer_desc button img {
-  @apply w-[18px] h-[18px];
+  @apply lg:w-[20px] lg:h-[20px] w-[16px] h-[16px];
 }

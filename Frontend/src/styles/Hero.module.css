@@ -1,14 +1,12 @@
 .wrapper {
-  @apply w-[100vw] h-[676px] flex flex-col self-stretch items-center pb-[56px];
-  margin: 112px 0;
+  @apply w-[100vw] h-[max-content] flex flex-col self-stretch items-center;
   background-color: var(---white);
 }
 
 .wrapper h1 {
-  @apply w-[810px];
+  @apply xl:w-[810px] lg:w-[500px] md:w-[400px] w-[250px] xl:text-6xl lg:text-5xl md:text-3xl text-2xl;
   text-align: center;
   font-family: "Urbanist";
-  font-size: 64px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -16,35 +14,26 @@
 }
 
 main {
-  @apply w-[100vw] h-[522px] gap-[20px] flex flex-col items-center self-stretch;
-  background: var(---white);
+  @apply w-full h-[650px] gap-[20px] flex flex-col items-center bg-red-300;
+  /* background: var(---white); */
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .navigate {
-  @apply w-[100vw] h-[72px];
-  display: flex;
-  padding: 0px 88px;
-  justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
+  @apply w-full lg:h-[72px] md:h-[50px] h-[35px] md:px-20 px-6 flex justify-between items-center;
 }
 
 .navigate img {
-  @apply min-w-[72px] min-h-[72px] cursor-pointer hover:opacity-[0.2];
+  @apply lg:w-[72px] lg:h-[72px] md:w-[50px] md:h-[50px] w-[35px] h-[35px] cursor-pointer hover:opacity-[0.2];
 }
 
 .heroSlider {
-  @apply flex w-[100vw] h-[522px] gap-[20px] overflow-x-hidden;
-}
-
-.heroSlider {
-  @apply w-[1410px] h-[430px] flex justify-between;
+  @apply w-full h-[490px] flex gap-[20px] py-4 overflow-hidden bg-yellow-300;
 }
 
 .sliderCard {
-  @apply min-w-[250px] h-[350px] rounded-md overflow-hidden;
-  border: 15px solid #eeeeee;
+  @apply min-w-[170px] xl:w-[300px] h-[350px] rounded-md overflow-hidden;
+  border: 12px solid #eeeeee;
   background-color: var(---white);
 }
 

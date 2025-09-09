@@ -5,7 +5,6 @@ import Hero from "../component/Hero";
 import Newsletter from "../component/Newsletter";
 import Offers from "../component/Offers";
 import Products from "../component/Products";
-import styles from "../styles/HomePage.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -38,12 +37,12 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className="w-[100vw] h-[max-content] xl:py-20 md:py-14 py-8 flex flex-col gap-5">
       <Hero herodata={herodata} />
       <Category />
-      <Products products={products} />
+      {/* <Products products={products} /> */}
       <Offers />
-      <Arrivals newArrivals={newArrivals} />
+      {/* <Arrivals newArrivals={newArrivals} /> */}
       <Newsletter />
     </div>
   );

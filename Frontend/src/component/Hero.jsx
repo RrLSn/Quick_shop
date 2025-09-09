@@ -9,7 +9,7 @@ const Hero = ({ herodata }) => {
     <div className={styles.wrapper}>
       <h1>Find and buy amazing product quickly</h1>
       <main>
-        <div className={styles.navigate}>
+        {/* <div className={styles.navigate}>
           <img src="/svg/arrowLeft.svg" alt="" />
           <img src="/svg/arrowRight.svg" alt="" />
         </div>
@@ -31,7 +31,7 @@ const Hero = ({ herodata }) => {
               </div>
             );
           })}
-        </div>
+        </div> */}
       </main>
     </div>
   );

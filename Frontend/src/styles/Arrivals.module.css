@@ -1,26 +1,22 @@
 .wrapper {
-  @apply w-[100vw] h-[max-content] flex flex-col items-start gap-[40px];
+  @apply w-[100vw] h-[max-content] flex flex-col items-start gap-[40px] bg-red-300;
   padding: 56px 88px;
-  margin-top: 112px;
-  background-color: var(---white);
+  /* background-color: var(---white); */
 }
 
 .header {
-  @apply flex w-[100%] h-[38px] justify-between items-center;
+  @apply flex w-full h-[38px] justify-between items-center;
 }
 
 .header span {
-  @apply w-[232px] flex gap-[10px];
-  font-family: "Urbanist";
+  @apply w-[232px] flex gap-[10px] font-Urbanist font-normal text-[var(---neutral)];
   font-size: 32px;
-  font-style: normal;
   font-weight: 700;
   line-height: normal;
-  color: var(---neutral);
 }
 
 .header span h1 {
-  color: var(---black);
+  @apply text-[var(---black)];
 }
 
 .navigate {
@@ -28,14 +24,13 @@
 }
 
 .navigate img {
-  @apply w-[24px] h-[24px] hover:opacity-[0.2];
-  color: var(---black);
+  @apply w-[24px] h-[24px] hover:opacity-[0.2] text-[var(---black)];
   cursor: pointer;
   font-weight: 900;
 }
 
 .products {
-  @apply w-[100%] h-[487px] flex gap-[40px] items-start overflow-hidden;
+  @apply w-full h-[487px] flex gap-[40px] items-start overflow-hidden;
 }
 
 .products_card {
@@ -44,27 +39,25 @@
 }
 
 .products_card img {
-  @apply w-[100%] h-[420px];
+  @apply w-full h-[420px];
   background-color: var(---white);
   object-fit: contain 100%;
 }
 
 .products_card span {
-  @apply w-[100%] h-[51px] px-[5px] flex flex-col items-start gap-[8];
+  @apply w-full h-[51px] px-[5px] flex flex-col items-start gap-[8];
 }
 
 .products_card p:nth-child(1) {
-  font-family: "Urbanist";
+  @apply font-Urbanist font-normal;
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
   line-height: 24px;
 }
 
 .products_card p:nth-child(2) {
-  font-family: "Urbanist";
+  @apply font-Urbanist font-normal;
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
   line-height: 19.2px;
 }
