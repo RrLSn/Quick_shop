@@ -31,7 +31,13 @@ const Arrivals = ({ newArrivals }) => {
             rndImage = product.image[rndImageIndex];
           }
           return (
-            <div className={styles.products_card} key={product._id}>
+            <div 
+              className={styles.products_card} 
+              key={product._id}
+              onClick={() => {
+                handleSelectedProduct(product._id)
+                navigate(`/product_details`)
+              }}>
               <img src={rndImage} alt="products" />
               <span>
                 <p>

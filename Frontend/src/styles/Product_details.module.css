@@ -1,17 +1,10 @@
 .wrapper {
-  @apply w-[100vw] h-[max-content] inline-flex flex-col gap-[56px] py-[56px] items-center;
+  @apply w-[100vw] h-[max-content] inline-flex flex-col xl:gap-12 lg:gap-7 gap-5 xl:py-12 lg:py-7 py-4 items-center xl:px-16 lg:px-8 md:px-4 px-3;
   background: var(---white);
 }
 
 .navigate_header {
-  @apply w-[100%] h-[17px] flex items-start self-stretch gap-[8px];
-  padding: 0 88px;
-  font-family: "Urbanist";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  color: var(---neutral);
+  @apply w-full xl:h-[50px] lg:h-[40px] h-[30px] flex items-center xl:gap-2 gap-1 font-Urbanist xl:text-2xl lg:text-xl md:text-[16px] text-[12px] font-medium text-[var(---neutral)];
 }
 
 .navigate_header p {
@@ -19,33 +12,31 @@
 }
 
 .product_details {
-  @apply w-[100%] h-[550px] flex items-start gap-[40px];
-  padding: 0 88px;
+  @apply w-full xl:h-[560px] lg:h-[500px] md:h-[430px] h-[max-content] md:flex items-center justify-between;
   background: var(---white);
 }
 
 .product_slides {
-  @apply w-[612px] h-[100%] flex items-start gap-[24px];
+  @apply xl:w-[612px] lg:w-[460px] md:w-[350px] w-full md:h-full h-[430px] flex items-start xl:gap-6 lg:gap-4 md:mb-0 mb-5;
 }
 
 .product_thumbnail {
-  @apply w-[100px] h-[472px] flex flex-col items-start gap-[24px] overflow-hidden;
+  @apply w-[100px] lg:h-[472px] h-[400px] flex flex-col items-start lg:gap-6 gap-2 overflow-hidden absolute xl:static;
 }
 
 .product_thumbnail img {
-  @apply w-full min-h-[100px] bg-[#d9d9d9] border-[1px] cursor-pointer;
+  @apply w-full lg:h-[100px] h-[70px] bg-[#d9d9d9] border-[1px] cursor-pointer;
 }
 
 .product_slides img {
-  @apply max-w-[488px] h-[100%] bg-[#d9d9d9] border-[1px];
+  @apply w-full h-full bg-[#d9d9d9] border-[1px];
 }
 
 .product_info {
-  @apply w-[612px] h-[540px] flex flex-col items-start justify-between;
+  @apply xl:w-[630px] lg:w-[460px] md:w-[370px] w-full md:h-full h-[430px] flex flex-col items-start justify-between;
 }
 
 .product_review {
-  @apply w-full h-[655px] flex flex-col items-start;
+  @apply w-full h-[max-content] md:flex items-start;
   background: var(---white);
-  padding: 0 88px;
 }

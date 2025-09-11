@@ -44,14 +44,19 @@ const Recommeded_product = ({products, navigate}) => {
         {
           currentItems.map((recommend) => {
             return (
-              <div className={styles.product_card} key={recommend._id} onClick={() => {
+              <div 
+                className={styles.product_card} 
+                key={recommend._id}    
+                onClick={() => {
                 handleSelectedProduct(recommend._id)
                 navigate(`/product_details`)
               }}>
                 <img src={recommend.image[4]} alt="" />
                 <span>
                   <p>
-                    {fullname === false? truncateString(recommend.title) : recommend.title}
+                    {fullname === false
+                      ? truncateString(recommend.title) 
+                      : recommend.title}
                   </p>
                   <p>$ {recommend.price}</p>
                 </span>

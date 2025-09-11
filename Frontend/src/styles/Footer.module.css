@@ -1,5 +1,5 @@
 .wrapper {
-  @apply w-[100vw] lg:h-[220px] md:h-[180px] h-[160px] xl:h-[300px] lg:gap-5 gap-2 flex flex-col items-center md:py-5 py-3 md:px-4 px-1 bg-red-400;
+  @apply w-[100vw] lg:h-[220px] md:h-[180px] h-[160px] xl:h-[300px] lg:gap-5 gap-2 flex flex-col items-center md:py-5 py-3 md:px-4 px-1 border-t-2;
 }
 
 .footer_contents {

@@ -1,18 +1,13 @@
 .wrapper {
-  @apply w-[100vw] h-[max-content] flex flex-col items-start gap-[40px] bg-red-300;
-  padding: 56px 88px;
-  /* background-color: var(---white); */
+  @apply w-[100vw] h-[max-content] flex flex-col items-start xl:gap-9 lg:gap-7 gap-4 xl:px-20 lg:px-10 px-5 lg:py-12 md:py-6 py-3;
 }
 
 .header {
-  @apply flex w-full h-[38px] justify-between items-center;
+  @apply flex w-full xl:h-[50px] lg:h-[40px] h-[30px] justify-between items-center;
 }
 
 .header span {
-  @apply w-[232px] flex gap-[10px] font-Urbanist font-normal text-[var(---neutral)];
-  font-size: 32px;
-  font-weight: 700;
-  line-height: normal;
+  @apply w-[232px] flex gap-2 font-Urbanist text-[var(---neutral)] xl:text-4xl lg:text-3xl text-2xl font-[700];
 }
 
 .header span h1 {
@@ -20,24 +15,20 @@
 }
 
 .navigate {
-  @apply w-[80px] h-[24px] flex gap-[10px] items-center;
+  @apply w-[max-content] h-full flex gap-2 items-center;
 }
 
 .navigate img {
-  @apply w-[24px] h-[24px] hover:opacity-[0.2] text-[var(---black)];
-  cursor: pointer;
-  font-weight: 900;
+  @apply xl:w-[40px] xl:h-[40px] lg:w-[30px] lg:h-[30px] w-[25px] h-[25px] hover:opacity-[0.2] text-[var(---black)] cursor-pointer;
 }
 
 .products {
-  @apply w-full h-[487px] flex gap-[40px] items-start overflow-hidden;
+  @apply w-full xl:h-[487px] lg:h-[400px] h-[300px] flex lg:gap-10 gap-5 items-start overflow-hidden;
 }
 
 .products_card {
-  @apply min-w-[395px] h-[487px] flex flex-col gap-[16px] items-start rounded-md;
-  border: 2px solid #eeeeee;
+  @apply xl:min-w-[395px] lg:min-w-[300px] min-w-[225px] h-full flex flex-col gap-2 lg:pb-3 pb-2 items-start rounded-md border-2 border-[#eeeeee];
 }
-
 .products_card img {
   @apply w-full h-[420px];
   background-color: var(---white);
@@ -45,19 +36,13 @@
 }
 
 .products_card span {
-  @apply w-full h-[51px] px-[5px] flex flex-col items-start gap-[8];
+  @apply w-full h-[51px] px-[5px] flex flex-col items-start;
 }
 
 .products_card p:nth-child(1) {
-  @apply font-Urbanist font-normal;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 24px;
+  @apply font-Urbanist font-[500] xl:text-2xl lg:text-xl md:text-[16px] text-[14px];
 }
 
 .products_card p:nth-child(2) {
-  @apply font-Urbanist font-normal;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19.2px;
+  @apply font-Urbanist font-[500] xl:text-xl lg:text-[18px] md:text-[14px] text-[12px];
 }

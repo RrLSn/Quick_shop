@@ -42,7 +42,7 @@ const HomePage = () => {
       <Category />
       {/* <Products products={products} /> */}
       <Offers />
-      {/* <Arrivals newArrivals={newArrivals} /> */}
+      <Arrivals newArrivals={newArrivals} />
       <Newsletter />
     </div>
   );

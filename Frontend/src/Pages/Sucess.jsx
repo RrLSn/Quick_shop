@@ -6,7 +6,7 @@ const Sucess = () => {
   return (
     <div>
       Registration sucessfull
-      <button onClick={() => navigate("/auth/login")}>Lohin</button>
+      <button onClick={() => navigate("/auth/login")}>Login</button>
     </div>
   );
 };
