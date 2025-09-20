@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "../styles/Product_details.module.css";
 import { ProductContext } from "../context/ProductContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,29 +21,40 @@ const Product_details = () => {
   const navigate = useNavigate()
 
   const {
-    // selectedProduct, 
+    selectedProduct, 
     products, 
     itemAddedtoCart, 
     setItemAddedtoCart,
     qtyValue, 
     handleQtyCountUp,
     handleQtyCountDown,
-    setQtyValue
+    setQtyValue,
+    fetchProduct
   } = useContext(ProductContext)
 
   const {setItemsInCart} = useContext(CartContext)
-
   const [selectedImage, setSelectedImage] = useState(0)
-  const selectedProduct = localStorage.getItem("selectedProductId")
+  const [loading, setLoading] = useState(true)
 
-  let product_selected = products.find((products) => products._id === selectedProduct)
+  useEffect(() => {
+    const init = async() => {
+      if (products.length === 0){
+      await fetchProduct()
+      }
+      setLoading(false)
+    }
+    init()
+  },[])
+
+  const selectedProductId = selectedProduct || localStorage.getItem("selectedProductId")
+
+  const product_selected = products.find((products) => products._id === selectedProductId)
 
   const handleSelectedImageToShow = (index) => {
     setSelectedImage(index)
   }
 
   const userId = auth?.userId
-  const price = product_selected.price
   
   const handleAddToCart = async(product_selected) => {
     if(!userId){
@@ -52,9 +63,9 @@ const Product_details = () => {
     try {
       const res = await axios.post(cartApiUrl, {
         userId: userId,
-        productId: selectedProduct,
+        productId: selectedProductId,
         title: product_selected.title,
-        price: price,
+        price: product_selected.price,
         quantity: qtyValue,
         image: product_selected.image[0],
         tax: product_selected.tax,
@@ -64,8 +75,8 @@ const Product_details = () => {
         setItemAddedtoCart(true)
         setQtyValue(1)
       }
-      const item_count = res.data.items.length
-      setItemsInCart(item_count)
+      // const item_count = res.data.items.length
+      setItemsInCart(res.data.items.length)
     } catch (error) {
       alert("Error adding to cart:", error.message)
     }
@@ -78,6 +89,10 @@ const Product_details = () => {
       handleAddToCart(product_selected)
       navigate("/shopping_cart")
     }
+  }
+
+  if (!product_selected || loading) {
+    return <div></div>
   }
     
   return (
