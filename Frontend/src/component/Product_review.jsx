@@ -21,7 +21,7 @@ const Product_review = () => {
                leading-6 text-[#252525]">Add a Review</h1>
               <p className="font-Urbanist font-[400] xl:text-[16px] lg:text-[14px] text-[11px] leading-[16.8px] text-[#575757]">Your email address will not be published</p>
             </span>
-            <form action="" className="w-full lg:h-[414px] h-[300px]">
+            <form action="" id="submit" name="submit" className="w-full lg:h-[414px] h-[300px]">
                 <span className="w-full h-lg:[50px] h-[35px] flex gap-3 bg-[#EEEEEE] xl:px-4 lg:px-3 px-2">
                   <img src="/svg/mailIcon.svg" alt="" className="lg:w-[20px] lg:h-[20px] h-[14px] w-[14px]" />
                 <input

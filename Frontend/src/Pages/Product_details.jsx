@@ -9,6 +9,7 @@ import Add_to_CartModal from "../component/Add_to_CartModal";
 import axios from "axios";
 import { cartApiUrl } from "../Api/axios";
 import AuthContext from "../context/AuthProvider";
+import { CartContext } from "../context/CartContext";
 
 
   const color_class = "lg:w-[32px] w-[25px] h-full"
@@ -20,19 +21,22 @@ const Product_details = () => {
   const navigate = useNavigate()
 
   const {
-    selectedProduct, 
+    // selectedProduct, 
     products, 
-    setItemsInCart, 
     itemAddedtoCart, 
     setItemAddedtoCart,
     qtyValue, 
     handleQtyCountUp,
-    handleQtyCountDown
+    handleQtyCountDown,
+    setQtyValue
   } = useContext(ProductContext)
 
-  const [selectedImage, setSelectedImage] = useState(0)
+  const {setItemsInCart} = useContext(CartContext)
 
-  const product_selected = products.find((products) => products._id === selectedProduct)
+  const [selectedImage, setSelectedImage] = useState(0)
+  const selectedProduct = localStorage.getItem("selectedProductId")
+
+  let product_selected = products.find((products) => products._id === selectedProduct)
 
   const handleSelectedImageToShow = (index) => {
     setSelectedImage(index)
@@ -58,9 +62,10 @@ const Product_details = () => {
       })
       if(res.status === 200){
         setItemAddedtoCart(true)
+        setQtyValue(1)
       }
-        const item_count = res.data.items.length
-        setItemsInCart(item_count)
+      const item_count = res.data.items.length
+      setItemsInCart(item_count)
     } catch (error) {
       alert("Error adding to cart:", error.message)
     }
@@ -124,7 +129,7 @@ const Product_details = () => {
               <p className="font-Urbanist font-[500] xl:text-2xl lg:text-xl text-[16px] leading-[26.6px">Qty:</p>
               <div className="w-[116px] xl:h-[40px] lg:h-[30px] h-[20px] flex justify-center items-center gap-2 font-Urbanist font-[500] xl:text-[16px] lg:text-[14px] text-[12px] leading-[19.2px]">
                 <span className={qty_style} onClick={handleQtyCountDown}>-</span>
-                {qtyValue}
+                {qtyValue ? qtyValue : "1"}
                 <span className={qty_style} onClick={handleQtyCountUp}>+</span>
               </div>
             </div>

@@ -1,33 +1,43 @@
+/* eslint-disable react/prop-types */
+
 import { useContext, useState } from "react";
 import styles from "../styles/Products.module.css";
 import { ProductContext } from "../context/ProductContext";
 import { truncateString } from "../utils";
 
-const Top_selling = ({products, navigate}) => {
-    const [topSells, setTopSells] = useState([])
-    const {fullname, handleSelectedProduct, setCurrentSlider, itemsPerSlide, startIndex} = useContext(ProductContext)
+const Top_selling = ({navigate}) => {
+  const [topSells, setTopSells] = useState([])
+  const [startIndex, setStartIndex] = useState(0)
+  const {fullTitle, handleSelectedProduct, products} = useContext(ProductContext)
 
-    useState(() => {
-        if(products && products.length > 0) {
-            const top_selling = products.filter((product) => product.price > 150)
-            const sortedResult = top_selling.sort((a,b) => b.price - a.price)
-            
-            setTopSells(sortedResult)
-        }
-    },[products])
+  useState(() => {
+      if(products && products.length > 0) {
+          const top_selling = products.filter((product) => product.price > 150)
+          const sortedResult = top_selling.sort((a,b) => b.price - a.price)
+          setTopSells(sortedResult)
+      }
+  },[products])
 
-        //Slider
-        const totalSlides = Math.ceil(topSells.length / itemsPerSlide)
-    
-        const handleNext = () => {
-            setCurrentSlider((prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides)
-        }
-    
-        const handlePrev = () => {
-            setCurrentSlider((prevSlide) => prevSlide > 0 ? prevSlide - 1 : totalSlides - 1)
-        }
-        
-        const currentItems = topSells.slice(startIndex, startIndex + itemsPerSlide)
+  
+  const handleNext = () => {
+    if (topSells.length === 0) return;
+      setStartIndex((prevSlide) => (prevSlide + 1) % topSells.length)
+  }
+
+  const handlePrev = () => {
+    if  (topSells.length === 0) return;
+      setStartIndex((prevSlide) => (prevSlide - 1 + topSells.length) % topSells.length)
+  }
+
+  if (!topSells || topSells.length === 0) {
+    return <div></div>
+  }
+  
+  const currentTopSells = []
+  for (let i = 0; i < topSells.length; i++){
+    currentTopSells.push(topSells[(startIndex + i) % topSells.length])
+  }
+
 
   return (
     <div className={styles.wrapper}>
@@ -42,16 +52,16 @@ const Top_selling = ({products, navigate}) => {
       </div>
       <div className={styles.products}>
         {
-          currentItems.map((topsell) => {
+          currentTopSells.map((topsell, index) => {
             return (
-              <div className={styles.product_card} key={topsell._id} onClick={() => {
+              <div className={styles.product_card} key={`${topsell._id} - ${index}`} onClick={() => {
                 handleSelectedProduct(topsell._id)
                 navigate(`/product_details`)
               }}>
                 <img src={topsell.image[4]} alt="" />
                 <span>
                   <p>
-                    {fullname === false? truncateString(topsell.title) : topsell.title}
+                    {fullTitle === false? truncateString(topsell.title) : topsell.title}
                   </p>
                   <p>$ {topsell.price}</p>
                 </span>

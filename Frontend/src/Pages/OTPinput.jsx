@@ -86,7 +86,7 @@ const OTPinput = () => {
 
   return (
     <section className="w-[100vw] h-[100vh] flex justify-center items-center">
-      <form id="submitOtp" className="xl:w-[50%] md:w-[60%] w-[80%] h-[50%] md:h-[45%] xl:h-[70%] border-2 rounded-xl flex flex-col m-auto items-center justify-center xl:gap-5 lg:gap-4 gap-2 xl:py-6 lg:py-2" onSubmit={handleVerificationSubmit}>
+      <form id="submitOtp" name="submitOtp" className="xl:w-[50%] md:w-[60%] w-[80%] h-[50%] md:h-[45%] xl:h-[70%] border-2 rounded-xl flex flex-col m-auto items-center justify-center xl:gap-5 lg:gap-4 gap-2 xl:py-6 lg:py-2" onSubmit={handleVerificationSubmit}>
         <div className="w-[full text-center">
           <h1 className="lg:text-[1.5rem] md:text-[20px] text-[16px] xl:text-5xl font-bold">Email Verification</h1>
           <p className="xl:text-2xl lg:text-[12px] text-[10px]">We sent a code to your email {email}</p>

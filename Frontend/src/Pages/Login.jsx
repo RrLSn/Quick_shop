@@ -52,13 +52,14 @@ const Login = () => {
         const fullname = res?.data.fullname;
         const phone = res?.data.phone;
         const userId = res?.data.userId
+        const token = res.data.token
         setAuth({ email, fullname, phone, userId });
         setEmail("");
         setPassword("");
         setSuccess(true);
         navigate("/dashboard");
-        localStorage.setItem("userData", JSON.stringify({ email, fullname, phone }));
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userData", JSON.stringify({ email, fullname, phone, userId }));
+        localStorage.setItem("token", token);
       }
     } catch (error) {
       setErrMsg(error.response?.data.message || "An error occurred");

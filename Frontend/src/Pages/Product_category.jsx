@@ -7,7 +7,7 @@ import { ProductContext } from "../context/ProductContext"
 const Product_category = () => {
     const navigate = useNavigate()
 
-    const {products, fetchProduct, fullname, setSelectedProduct} = useContext(ProductContext)
+    const {products, fetchProduct, fullTitle, setSelectedProduct} = useContext(ProductContext)
 
     useEffect(() => {
         fetchProduct()
@@ -55,7 +55,7 @@ const Product_category = () => {
                                     <img src={product.image[0]} alt="" className="w-full h-[283px]" />
                                     <span className="w-[183px] h-[51px] flex flex-col top-[299px] gap-[8px]">
                                         <p>
-                                            {fullname === false? truncateString(product.title) : product.title}
+                                            {fullTitle === false? truncateString(product.title) : product.title}
                                         </p>
                                         <p>${product.price}</p>
                                     </span>

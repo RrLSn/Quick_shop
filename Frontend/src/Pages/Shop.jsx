@@ -8,7 +8,7 @@ import Recommeded_product from "../component/Recommeded_product"
 import Top_selling from "../component/Top_selling"
 
 const Shop = () => {
-  const {products, fetchProduct, fullname, handleSelectedProduct} = useContext(ProductContext)
+  const {products, fetchProduct, fullTitle, handleSelectedProduct} = useContext(ProductContext)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const Shop = () => {
                     <img src={product.image[0]} alt="" className="w-full xl:h-[283px] lg:h-[200px] h-[140px]" />
                       <span className="w-[183px] h-[51px] flex flex-col top-[299px] xl:gap-2 gap-1 lg:text-[17px] text-[13px]">
                         <p>
-                            {fullname === false? truncateString(product.title) : product.title}
+                            {fullTitle === false? truncateString(product.title) : product.title}
                         </p>
                         <p>${product.price}</p>
                       </span>
@@ -76,7 +76,7 @@ const Shop = () => {
         </div>
       </section>
       <Recommeded_product products={products} navigate={navigate} />
-      <Top_selling products={products} navigate={navigate} />
+      <Top_selling navigate={navigate} />
     </div>
   )
 }

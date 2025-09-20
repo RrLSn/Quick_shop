@@ -40,7 +40,7 @@ const HomePage = () => {
     <div className="w-[100vw] h-[max-content] xl:py-20 md:py-14 py-8 flex flex-col gap-5">
       <Hero herodata={herodata} />
       <Category />
-      {/* <Products products={products} /> */}
+      <Products products={products} />
       <Offers />
       <Arrivals newArrivals={newArrivals} />
       <Newsletter />

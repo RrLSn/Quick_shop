@@ -1,43 +1,18 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/Product_details.module.css";
-import { useContext, useEffect } from "react";
-import AuthContext from "../context/AuthProvider";
-import axios from "axios";
-import { cartApiUrl } from "../Api/axios";
+import { useContext, useState} from "react";
 import { ProductContext } from "../context/ProductContext";
 import { truncateString } from "../utils";
+import { CartContext } from "../context/CartContext";
 
 const estimation_style = "w-full xl:h-[62px] lg:h-[55px] h-[40px] border-b-[1px] flex justify-between py-[20px] border-[#CBCBCB] font-Urbanist font-[500] leading-[21.6px] xl:text-[18px] lg:text-[14px] text-[12px]"
 const qty_style = "md:w-[40px] md:h-[40px] w-[25px] h-[25px] bg-[#EEEEEE] flex justify-center items-center cursor-pointer"
 
 const Shopping_cart = () => {
-    const {auth} = useContext(AuthContext)
-    const {setItemsInCart, discount, shippingFee, fullname, cart, setCart, cartItems, setCartItems, handleQtyCountUp, handleQtyCountDwon} = useContext(ProductContext)
-    const userId = auth.userId
+    const {fullTitle} = useContext(ProductContext)
+    const {discount, shippingFee, cart, cartItems, itemDelMsg, handleDeleteFromCart,handleAddedCartIncreament, handleAddedCartDecreament} = useContext(CartContext)
 
-    useEffect(() => {
-        const fetchCartItems = async() => {
-            try {
-                const res = await axios.get(`${cartApiUrl}/${userId}`)
-                if(res.status === 200){
-                  const data = await res.data
-                  const item_count = data.items.length
-                  setItemsInCart(item_count)
-                  setCartItems(data.items)
-                  setCart(data)
-                }
-            } catch (error) {
-                console.log("Error loading cart:", error.message)
-            }
-        }
-        fetchCartItems()
-    },[setItemsInCart, userId, auth, setCart, setCartItems])
-
-    const total = Math.round(cart?.subtotal + discount + shippingFee)
-
-    const handleDeleteCart = () => {
-        // const itemId;
-    }
+    const total = cart ? (cart.subtotal + discount + shippingFee).toFixed(2) : "0.00"
     
   return (
     <div className="w-[100vw] h-[max-content] flex flex-col lg:gap-[38px] md:gap-6 gap-4 xl:px-20 lg:p-8 p-3">
@@ -66,7 +41,7 @@ const Shopping_cart = () => {
                                     <img src={item.image} alt="" className="w-[120px] h-[120px]  border-[1px] md:mb-0 mb-4" />
                                     <p className="font-Urbanist font-[500] xl:text-[18px] text-[15px] leading-[16.8px] text-[#575757]">
                                         {
-                                            fullname === false ? truncateString(item.title) :
+                                            fullTitle === false ? truncateString(item.title) :
                                             item.title
                                         }
                                     </p>
@@ -74,12 +49,16 @@ const Shopping_cart = () => {
                                 <div className="xl:w-[503px] md:w-[400px] w-[220px] h-[40px] flex xl:gap-9 md:gap-5 items-center">
                                     <p className="w-[100px] flex justify-center xl:text-xl md:text-[16px] text-[12px]">${item.price}</p>
                                     <div className="w-[120px] h-[40px] flex justify-center items-center md:gap-2 gap-1 font-Urbanist font-[500] md:text-[16px] text-[12px] leading-[19.2px]">
-                                        <span className={qty_style} onClick={handleQtyCountDwon}>-</span>
+                                        <span className={qty_style} onClick={() => handleAddedCartDecreament(cartItems[index].productId)}>-</span>
                                         {item.quantity}
-                                        <span className={qty_style} onClick={handleQtyCountUp}>+</span>
+                                        <span className={qty_style} onClick={() => handleAddedCartIncreament(cartItems[index].productId)}>+</span>
                                     </div>
                                     <p className="w-[120px] flex justify-center xl:text-xl md:text-[16px] text-[12px]">${(item.price*item.quantity).toFixed(2)}</p>
-                                    <img src="/svg/delete.svg" alt="" className="md:w-[26px] md:h-[26px] w-[18px] h-[18px] cursor-pointer" onClick={handleDeleteCart} />
+                                    <img 
+                                        src="/svg/delete.svg" 
+                                        alt="" 
+                                        className="md:w-[26px] md:h-[26px] w-[18px] h-[18px] cursor-pointer" 
+                                        onClick={() => handleDeleteFromCart(cartItems[index].productId)} />
                                 </div>
                             </div>
                         )
@@ -91,12 +70,12 @@ const Shopping_cart = () => {
                     <button className="xl:w-[107px] lg:w-[90px] w-[60px] lg:h-[42px] h-[32px] flex justify-center items-center bg-[#575757] font-Urbanist xl:text-xl lg:text-[14px] text-[12px] font-bold cursor-pointer leading-[21.6px] text-white">Apply</button>
                 </div>
             </div>
-            <form id="submit" className="xl:w-[395px] lg:w-[260px] md:w-[280px] w-full xl:h-[468px] lg:h-[380px] h-[280px] border-[1px] xl:p-8 lg:p-4 p-2 flex flex-col xl:gap-6 lg:gap-3 gap-1">
+            <form id="submit" name="submit" className="xl:w-[395px] lg:w-[260px] md:w-[280px] w-full xl:h-[468px] lg:h-[380px] h-[280px] border-[1px] xl:p-8 lg:p-4 p-2 flex flex-col xl:gap-6 lg:gap-3 gap-1">
                 <h1 className="font-Urbanist font-[700] xl:text-2xl lg:text-xl text-[18px] leading-[33.6px]">Cart Total</h1>
                 <div className="w-full xl:h-[248px]">
                     <span className={estimation_style}>
                         <p>Subtotal</p>
-                        <p>${(cart?.subtotal).toFixed(2)}</p>
+                        <p>${cart ? (cart.subtotal).toFixed(2) : "0.00"}</p>
                     </span>
                     <span className={estimation_style}>
                         <p>Discount</p>

@@ -4,12 +4,12 @@ import { useContext, useState } from "react";
 import Axios, { logOutUrl } from "../Api/axios";
 
 import AuthContext from "../context/AuthProvider";
-import { ProductContext } from "../context/ProductContext";
+import { CartContext } from "../context/CartContext";
 
 const NavBar = () => {
   
   const [errMsg, setErrMsg] = useState(null);
-  const {itemsInCart} = useContext(ProductContext)
+  const {itemsInCart} = useContext(CartContext)
 
   const navigate = useNavigate()
   const {auth, setAuth, drop, setDrop, loggedIn, setLoggedIn} = useContext(AuthContext)

@@ -69,7 +69,7 @@ const Reset_pass = () => {
           <h1>Reset Password</h1>
           <p>Enter your new password here</p>
         </div>
-        <form id="submit" onSubmit={handleResetPassword}>
+        <form id="submit" name="submit" onSubmit={handleResetPassword}>
           <div className={styles.reset_form}>
             <p className={message? "flex" : "hidden"}>{message}</p>
             <span>

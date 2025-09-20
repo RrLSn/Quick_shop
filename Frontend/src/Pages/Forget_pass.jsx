@@ -57,7 +57,7 @@ const Forget_pass = () => {
               </span>
             </div>
             {message ? <p className="flex text-red-500 xl:text-[18px] text-[12px]">{message}</p> : <p className="hidden"></p>}
-            <form id="submit" onSubmit={handleSubmit}>
+            <form id="submit" name="submit" onSubmit={handleSubmit}>
               <div className={styles.form_fill}>
                 <div className={styles.input_mail}>
                   <span>

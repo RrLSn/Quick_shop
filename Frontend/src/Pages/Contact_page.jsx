@@ -40,7 +40,7 @@ const Contact_page = () => {
         </div>
         <div className={styles.input_info}>
           <h1>Message Us</h1>
-          <form action="">
+          <form action="" id="submit" name="submit">
             <input
               type="text"
               placeholder="Full Name"

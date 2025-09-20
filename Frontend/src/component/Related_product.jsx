@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import { useContext, useEffect, useState } from "react";
 import styles from "../styles/Products.module.css";
 import { ProductContext } from "../context/ProductContext";
@@ -7,7 +9,7 @@ import { productApiUrl } from "../Api/axios";
 import axios from "axios";
 
 const Related_product = ({selectedProduct}) => {
-  const {fullname, handleSelectedProduct, setCurrentSlider, itemsPerSlide, startIndex} = useContext(ProductContext)
+  const {fullTitle, handleSelectedProduct, startIndex, setStartIndex} = useContext(ProductContext)
   const [relatedProduct, setRelatedProduct] = useState([])
   const navigate = useNavigate()
 
@@ -20,18 +22,20 @@ const Related_product = ({selectedProduct}) => {
     fetchRelatedProducts(selectedProduct)
   },[selectedProduct])
 
-  //Slider
-  const totalSlides = Math.ceil(relatedProduct.length / itemsPerSlide)
-
   const handleNext = () => {
-      setCurrentSlider((prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides)
+    if (relatedProduct.length === 0) return;
+      setStartIndex((prevSlide) => (prevSlide + 1) % relatedProduct.length)
   }
 
   const handlePrev = () => {
-      setCurrentSlider((prevSlide) => prevSlide > 0 ? prevSlide - 1 : totalSlides - 1)
+    if (relatedProduct.length === 0) return;
+      setStartIndex((prevSlide) => (prevSlide - 1 + relatedProduct.length) % relatedProduct.length)
   }
   
-  const currentItems = relatedProduct.slice(startIndex, startIndex + itemsPerSlide)
+  const currentItems = []
+   for (let i = 0; i < relatedProduct.length; i++){
+    currentItems.push(relatedProduct[(startIndex + i) % relatedProduct.length])
+   }
 
   return (
     <div className={styles.wrapper}>
@@ -56,7 +60,7 @@ const Related_product = ({selectedProduct}) => {
                 <img src={related.image[4]} alt="" />
                 <span>
                   <p>
-                    {fullname === false? truncateString(related.title) : related.title}
+                    {fullTitle === false? truncateString(related.title) : related.title}
                   </p>
                   <p>$ {related.price}</p>
                 </span>

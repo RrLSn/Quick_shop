@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import { useContext, useEffect, useState } from "react";
 import styles from "../styles/Products.module.css";
 import { ProductContext } from "../context/ProductContext";
@@ -5,29 +7,35 @@ import { truncateString } from "../utils";
 
 const Recommeded_product = ({products, navigate}) => {
     const [recommendProduct, setRecommendProduct] = useState([])
-    const {fullname, handleSelectedProduct, setCurrentSlider, itemsPerSlide, startIndex} = useContext(ProductContext)
+    const {fullTitle, handleSelectedProduct, itemsPerSlide, startIndex, setStartIndex} = useContext(ProductContext)
 
 
     useEffect(() => {
         if(products && products.length > 0){
             const recommend = products.filter((product) => product.storename === "Nike")
-            const sort_recommend = recommend.sort((a, b) => b.storename - a.storename)
-            setRecommendProduct(sort_recommend)
+            setRecommendProduct(recommend)
         }
     },[products])
 
-    //Slider
-    const totalSlides = Math.ceil(recommendProduct.length / itemsPerSlide)
-
     const handleNext = () => {
-        setCurrentSlider((prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides)
+      if (recommendProduct.length === 0) return;
+        setStartIndex((prevSlide) => (prevSlide + 1) % recommendProduct.length)
     }
 
     const handlePrev = () => {
-        setCurrentSlider((prevSlide) => prevSlide > 0 ? prevSlide - 1 : totalSlides - 1)
+      if (recommendProduct.length === 0) return;
+        setStartIndex((prevSlide) => (prevSlide - 1 + recommendProduct.length) % recommendProduct.length)
     }
+
+    if(!recommendProduct || recommendProduct.length === 0){
+      return <div></div>
+    }
+
     
-    const currentItems = recommendProduct.slice(startIndex, startIndex + itemsPerSlide)
+    const currentRecProducts = []
+    for (let i = 0; i < itemsPerSlide; i++) {
+      currentRecProducts.push(recommendProduct[(startIndex + i) % recommendProduct.length])
+    }
 
   return (
     <div className={styles.wrapper}>
@@ -42,11 +50,11 @@ const Recommeded_product = ({products, navigate}) => {
       </div>
       <div className={styles.products}>
         {
-          currentItems.map((recommend) => {
+          currentRecProducts.map((recommend, index) => {
             return (
               <div 
                 className={styles.product_card} 
-                key={recommend._id}    
+                key={`${recommend._id} - ${index}`}    
                 onClick={() => {
                 handleSelectedProduct(recommend._id)
                 navigate(`/product_details`)
@@ -54,7 +62,7 @@ const Recommeded_product = ({products, navigate}) => {
                 <img src={recommend.image[4]} alt="" />
                 <span>
                   <p>
-                    {fullname === false
+                    {fullTitle === false
                       ? truncateString(recommend.title) 
                       : recommend.title}
                   </p>

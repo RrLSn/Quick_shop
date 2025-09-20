@@ -25,16 +25,22 @@ import Shop from "./Pages/Shop";
 import { ProductProvider } from "./context/ProductContext";
 import Shopping_cart from "./Pages/Shopping_cart";
 import Checkout_page from "./Pages/Checkout_page";
+import { useContext } from "react";
+import AuthContext from "./context/AuthProvider";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
-
+  const {setDrop} = useContext(AuthContext)
   const routes = createBrowserRouter([
     {
       path: "/",
       element: (
         <div>
           <NavBar />
-          <Outlet />
+          <div onClick={() => setDrop(false)}>
+            <Outlet />
+          </div>
+          
           <Footer />
         </div>
       ),
@@ -138,9 +144,11 @@ function App() {
   ]);
   return (
     <ProductProvider>
-      <div className="wholeWrapper">
+      <CartProvider>
+        <div className="wholeWrapper">
         <RouterProvider router={routes} />
       </div>
+      </CartProvider>
     </ProductProvider>
   );
 }

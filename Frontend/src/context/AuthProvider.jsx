@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import { createContext, useState, useEffect } from "react";
 import Axios, { userGoogleAuth } from "../Api/axios";
 // import { useNavigate } from "react-router-dom";
@@ -9,11 +11,13 @@ export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [message, setMessage] = useState("")
   const [drop, setDrop] = useState(false);
+
   const OTP = Math.floor(Math.random() * 9000 + 1000)
 
   useEffect(() => {
   const userData = localStorage.getItem("userData");
   const token = localStorage.getItem("token");
+  
   if (userData && token) {
     setAuth({ ...JSON.parse(userData), token });
   }

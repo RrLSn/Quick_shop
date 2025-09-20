@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { productApiUrl } from "../Api/axios"
 
@@ -7,16 +7,12 @@ export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [fullname, setFullname] = useState(false)
-  const [selectedProduct, setSelectedProduct] = useState(null)
+  const [fullTitle, setFullTitle] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState(() => {return localStorage.getItem("selectedProductId") || null})
   const [productQuantity, setProductQuantity] = useState(1)
   const [currentSlider, setCurrentSlider] = useState(0)
-  const [itemsInCart, setItemsInCart] = useState(0)
+  const [startIndex, setStartIndex] = useState(0)
   const [itemAddedtoCart, setItemAddedtoCart] = useState(false)
-  const [discount, setDiscount] = useState(0)
-  const [shippingFee, setShippingFee] = useState(0)
-  const [cartItems, setCartItems] = useState([])
-  const [cart, setCart] = useState(null)
   const [qtyValue, setQtyValue] = useState(1)
   
   const fetchProduct = async() => {
@@ -25,10 +21,18 @@ export const ProductProvider = ({ children }) => {
         const res = await axios.get(productApiUrl)
         const data = res.data
         setProducts(data)
-    } catch (error) {
-        console.log({message: error.message})
+    } catch (error) { 
+       console.log({message: error.message})
     }
   }
+
+  useEffect(() => {
+    if(selectedProduct) {
+      localStorage.setItem("selectedProductId", selectedProduct)
+    } else {
+      localStorage.removeItem("selectedProductId")
+    }
+  }, [selectedProduct])
 
   const handleSelectedProduct = (_id) => {
     setSelectedProduct(_id)
@@ -45,7 +49,6 @@ export const ProductProvider = ({ children }) => {
   }
 
   const itemsPerSlide = 3;
-  const startIndex = currentSlider * itemsPerSlide
 
   return (
     <ProductContext.Provider
@@ -53,8 +56,8 @@ export const ProductProvider = ({ children }) => {
         products,
         setProducts,
         fetchProduct,
-        fullname,
-        setFullname,
+        fullTitle,
+        setFullTitle,
         selectedProduct,
         setSelectedProduct,
         productQuantity,
@@ -64,21 +67,13 @@ export const ProductProvider = ({ children }) => {
         currentSlider,
         setCurrentSlider,
         handleSelectedProduct,
-        itemsInCart,
-        setItemsInCart,
         itemAddedtoCart,
         setItemAddedtoCart,
-        shippingFee,
-        setShippingFee,
-        discount,
-        setDiscount,
-        cartItems, 
-        setCartItems,
-        cart, 
-        setCart,
-        qtyValue, 
         handleQtyCountUp,
-        handleQtyCountDown
+        handleQtyCountDown,
+        setStartIndex,
+        qtyValue,
+        setQtyValue
       }}
     >
       {children}
