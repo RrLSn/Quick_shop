@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/Product_details.module.css";
-import { useContext, useState} from "react";
+import { useContext} from "react";
 import { ProductContext } from "../context/ProductContext";
 import { truncateString } from "../utils";
 import { CartContext } from "../context/CartContext";
@@ -10,7 +10,7 @@ const qty_style = "md:w-[40px] md:h-[40px] w-[25px] h-[25px] bg-[#EEEEEE] flex j
 
 const Shopping_cart = () => {
     const {fullTitle} = useContext(ProductContext)
-    const {discount, shippingFee, cart, cartItems, itemDelMsg, handleDeleteFromCart,handleAddedCartIncreament, handleAddedCartDecreament} = useContext(CartContext)
+    const {discount, shippingFee, cart, cartItems, handleDeleteFromCart,handleAddedCartIncreament, handleAddedCartDecreament} = useContext(CartContext)
 
     const total = cart ? (cart.subtotal + discount + shippingFee).toFixed(2) : "0.00"
     
@@ -90,7 +90,7 @@ const Shopping_cart = () => {
                         <p>${total}</p>
                     </span>
                 </div>
-                <button className="w-full xl:h-[60px] lg:h-[50px] h-[40px] font-bold flex justify-center items-center text-white bg-[#F24810] border-[1px] rounded-sm hover:bg-white hover:text-[#F24810] cursor-pointer border-[#F24810] xl:text-xl lg:text-[16px] text-[14px]">Proceed To Checkout</button>
+                <button className="w-full xl:h-[60px] lg:h-[50px] h-[40px] font-bold flex justify-center items-center text-white bg-[#F24810] border-[1px] rounded-sm hover:bg-white hover:text-[#F24810] cursor-pointer border-[#F24810] xl:text-xl lg:text-[16px] text-[14px]"><Link to="/checkout">Proceed To Checkout</Link></button>
             </form>
         </section>
     </div>

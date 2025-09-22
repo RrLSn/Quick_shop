@@ -1,22 +1,32 @@
 /* eslint-disable react/prop-types */
 
-import { useRef } from "react";
+import { useState } from "react";
 import styles from "../styles/Hero.module.css";
 
 const Hero = ({ herodata }) => {
+  const [startIndex, setStartIndex] = useState(0)
   const getRnd = (max) => {
     return Math.floor(Math.random() * max);
   };
-  const scrollRef = useRef(null)
 
-  const scroll = (direction) => {
-    if(scrollRef.current){
-      const {clientWidth} = scrollRef.current
-      scrollRef.current.scrolBy({
-        left: direction === "left" ? -clientWidth : clientWidth,
-        behavior: "smooth"
-      })
-    }
+  const handleNext = () => {
+    if (herodata.length === 0) return;
+    setStartIndex((prevSlide) => (prevSlide + 1) % herodata.length)
+  }
+
+  const handlePrev = () => {
+    if (herodata.length === 0) return;
+    setStartIndex((prevSlide) => (prevSlide - 1 + herodata.length) % herodata.length)
+  }
+
+  if (!herodata || herodata.length  === 0){
+    return <div></div>
+  }
+
+  const currentHeroData = []
+
+  for (let i = 0; i < herodata.length; i++){
+    currentHeroData.push(herodata[(startIndex + i) % herodata.length])
   }
 
   return (
@@ -27,14 +37,14 @@ const Hero = ({ herodata }) => {
           <img 
             src="/svg/arrowLeft.svg" 
             alt=""
-            onClick={() => scroll("left")} />
+            onClick={handlePrev} />
           <img 
             src="/svg/arrowRight.svg" 
             alt=""
-            onClick={() => scroll("right")} />
+            onClick={handleNext} />
         </div>
         <div className={styles.heroSlider}>
-          {herodata.map((product) => {
+          {currentHeroData.map((product) => {
             let rndImage = "";
             if (product.image && product.image.length > 0) {
               const rndImageIndex = getRnd(product.image.length);
@@ -43,11 +53,9 @@ const Hero = ({ herodata }) => {
             return (
               <div 
                 className={styles.sliderCard} 
-                key={product._id}
-                ref={scrollRef}>
+                key={product._id}>
                 <img
                   src={rndImage}
-                  // className={styles.sliderCard}
                   key={product._id}
                   alt={product.title}
                 />

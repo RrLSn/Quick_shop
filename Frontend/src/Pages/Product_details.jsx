@@ -75,8 +75,8 @@ const Product_details = () => {
         setItemAddedtoCart(true)
         setQtyValue(1)
       }
-      // const item_count = res.data.items.length
-      setItemsInCart(res.data.items.length)
+      const item_count = res.data.items.length
+      setItemsInCart(item_count)
     } catch (error) {
       alert("Error adding to cart:", error.message)
     }
@@ -92,7 +92,7 @@ const Product_details = () => {
   }
 
   if (!product_selected || loading) {
-    return <div></div>
+    return <div className={styles.wrapper}></div>
   }
     
   return (

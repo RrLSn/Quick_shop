@@ -51,7 +51,7 @@ export const CartProvider = ({children}) => {
         try {
             const res = await axios.post(`${cartApiUrl}/${userId}/${itemId}/increase`)
             if(res.status === 200)
-                console.log("done")
+                console.log("Qty Increased")
         } catch (error) {
             console.log(error)
         }
@@ -61,7 +61,7 @@ export const CartProvider = ({children}) => {
         try {
             const res = await axios.post(`${cartApiUrl}/${userId}/${itemId}/decrease`)
             if(res.status === 200)
-                console.log("done")
+                console.log("Qty Decreased")
         } catch (error) {
             console.log(error)
         }
