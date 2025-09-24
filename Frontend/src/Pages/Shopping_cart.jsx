@@ -24,7 +24,7 @@ const Shopping_cart = () => {
                 <p className="text-black">Shopping Cart</p>
             </div>
         </div>
-        <section className="w-full min-h-[550px] h-[max-content] lg:flex justify-between">
+        <section className="w-full min-h-[550px] h-[max-content] block lg:flex justify-between px-0">
             <div className="xl:w-[829px] lg:w-[680px] w-full h-[max-content] flex flex-col lg:mb-0 mb-5">
                 <span className="w-full h-[40px] md:flex hidden xl:gap-9 gap-5 items-center font-Urbanist font-[700] xl:text-2xl lg:text-[18px] text-[14px] leading-[24px]">
                     <h1 className="xl:w-[300px] lg:w-[250px] w-[280px] h-full flex items-center justify-center">item(s)</h1>

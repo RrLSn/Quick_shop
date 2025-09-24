@@ -22,8 +22,8 @@ const Shop = () => {
         /
         <p className="hover:text-black text-black cursor-pointer">Shop</p>
       </span>
-      <section className="w-full h-[max-content] md:flex justify-between">
-        <div className="xl:w-[320px] lg:w-[220px] w-[170px] h-[max-content] md:flex hidden flex-col px-2">
+      <section className="w-full h-[max-content] md:flex block justify-between items-start px-0">
+        <div className="xl:w-[320px] lg:w-[220px] w-[170px] h-[max-content] md:flex hidden flex-col lg:gap-5 gap-3 bg-blue-300">
           <div className="w-full h-[mx-content] flex flex-col lg:gap-5 gap-3">
             <p className="xl:text-2xl lg:text-xl text-[17px] font-medium leading-[26.4px]">Categories</p>
             <div className="w-full h-[max-content] flex flex-col xl:gap-5 lg:gap-2 gap-1">

@@ -118,7 +118,7 @@ const Product_details = () => {
           <img src={product_selected.image[selectedImage]} className="w-[488px]" alt="" />
         </div>
         <div className={styles.product_info}>
-          <div className="w-full xl:h-[100px] lg:h-[70px] h-[100px] bgy3 flex flex-col">
+          <div className="w-full xl:h-[100px] lg:h-[70px] h-[100px] flex flex-col">
             <h1 className="font-Urbanist xl:text-3xl lg:text-2xl text-[18px] leading-[38.4px] font-medium">{product_selected.title}</h1>
             <span className={itemAddedtoCart? `hidden` : `flex lg:gap-2 gap-1`}>
               <Stack spacing={1}>

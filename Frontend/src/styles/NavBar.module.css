@@ -1,4 +1,4 @@
-nav {
+section {
   @apply w-[100vw] h-[80px] lg:h-[60px] xl:h-[80px] md:h-[45px] md:flex hidden justify-between items-center xl:px-[40px] lg:px-[30px] md:px-[15px];
   background-color: var(---white);
 }
@@ -42,7 +42,7 @@ nav {
 }
 
 .cart div {
-  @apply w-[23px] h-[23px] lg:w-[15px] lg:h-[15px] md:w-[14px] md:h-[10px] rounded-full flex text-center justify-center items-center xl:text-[12px] lg:text-[10px] text-[8px];
+  @apply w-[14px] h-[14px] lg:w-[15px] lg:h-[15px] md:w-[14px] md:h-[10px] rounded-full flex text-center justify-center items-center xl:text-[12px] lg:text-[10px] text-[8px];
   background-color: var(---black);
   color: var(---white);
   font-family: "Urbanist";

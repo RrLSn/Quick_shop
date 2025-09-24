@@ -12,7 +12,7 @@
 }
 
 .product_details {
-  @apply w-full xl:h-[560px] lg:h-[500px] md:h-[430px] h-[max-content] md:flex items-center justify-between;
+  @apply w-full xl:h-[560px] lg:h-[500px] md:h-[430px] h-[max-content] md:flex block items-center gap-5;
   background: var(---white);
 }
 
