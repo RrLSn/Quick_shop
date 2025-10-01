@@ -7,12 +7,12 @@ import AuthContext from "../context/AuthProvider";
 import { CartContext } from "../context/CartContext";
 
 const NavBar = () => {
-  const [smModal, setSmModal] = useState(false);
+  const [smDrop, setSmDrop] = useState(false);
   const [errMsg, setErrMsg] = useState(null);
   const {itemsInCart} = useContext(CartContext)
 
   const navigate = useNavigate()
-  const {auth, setAuth, drop, setDrop, loggedIn, setLoggedIn} = useContext(AuthContext)
+  const {auth, setAuth, drop, setDrop ,smModal, setSmModal, loggedIn, setLoggedIn} = useContext(AuthContext)
 
   const handleLogOut = async () => {
     try {
@@ -24,6 +24,7 @@ const NavBar = () => {
       navigate("/")
       setDrop(false)
       setLoggedIn(false)
+      setSmDrop(false)
       
     } catch (error) {
       setErrMsg({message: "Logout failed", error})
@@ -73,7 +74,7 @@ const NavBar = () => {
             </div>
           </span>
           {
-            !auth && !loggedIn ? 
+            !auth ? 
           <span className={drop ? styles.drop_modal : "hidden"}>
             <p  className="cursor-pointer" onClick={() => setDrop(false)}>
               <Link to="/auth/sign_up">Sign up</Link>
@@ -108,31 +109,72 @@ const NavBar = () => {
         <button 
           className="w-[35px] h-[35px] md:hidden flex flex-col justify-center gap-1 p-1 relative"
           onClick={() => setSmModal(!smModal)}>
-          <span className={`w-full h-[0.2rem] bg-black ${!smModal && "absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 -rotate-45"}`}></span>
-          <span className={`w-full h-[0.2rem] bg-black ${!smModal && "absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 rotate-45"}`}></span>
-          <span className={`w-full h-[0.2rem] bg-black ${!smModal && "hidden"}`}></span>
+          <span className={`w-full h-[0.2rem] bg-black`}></span>
+          <span className={`w-full h-[0.2rem] bg-black`}></span>
+          <span className={`w-full h-[0.2rem] bg-black`}></span>
         </button>
         </div>
       </div>
-      {!smModal && (
+      {smModal && (
         <div className="md:hidden w-[75%] h-screen fixed bg-[var(---white)] z-10 ml-[6rem] -mt-[3rem] py-4 shadow-2xl flex flex-col items-end px-4 gap-5">
         <button 
-          className="w-[35px] h-[35px] md:hidden flex flex-col justify-center gap-1 p-1 relative"
+          className="w-[25px] h-[25px] md:hidden flex flex-col justify-center gap-1 p-1 relative"
           onClick={() => setSmModal(!smModal)}>
           <span className="w-full h-[0.2rem] bg-black absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 -rotate-45"></span>
           <span className="w-full h-[0.2rem] bg-black absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 rotate-45"></span>
         </button>
-        <div className="w-full h-[30rem]">
-          <Link to="/">
-            <p>Home</p>
-          </Link>
-          <Link to="">
-            <p>Female</p>
-          </Link>
-          <p>Male</p>
-          <Link to="/shop"><p>Shop</p></Link>
+        <div className="w-full h-full flex flex-col justify-between">
+          <div className="w-full h-[30rem] text-xl font-Urbanist">
+            <Link to="/">
+              <p onClick={() => setSmModal(!smModal)}>Home</p>
+            </Link>
+            <Link to="">
+              <p onClick={() => setSmModal(!smModal)}>Female</p>
+            </Link>
+            <p onClick={() => setSmModal(!smModal)}>Male</p>
+            <Link to="/shop"><p onClick={() => setSmModal(!smModal)}>Shop</p></Link>
+          </div>
+          <div className={`w-full h-[150px]`}>
+            <div className="w-full flex gap-3">
+              <img src="/svg/UserIcon.svg" alt="" className="w-[25px] h-[25px]" />
+              {
+                auth ? 
+                
+                <div className=" w-[max-content] gap-[4px] flex items-center cursor-pointer" onClick={() => setSmDrop(!smDrop)}>
+                  <p>My Account</p>
+                  <div onClick={() => setDrop(!drop)}>
+                    {drop ? (
+                      <img src="/svg/ChevronUp.svg" alt="" className="w-[20px] h-[20px]" />
+                    ) : (
+                      <img src="/svg/ChevronDown.svg" alt="" className="w-[20px] h-[20px]" />
+                    )}
+                  </div>
+                </div>
+                : 
+                <p onClick={() => setSmModal(false)} className="cursor-pointer">
+                  <Link to="/auth/login">Login</Link>
+                   / 
+                  <Link to="/auth/sign_up">Sign up</Link>
+                </p>
+              }
+            </div>
+
+            {
+              drop && <div className="w-full h-[max-content] flex flex-col justify-center items-center gap-2">
+                <p onClick={() => setSmDrop(false)}>
+                  <Link to="/dashboard/profile">Profile</Link>
+                </p>
+                <p  className="cursor-pointer" onClick={() => setSmDrop(false)}>
+                  <Link to="/dashboard">Dashboard</Link>
+                </p>
+                <p className="cursor-pointer"  onClick={handleLogOut}>
+                  <Link to="">Signout</Link>
+                </p>
+              </div>
+            }
+          </div>
         </div>
-        </div>
+      </div>
       )}
     </nav>
   );

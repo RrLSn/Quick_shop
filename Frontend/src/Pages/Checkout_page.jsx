@@ -1,27 +1,51 @@
 import { Link } from "react-router-dom"
 import styles from "../styles/Product_details.module.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { states } from "../data";
 import { CartContext } from "../context/CartContext";
 import { truncateString } from "../utils";
 import { ProductContext } from "../context/ProductContext";
 
 
+const estimation_style = "w-full h-[62px] border-b-[1px] flex justify-between py-[20px] border-[#CBCBCB] font-Urbanist font-[500] leading-[21.6px] text-[18px]"
+const infoDetails = "w-full h-[max-content] border"
+const qty_style = "xl:w-[40px] xl:h-[40px] w-[30px] h-[30px] bg-[#EEEEEE] flex justify-center items-center cursor-pointer"
+
+
 const Checkout_page = () => {
     const [showPersonal, setShowPersonal] = useState(false)
     const [showShippingInfo, setShowShippingInfo] = useState(false)
     const [showPaymentMethod, setShowPaymentMethod] = useState(false)
-    const {discount, shippingFee, cart, cartItems, handleDeleteFromCart,handleAddedCartIncreament, handleAddedCartDecreament} = useContext(CartContext)
+    const [itemsToBuy, setItemsToBuy] = useState([])
+    const {discount, shippingFee, cart, cartItems} = useContext(CartContext)
     const {fullTitle} = useContext(ProductContext)
 
     const total = cart ? (cart.subtotal + discount + shippingFee).toFixed(2) : "0.00"
 
-    const itemsToBuy = cartItems
+    // const itemsToBuy = cartItems
     const itemsInCart = cart
 
-    const estimation_style = "w-full h-[62px] border-b-[1px] flex justify-between py-[20px] border-[#CBCBCB] font-Urbanist font-[500] leading-[21.6px] text-[18px]"
-    const infoDetails = "w-full h-[max-content] border"
-    const qty_style = "xl:w-[40px] xl:h-[40px] w-[30px] h-[30px] bg-[#EEEEEE] flex justify-center items-center cursor-pointer"
+useEffect(() => {
+  if (cartItems.length > 0 && itemsToBuy.length === 0) {
+    setItemsToBuy([...cartItems]);
+  }
+}, [cartItems, itemsToBuy]);
+
+
+    const handleDeleteItemFrmChkout = (itemId) => {
+        const itemsLeft = itemsToBuy.filter(item => item.productId !== itemId)
+        setItemsToBuy(itemsLeft)
+    }
+
+    const handleIncreamentItemQty = (itemId) => {
+        const updatedItems = itemsToBuy.map(item => {item.productId === itemId ? {...item, quantity: item.quantity + 1} : item})
+        setItemsToBuy(updatedItems)
+    }
+
+    const handleDecreamentItemQty = (itemId) => {
+        const updatedItems = itemsToBuy.map(item => {item.productId === itemId && item.quantity > 1 ? {...item, quantity: item.quantity - 1} : item})
+        setItemsToBuy(updatedItems)
+    }
 
   return (
     <div className="w-[100vw] h-[max-content] flex flex-col lg:gap-[38px] md:gap-6 gap-4 xl:px-10 lg:p-6 md:px-10 p-3">
@@ -143,17 +167,17 @@ const Checkout_page = () => {
                                         src="/svg/delete.svg" 
                                         alt="" 
                                         className="xl:w-[26px] xl:h-[26px] w-[18px] h-[18px] cursor-pointer" 
-                                        // onClick={() => handleDeleteFromCart(itemToBuy[index].productId)}
+                                        onClick={() => handleDeleteItemFrmChkout(itemToBuy.productId)}
                                          />
                                     </span>
                                     <h1 className="xl:text-2xl text-xl">${itemToBuy.total}</h1>
                                     <div className="flex gap-2 items-center">
                                         <span className={qty_style}
-                                        //  onClick={() => handleAddedCartDecreament(itemToBuy[index].productId)}
+                                         onClick={() => handleDecreamentItemQty(itemToBuy.productId)}
                                             >-</span>
                                         {itemToBuy.quantity}
                                         <span className={qty_style}
-                                        //  onClick={() => handleAddedCartIncreament(itemToBuy[index].productId)}
+                                         onClick={() => handleIncreamentItemQty(itemToBuy.productId)}
                                             >+</span>
                                     </div>
                                 </div>

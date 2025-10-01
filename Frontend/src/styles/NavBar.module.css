@@ -17,7 +17,7 @@ section {
 }
 
 .cartUser {
-  @apply w-[118px] h-[30px] lg:w-[150px] lg:h-[70px] md:w-[100px] md:h-[40px] xl:w-[180px] xl:h-[100px] flex justify-center items-center gap-[30px];
+  @apply w-[118px] h-[30px] lg:w-[150px] lg:h-[70px] md:w-[100px] md:h-[40px] xl:w-[180px] xl:h-[100px] flex justify-center items-center gap-[30px] cursor-pointer;
 }
 
 .drop_modal {

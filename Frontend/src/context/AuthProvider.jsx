@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [message, setMessage] = useState("")
   const [drop, setDrop] = useState(false);
+   const [smModal, setSmModal] = useState(false);
 
   const OTP = Math.floor(Math.random() * 9000 + 1000)
 
@@ -54,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     }
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, drop, setDrop, OTP, loggedIn,setLoggedIn, googleUserAuth, handleGoogleUserAuth, message, setMessage }}>
+    <AuthContext.Provider value={{ auth, setAuth, drop, setDrop, OTP, loggedIn,setLoggedIn, googleUserAuth, handleGoogleUserAuth, message, setMessage, smModal, setSmModal }}>
       {children}
     </AuthContext.Provider>
   );

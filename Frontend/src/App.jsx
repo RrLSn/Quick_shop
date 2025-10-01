@@ -37,7 +37,9 @@ function App() {
       element: (
         <div>
           <NavBar />
-          <div onClick={() => setDrop(false)}>
+          <div onClick={() => {
+            setDrop(false)
+          }}>
             <Outlet />
           </div>
           
