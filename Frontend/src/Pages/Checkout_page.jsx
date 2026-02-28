@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styles from "../styles/Product_details.module.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { states } from "../data";
 import { CartContext } from "../context/CartContext";
 import { truncateString } from "../utils";
 import { ProductContext } from "../context/ProductContext";
+import { orderApiUrl } from "../Api/axios";
+import axios from "axios";
+import AuthContext from "../context/AuthProvider";
 
 
 const estimation_style = "w-full h-[62px] border-b-[1px] flex justify-between py-[20px] border-[#CBCBCB] font-Urbanist font-[500] leading-[21.6px] text-[18px]"
@@ -13,39 +16,49 @@ const qty_style = "xl:w-[40px] xl:h-[40px] w-[30px] h-[30px] bg-[#EEEEEE] flex j
 
 
 const Checkout_page = () => {
+    const navigate = useNavigate()
     const [showPersonal, setShowPersonal] = useState(false)
     const [showShippingInfo, setShowShippingInfo] = useState(false)
     const [showPaymentMethod, setShowPaymentMethod] = useState(false)
-    const [itemsToBuy, setItemsToBuy] = useState([])
-    const {discount, shippingFee, cart, cartItems} = useContext(CartContext)
+    const {discount, shippingFee, cart, cartItems, handleDeleteFromCart, handleAddedCartIncreament, handleAddedCartDecreament} = useContext(CartContext)
     const {fullTitle} = useContext(ProductContext)
+    const {auth} = useContext(AuthContext)
+    const userId = auth?.userId
 
     const total = cart ? (cart.subtotal + discount + shippingFee).toFixed(2) : "0.00"
 
-    // const itemsToBuy = cartItems
-    const itemsInCart = cart
-
-useEffect(() => {
-  if (cartItems.length > 0 && itemsToBuy.length === 0) {
-    setItemsToBuy([...cartItems]);
-  }
-}, [cartItems, itemsToBuy]);
-
-
-    const handleDeleteItemFrmChkout = (itemId) => {
-        const itemsLeft = itemsToBuy.filter(item => item.productId !== itemId)
-        setItemsToBuy(itemsLeft)
+const handlePlaceOrder = async (cartItems) => {
+    if (!cartItems || cartItems.length === 0) {
+        alert("Your cart is empty. Please add items to your cart before placing an order.");
+        return;
     }
+    try {
+        const payload = {
+            // userId in params already, but keep for clarity/validation on server
+            userId,
+            items: cartItems.map(item => ({
+                productId: item.productId ?? item.id,
+                title: truncateString(fullTitle ? fullTitle(item.title) : item.title, 50),
+                price: Number(item.price),
+                quantity: Number(item.quantity),
+                image: Array.isArray(item.image) ? item.image[0] : item.image,
+                total: Number((item.price * item.quantity).toFixed(2))
+            })),
+            tax: 0,
+            shippingFee: Number(shippingFee || 0),
+            total: Number(total) // ensure numeric
+        };
 
-    const handleIncreamentItemQty = (itemId) => {
-        const updatedItems = itemsToBuy.map(item => {item.productId === itemId ? {...item, quantity: item.quantity + 1} : item})
-        setItemsToBuy(updatedItems)
+        const res = await axios.post(`${orderApiUrl}/${userId}`, payload);
+        console.log("result",res.status)
+        if (res.status === 200) {
+            navigate("/checkout_success");
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Failed to place order");
     }
-
-    const handleDecreamentItemQty = (itemId) => {
-        const updatedItems = itemsToBuy.map(item => {item.productId === itemId && item.quantity > 1 ? {...item, quantity: item.quantity - 1} : item})
-        setItemsToBuy(updatedItems)
-    }
+}
 
   return (
     <div className="w-[100vw] h-[max-content] flex flex-col lg:gap-[38px] md:gap-6 gap-4 xl:px-10 lg:p-6 md:px-10 p-3">
@@ -152,32 +165,32 @@ useEffect(() => {
                 <div className="w-full h-[max-content] flex flex-col xl:gap-4 gap-2">
                     <h1 className="xl:text-xl text-[16px] font-bold">Item(s)</h1>
                     {
-                        itemsToBuy.map((itemToBuy, index) => (
+                        cartItems.map((cartItem, index) => (
                             <div key={index} className="w-full flex justify-between h-[200px] items-center">
-                                <img src={itemToBuy.image} alt="" className="w-[130px] h-[150px] bg-white" />
+                                <img src={cartItem.image} alt="" className="w-[130px] h-[150px] bg-white" />
                                 <div className="xl:w-[60%] w-[50%] h-[160px] flex flex-col gap-3">
                                     <span>
                                         <p className="font-Urbanist font-[500] xl:text-[18px] text-[15px] leading-[16.8px] text-[#575757]">
                                             {
-                                                fullTitle === false ? truncateString(itemToBuy.title) :
-                                                itemToBuy.title
+                                                fullTitle === false ? truncateString(cartItem.title) :
+                                                cartItem.title
                                             }
                                         </p>
                                         <img 
                                         src="/svg/delete.svg" 
                                         alt="" 
                                         className="xl:w-[26px] xl:h-[26px] w-[18px] h-[18px] cursor-pointer" 
-                                        onClick={() => handleDeleteItemFrmChkout(itemToBuy.productId)}
+                                        onClick={() => handleDeleteFromCart(cartItem.productId)}
                                          />
                                     </span>
-                                    <h1 className="xl:text-2xl text-xl">${itemToBuy.total}</h1>
+                                    <h1 className="xl:text-2xl text-xl">${cartItem ? (cartItem.total).toFixed(2) : "0.00"}</h1>
                                     <div className="flex gap-2 items-center">
                                         <span className={qty_style}
-                                         onClick={() => handleDecreamentItemQty(itemToBuy.productId)}
+                                         onClick={() => handleAddedCartDecreament(cartItem.productId)}
                                             >-</span>
-                                        {itemToBuy.quantity}
+                                        {cartItem.quantity}
                                         <span className={qty_style}
-                                         onClick={() => handleIncreamentItemQty(itemToBuy.productId)}
+                                         onClick={() => handleAddedCartIncreament(cartItem.productId)}
                                             >+</span>
                                     </div>
                                 </div>
@@ -189,7 +202,7 @@ useEffect(() => {
                 <div className="w-full h-[248px]">
                     <span className={estimation_style}>
                         <p>Subtotal</p>
-                        <p>${itemsInCart ? (itemsInCart.subtotal).toFixed(2) : "0.00"}</p>
+                        <p>${cart ? (cart.subtotal).toFixed(2) : "0.00"}</p>
                     </span>
                     <span className={estimation_style}>
                         <p>Discount</p>
@@ -204,7 +217,7 @@ useEffect(() => {
                         <p>${total}</p>
                     </span>
                 </div>
-                <button className="w-full xl:h-[60px] lg:h-[50px] h-[40px] font-bold flex justify-center items-center text-white bg-[#F24810] border-[1px] rounded-sm hover:bg-white hover:text-[#F24810] cursor-pointer border-[#F24810] xl:text-xl lg:text-[16px] text-[14px]">Place Order</button>
+                <button className="w-full xl:h-[60px] lg:h-[50px] h-[40px] font-bold flex justify-center items-center text-white bg-[#F24810] border-[1px] rounded-sm hover:bg-white hover:text-[#F24810] cursor-pointer border-[#F24810] xl:text-xl lg:text-[16px] text-[14px]" onClick={() => handlePlaceOrder(cartItems)}>Place Order</button>
             </form>
         </div>
     </div>

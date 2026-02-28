@@ -80,7 +80,7 @@ function App() {
           element: <About_us />,
         },
         {
-          path: "checkout_sucess",
+          path: "checkout_success",
           element: <Checkout_success />,
         },
         {
@@ -148,8 +148,8 @@ function App() {
     <ProductProvider>
       <CartProvider>
         <div className="wholeWrapper">
-        <RouterProvider router={routes} />
-      </div>
+          <RouterProvider router={routes} />
+        </div>
       </CartProvider>
     </ProductProvider>
   );

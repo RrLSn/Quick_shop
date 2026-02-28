@@ -4,14 +4,17 @@ axios.defaults.withCredentials = true;
 
 const Env = import.meta.env;
 
-//Product Auth
+//Product route
 export const productApiUrl = `${Env.VITE_API_URL}/api/products`;
 
-//Cart Auth
+//Cart route
 export const cartApiUrl = `${Env.VITE_API_URL}/api/cart`;
 
-//User Auth
+//User Auth route
 const userBaseUrl = `${Env.VITE_API_URL}/api/auth`;
+
+//Order route
+export const orderApiUrl = `${Env.VITE_API_URL}/api/order`
 
 export const regUrl = "/register";
 export const loginUrl = "/login";
