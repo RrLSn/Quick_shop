@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import styles from "../styles/Products.module.css";
 import { ProductContext } from "../context/ProductContext";
 import { truncateString } from "../utils";
@@ -12,6 +12,7 @@ const Related_product = ({selectedProduct}) => {
   const {fullTitle, handleSelectedProduct, startIndex, setStartIndex} = useContext(ProductContext)
   const [relatedProduct, setRelatedProduct] = useState([])
   const navigate = useNavigate()
+  const productsRef = useRef(null)
 
   //fetch related products for selected product
   useEffect(() => {
@@ -43,13 +44,12 @@ const Related_product = ({selectedProduct}) => {
         <span>
           Related <h1>Product</h1>
         </span>
-        <div className={styles.navigate}>
+        <div className={`${styles.navigate} sm:flex hidden`}>
           <img src="/svg/lessIcon.svg" alt="" onClick={handlePrev} />
           <img src="/svg/greaterIcon.svg" alt="" onClick={handleNext} />
         </div>
       </div>
-      <div className={styles.products}>
-      <div className={styles.products}>
+      <div className={styles.products} ref={productsRef}>
         {
           currentItems?.map((related) => {
             return (
@@ -68,7 +68,6 @@ const Related_product = ({selectedProduct}) => {
             )
           })
         }
-      </div>
       </div>
     </div>
   )

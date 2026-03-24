@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "../styles/Hero.module.css";
 
 const Hero = ({ herodata }) => {
   const [startIndex, setStartIndex] = useState(0)
+  const heroSliderRef = useRef(null)
   const getRnd = (max) => {
     return Math.floor(Math.random() * max);
   };
@@ -33,7 +34,7 @@ const Hero = ({ herodata }) => {
     <div className={styles.wrapper}>
       <h1>Find and buy amazing product quickly</h1>
       <main>
-        <div className={styles.navigate}>
+        <div className={`${styles.navigate} sm:flex hidden`}>
           <img 
             src="/svg/arrowLeft.svg" 
             alt=""
@@ -43,7 +44,7 @@ const Hero = ({ herodata }) => {
             alt=""
             onClick={handleNext} />
         </div>
-        <div className={styles.heroSlider}>
+        <div className={styles.heroSlider} ref={heroSliderRef}>
           {currentHeroData.map((product) => {
             let rndImage = "";
             if (product.image && product.image.length > 0) {

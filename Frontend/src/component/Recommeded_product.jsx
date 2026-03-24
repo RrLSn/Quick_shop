@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import styles from "../styles/Products.module.css";
 import { ProductContext } from "../context/ProductContext";
 import { truncateString } from "../utils";
@@ -8,6 +8,7 @@ import { truncateString } from "../utils";
 const Recommeded_product = ({products, navigate}) => {
     const [recommendProduct, setRecommendProduct] = useState([])
     const {fullTitle, handleSelectedProduct, itemsPerSlide, startIndex, setStartIndex} = useContext(ProductContext)
+    const productsRef = useRef(null)
 
 
     useEffect(() => {
@@ -43,12 +44,12 @@ const Recommeded_product = ({products, navigate}) => {
         <span>
           Recommended <h1>Product</h1>
         </span>
-        <div className={styles.navigate}>
+        <div className={`${styles.navigate} sm:flex hidden`}>
           <img src="/svg/lessIcon.svg" alt="" onClick={handlePrev} />
           <img src="/svg/greaterIcon.svg" alt="" onClick={handleNext} />
         </div>
       </div>
-      <div className={styles.products}>
+      <div className={styles.products} ref={productsRef}>
         {
           currentRecProducts.map((recommend, index) => {
             return (

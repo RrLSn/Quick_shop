@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import styles from "../styles/Products.module.css";
 import { ProductContext } from "../context/ProductContext";
 import { truncateString } from "../utils";
@@ -10,6 +10,7 @@ const Products = ({ products }) => {
   const [featuredProduct, setFeaturedProduct] = useState([])
   const {fullTitle, handleSelectedProduct, startIndex, setStartIndex} = useContext(ProductContext)
   const navigate = useNavigate()
+  const productsRef = useRef(null)
   
   useEffect(() => {
     if(products && products.length > 0) {
@@ -44,12 +45,12 @@ const Products = ({ products }) => {
         <span>
           Featured <h1>Product</h1>
         </span>
-        <div className={styles.navigate}>
+        <div className={`${styles.navigate} sm:flex hidden`}>
           <img src="/svg/lessIcon.svg" alt="" onClick={handlePrev} />
           <img src="/svg/greaterIcon.svg" alt="" onClick={handleNext} />
         </div>
       </div>
-      <div className={styles.products}>
+      <div className={styles.products} ref={productsRef}>
         {
           productArray.map((featured, index) => {
             return (

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import styles from "../styles/Arrivals.module.css";
 import { truncateString } from "../utils";
 import { ProductContext } from "../context/ProductContext";
@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Arrivals = ({ newArrivals }) => {
   const {fullTitle, handleSelectedProduct, startIndex, setStartIndex} = useContext(ProductContext)
   const navigate = useNavigate()
+  const productsRef = useRef(null)
 
   const getRnd = (max) => {
     return Math.floor(Math.random() * max);
@@ -38,12 +39,12 @@ const Arrivals = ({ newArrivals }) => {
         <span>
           New <h1>Arrivals</h1>
         </span>
-        <div className={styles.navigate}>
+        <div className={`${styles.navigate} sm:flex hidden`}>
           <img src="/svg/lessIcon.svg" alt="" onClick={handlePrev} />
           <img src="/svg/greaterIcon.svg" alt="" onClick={handleNext} />
         </div>
       </div>
-      <div className={styles.products}>
+      <div className={styles.products} ref={productsRef}>
         {currentArrivals.map((product, index) => {
           let rndImage = "";
           if (product.image && product.image.length > 0) {

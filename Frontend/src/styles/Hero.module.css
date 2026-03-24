@@ -28,7 +28,34 @@ main {
 }
 
 .heroSlider {
-  @apply w-full lg:h-[490px] h-[390px] flex gap-[20px] py-4 overflow-hidden;
+  @apply w-full lg:h-[490px] h-[390px] flex gap-[20px] py-4;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar on small screens while keeping scrolling functional */
+.heroSlider::-webkit-scrollbar {
+  height: 4px;
+}
+
+.heroSlider::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.heroSlider::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* For larger screens (sm and above), hide the scrollbar */
+@media (min-width: 640px) {
+  .heroSlider {
+    overflow: hidden;
+  }
+
+  .heroSlider::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .sliderCard {

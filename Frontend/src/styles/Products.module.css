@@ -23,7 +23,34 @@
 }
 
 .products {
-  @apply w-full xl:h-[500px] lg:h-[400px] h-[300px] flex xl:gap-10 gap-5 items-start overflow-hidden;
+  @apply w-full xl:h-[500px] lg:h-[400px] h-[300px] flex xl:gap-10 gap-5 items-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar on small screens while keeping scrolling functional */
+.products::-webkit-scrollbar {
+  height: 4px;
+}
+
+.products::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.products::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* For larger screens (sm and above), hide the scrollbar */
+@media (min-width: 640px) {
+  .products {
+    overflow: hidden;
+  }
+
+  .products::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .product_card {
